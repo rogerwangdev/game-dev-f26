@@ -6,7 +6,7 @@ A bounded adaptation of [Lor3walker/gold-miner](https://github.com/Lor3walker/go
 
 - Playable browser game and five-operation engine implemented.
 - Heuristic completes all three development situations and reaches their quotas.
-- Deterministic engine, runner, and mocked Vertex adapter tests pass locally.
+- All 25 deterministic engine, runner, replay, and mocked Vertex adapter tests pass locally. Independent review findings were addressed and rechecked in [review.md](review.md).
 - Vertex AI selected by the student. **Live episode and model comparison are pending Google Cloud project setup. No live model calls have been made.**
 - Dedicated CI workflow prepared. Remote CI evidence will be linked once run.
 

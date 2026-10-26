@@ -2,6 +2,8 @@
 
 Draft dated October 21, 2026. This is a planning document, not an implementation or a report of completed experiments.
 
+Implementation began October 26. See [README.md](README.md) and [EVALUATION.md](EVALUATION.md) for current checkpoint evidence and remaining work. The original plan below is retained as the scope record.
+
 ## Objective and starting point
 
 Adapt a bounded version of Gold Miner and compare a model-driven player with a credible heuristic player. Study whether the model can balance target value, retrieval time, obstacles, and the remaining level budget.
