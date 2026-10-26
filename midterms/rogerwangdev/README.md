@@ -8,7 +8,7 @@ A bounded adaptation of [Lor3walker/gold-miner](https://github.com/Lor3walker/go
 - Heuristic completes all three development situations and reaches their quotas.
 - All 25 deterministic engine, runner, replay, and mocked Vertex adapter tests pass locally. Independent review findings were addressed and rechecked in [review.md](review.md).
 - Vertex AI selected by the student. **Live episode and model comparison are pending Google Cloud project setup. No live model calls have been made.**
-- Dedicated CI workflow prepared. Remote CI evidence will be linked once run.
+- Dedicated [GitHub CI run passed](https://github.com/rogerwangdev/game-dev-f26/actions/runs/40376569370), including source verification, all 25 tests, and development baseline runs.
 
 ## Run locally
 

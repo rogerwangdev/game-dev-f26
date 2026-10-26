@@ -30,7 +30,9 @@ The deterministic test suite covers rule invariants, legal and illegal actions, 
 
 All 25 local tests passed. Local browser checks exercised manual stepping, launch, reset, a complete heuristic episode, phone layout, and replay of a mocked call-limited episode. The open-field heuristic completed in the browser with score 1011. The mocked replay retained its `call_limit` failure. No browser errors or horizontal overflow were observed in those checks. Browser checks do not replace a human playtest. Independent review and its follow-up are recorded in [review.md](review.md).
 
-The dedicated GitHub workflow is `.github/workflows/midterm-rogerwangdev.yml`. A green remote run is still pending until the branch is pushed and the workflow runs. Passing local commands alone is not reported as remote CI.
+The dedicated GitHub workflow is `.github/workflows/midterm-rogerwangdev.yml`. Its [remote run on checkpoint commit 90b3e46 passed](https://github.com/rogerwangdev/game-dev-f26/actions/runs/40376569370), including source verification, all 25 tests, and development baseline runs. The fork's shared setup and minigame workflows also passed. The engine source is unchanged from implementation commit `2303986` referenced by the saved traces.
+
+Course PR integration remains separate from the successful fork CI: the current trusted minigame boundary checker protects all `.github/` paths and rejects this dedicated midterm workflow, although the midterm brief explicitly requires it. This was reproduced by calling `scripts/minigames.py:check_paths` with the project README and its dedicated workflow. No shared course tooling was modified. Staff will need to resolve that policy mismatch before the final course PR can pass that boundary check.
 
 ## Live protocol and cost
 
