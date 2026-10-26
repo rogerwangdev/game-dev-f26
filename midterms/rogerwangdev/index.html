@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gold Miner · Midterm checkpoint</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header><div><p class="eyebrow">AI GAMEPLAY LAB · CHECKPOINT</p><h1>Gold Miner<span>Every second has a price.</span></h1></div><a href="README.md">Project notes ↗</a></header>
+    <section class="toolbar" aria-label="Game setup">
+      <label>Situation <select id="scenario"></select></label>
+      <label>Player <select id="mode"><option value="human">You</option><option value="baseline">Heuristic agent</option></select></label>
+      <button id="restart">New episode</button><button id="run">Start clock</button>
+    </section>
+    <section class="stats" aria-live="polite"><div>COLLECTED<strong id="score">$0</strong></div><div>QUOTA<strong id="quota">—</strong></div><div>SIMULATED TIME<strong id="time">—</strong></div><div>CLAW<strong id="claw">Ready</strong></div></section>
+    <div class="stage"><canvas id="game" width="960" height="640" aria-label="Gold Miner field with a swinging claw and underground gold, diamonds, and rocks"></canvas></div>
+    <section class="controls"><button id="launch" class="primary">Launch claw <kbd>Space / ↓</kbd></button><button id="wait">Wait 0.5 seconds <kbd>→</kbd></button><button id="download">Download trace</button><label class="upload">Replay saved trace<input id="replay" type="file" accept="application/json,.json"></label></section>
+    <p id="status" role="status">Choose a target. Large gold is valuable but heavy. Rocks cost precious time.</p>
+    <p class="explanation">The game uses 60 physics frames per simulated second and 30 frames per decision. Pause or advance one step to inspect a decision. Launch timing, collisions, and retrieval use the same engine as automated evaluation.</p>
+    <footer>Adapted from Lor3walker’s MIT-licensed Gold Miner · <a href="vendor/gold-miner/LICENSE">License</a> · Model episodes run through the local evaluation CLI and can be replayed here. This page does not hold API credentials.</footer>
+  </main>
+  <script src="vendor/gold-miner/js/utils.js"></script>
+  <script src="vendor/gold-miner/js/items.js"></script>
+  <script src="vendor/gold-miner/js/sprites.js"></script>
+  <script src="vendor/gold-miner/js/hook.js"></script>
+  <script>window.GM.Audio = { play() {} }</script>
+  <script type="module" src="src/browser.js"></script>
+</body>
+</html>

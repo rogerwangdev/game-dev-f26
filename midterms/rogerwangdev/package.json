@@ -1,0 +1,13 @@
+{
+  "name": "gold-miner-midterm",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "baseline": "node scripts/evaluate.js --player baseline --suite development",
+    "evaluate": "node scripts/evaluate.js",
+    "serve": "python3 -m http.server 8765 --bind 127.0.0.1",
+    "verify-source": "node scripts/verify-source.js"
+  }
+}

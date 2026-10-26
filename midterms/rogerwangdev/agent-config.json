@@ -1,0 +1,14 @@
+{
+  "implementation": { "instructions": "AGENTS.md", "skill": "skills/gold-miner-rule-change/SKILL.md", "evidence": "docs/work-log.md" },
+  "independent_review": { "mode": "separate read-only context", "findings": "review.md", "cannot": ["edit implementation", "approve", "merge"] },
+  "playing_agent": {
+    "provider": "vertex", "model": "gemini-3.5-flash-lite", "location": "global", "project": "GOOGLE_CLOUD_PROJECT environment variable",
+    "prompt": "src/vertex.js:SYSTEM_PROMPT", "tools": [], "observations": "src/episode.js:observe", "actions": "src/episode.js:legal_actions",
+    "memory": "0 or 4 previous decision/result entries, explicitly selected per trial",
+    "limits": { "maxSteps": 200, "maxCalls": 60, "maxInvalid": 3, "callTimeoutMs": 15000, "wallTimeoutMs": 180000 },
+    "retries": 0, "fallbacks": 0, "failure_policy": "Count and terminate with explicit reason",
+    "live_status": "Pending student Google Cloud project setup. No live calls made."
+  },
+  "baseline": { "implementation": "src/baseline.js", "algorithm": "visible-geometry value per estimated total collection time", "lookaheadFrames": 240, "information": "Same public observation and action interface as model" },
+  "tests": "npm test", "suite": "SUITE.json", "report": "EVALUATION.md"
+}
