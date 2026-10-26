@@ -7,7 +7,7 @@ A bounded adaptation of [Lor3walker/gold-miner](https://github.com/Lor3walker/go
 - Playable browser game and five-operation engine implemented.
 - Heuristic completes all three development situations and reaches their quotas.
 - All 25 deterministic engine, runner, replay, and mocked Vertex adapter tests pass locally. Independent review findings were addressed and rechecked in [review.md](review.md).
-- Vertex AI selected by the student. **Live episode and model comparison are pending Google Cloud project setup. No live model calls have been made.**
+- **The first live Vertex episode and preliminary comparison are complete.** On `open-dev`, the model scored $0 against the $750 quota, compared with the heuristic's $1011. The failed episode is retained with all 32 real API calls and its full trace in [EVALUATION.md](EVALUATION.md).
 - Dedicated [GitHub CI run passed](https://github.com/rogerwangdev/game-dev-f26/actions/runs/40376569370), including source verification, all 25 tests, and development baseline runs.
 
 ## Run locally
@@ -41,12 +41,12 @@ The authoritative engine exposes `reset(seed)`, `observe(player_id)`, `legal_act
 
 The [rule/source map](docs/rule-source-map.md) distinguishes inherited rules from intentional adaptations. Our contribution is the fixed-step interface, bounded level scenarios, baseline, model adapter, runner, tests, traces, and English checkpoint interface.
 
-## Live Vertex episode after project setup
+## Run another live Vertex episode
 
 These commands make paid API calls only when `--live` is present. Run from this project folder after configuring the project associated with your course credits and application-default credentials:
 
 ```bash
-export GOOGLE_CLOUD_PROJECT='your-course-project-id'
+export GOOGLE_CLOUD_PROJECT='game-dev-f26-lw3240'
 export GOOGLE_CLOUD_LOCATION='global'
 export COURSE_MODEL='gemini-3.5-flash-lite'
 gcloud auth application-default login
