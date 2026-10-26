@@ -21,3 +21,11 @@ The reviewer ran all 23 then-current tests and verified all 13 imported file has
 The same read-only reviewer rechecked the changes in a follow-up task and reported: **No findings**. Both replay tests passed. Independent checks confirmed that changing the source manifest or each imported runtime dependency changes the hash. Replay checks restored `call_limit`, `invalid_limit`, and `provider_timeout` outcomes exactly.
 
 Files reviewed included parent/project instructions, the project skill, source manifest, rule map, engine, scenarios, baseline, runner, provider adapter, evaluation/version scripts, browser/replay code, HTML, work log, all test files, and relevant imported hook/item/game/main code. This records findings and their resolution. The student retains responsibility for design and submission decisions.
+
+## Recorded-agent inspector review
+
+The same independent read-only reviewer inspected the later one-click model replay and inspector UI. They found that loading a recording could leave the Situation selector displaying a different scenario. The implementation now synchronizes that selector, adds a labeled option for recorded cases absent from the selector, and shows a locked recorded-player label. Reset restores human controls.
+
+The reviewer's follow-up reported no findings. Their independent offline check reproduced all 60 saved steps, comprising 32 model decisions and 28 forced waits, and verified that the saved trace was unchanged. They confirmed by code inspection that replay loads local JSON, does not import the provider adapter, labels forced waits, and preserves original metadata on download. No provider calls or edits were made by the reviewer.
+
+The author separately exercised the browser controls, exact first two recorded actions, terminal result, download metadata, phone layout, direct replay link, reset, and scenario/player label correction. No browser errors or external/model requests were observed. These automated checks are not a human peer playtest.

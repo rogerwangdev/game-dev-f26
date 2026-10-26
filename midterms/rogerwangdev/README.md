@@ -31,6 +31,10 @@ npm run serve
 
 Open <http://127.0.0.1:8765>. Choose a situation and player. Start the clock for automatic play, or use **Wait 0.5 seconds** and **Launch claw** to inspect individual decisions. Space or Down launches and Right advances one interval. Download traces or replay an evaluation JSON file. Replays make no provider calls.
 
+To watch the actual first Gemini run, open <http://127.0.0.1:8765/?replay=vertex> or click **Watch saved Gemini episode**. Use **Pause replay**, then **Next recorded step** to inspect each observation, returned action, latency, and result in the agent inspector. Automatic waits are labeled separately and make no model request. This recording ends with the actual failed $0/750 outcome. No new API calls are made when watching it.
+
+The agent loop runs locally in `src/runner.js`. It sends visible numeric state and allowed actions to the existing Gemini model through `src/vertex.js`, validates the returned action, and advances the local engine. The game and runner have not been deployed to Google Cloud. Gemini receives structured game observations rather than a browser connection or screenshot. Opening the browser game does not start a live model episode.
+
 ## Scope and controls
 
 One complete level format includes static gold, diamonds, rocks, quotas, and a simulated timer. Value is awarded after retrieval. A run ends when the field is cleared or time expires. Success means reaching the quota. Shops, upgrades, combos, dynamite, hidden-value bags, moving animals, and the original campaign are excluded to isolate timing and value/time decisions.

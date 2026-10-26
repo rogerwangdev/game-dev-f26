@@ -17,7 +17,13 @@
     <section class="stats" aria-live="polite"><div>COLLECTED<strong id="score">$0</strong></div><div>QUOTA<strong id="quota">—</strong></div><div>SIMULATED TIME<strong id="time">—</strong></div><div>CLAW<strong id="claw">Ready</strong></div></section>
     <div class="stage"><canvas id="game" width="960" height="640" aria-label="Gold Miner field with a swinging claw and underground gold, diamonds, and rocks"></canvas></div>
     <section class="controls"><button id="launch" class="primary">Launch claw <kbd>Space / ↓</kbd></button><button id="wait">Wait 0.5 seconds <kbd>→</kbd></button><button id="download">Download trace</button><label class="upload">Replay saved trace<input id="replay" type="file" accept="application/json,.json"></label></section>
+    <section class="controls" aria-label="Recorded model episode"><button id="watch-model">Watch saved Gemini episode</button><button id="next-recorded" disabled>Next recorded step</button><span id="replay-progress">Saved recording · no API calls</span></section>
     <p id="status" role="status">Choose a target. Large gold is valuable but heavy. Rocks cost precious time.</p>
+    <details class="inspector" open>
+      <summary>Agent inspector <span id="decision-label">Load a recording to inspect its decisions</span></summary>
+      <p id="decision-meta">The saved episode includes the game observation, returned action, latency, and result. It contains no model reasoning text.</p>
+      <div class="inspector-grid"><section><h2>Observation before this step</h2><pre id="agent-observation">No recorded step selected.</pre></section><section><h2>Returned action and result</h2><pre id="agent-action">No recorded step selected.</pre></section></div>
+    </details>
     <p class="explanation">The game uses 60 physics frames per simulated second and 30 frames per decision. Pause or advance one step to inspect a decision. Launch timing, collisions, and retrieval use the same engine as automated evaluation.</p>
     <footer>Adapted from Lor3walker’s MIT-licensed Gold Miner · <a href="vendor/gold-miner/LICENSE">License</a> · Model episodes run through the local evaluation CLI and can be replayed here. This page does not hold API credentials.</footer>
   </main>

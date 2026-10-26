@@ -28,3 +28,12 @@
 - Saved all 32 model calls, actions, latency and usage metadata, 60 simulation intervals, and the failure outcome. Estimated cost was $0.0072806 USD. There were no invalid actions, fallbacks, or provider failures.
 - Verified identical engine and suite hashes and seed 101 across the compared runs. An independent headless replay reproduced every observation, event, and terminal outcome exactly.
 - Updated the README, configuration status, and preliminary comparison to report this actual failed trial. Preserved the original pre-live suite declaration. Final held-out evaluation, history comparison, human feedback, and student-authored reflection remain pending.
+
+### Recorded-agent inspection
+
+- The student asked to understand the local/cloud split and watch the agent's behavior.
+- Added one-click loading of the existing live trace, pause/resume and next-recorded-step controls, and an inspector showing the observation before each step, the saved action, measured latency, and physics events.
+- Labeled forced engine waits separately from model decisions. Watching a trace fetches a local JSON file and makes no model API calls. Downloading during replay preserves the original saved metadata.
+- No game rules, model prompt, evaluation fixtures, or agent controls were changed. No new live calls were made for this UI work.
+- All 25 deterministic tests passed. Browser checks covered saved replay, pause/next/resume, exact first observations/actions, forced-wait labels, final outcome, original download metadata, phone layout, direct link, and reset. Network observation found no external/model requests.
+- Independent review found and rechecked a scenario-label mismatch. Corrected the active situation and recorded-player labels and verified reset restores human controls. Follow-up reported no findings. See `review.md`.
