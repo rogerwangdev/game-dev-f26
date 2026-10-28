@@ -1,0 +1,202 @@
+TAP version 13
+# Subtest: one decision advances exactly 60 physics frames without wall-time dependence
+ok 1 - one decision advances exactly 60 physics frames without wall-time dependence
+  ---
+  duration_ms: 22.832887
+  type: 'test'
+  ...
+# Subtest: the same seed and actions reproduce an entire gameplay trace
+ok 2 - the same seed and actions reproduce an entire gameplay trace
+  ---
+  duration_ms: 1.779481
+  type: 'test'
+  ...
+# Subtest: invalid actions and player IDs cannot mutate gameplay
+ok 3 - invalid actions and player IDs cannot mutate gameplay
+  ---
+  duration_ms: 1.123091
+  type: 'test'
+  ...
+# Subtest: observations are detached copies with no seed, engine, or evaluator data
+ok 4 - observations are detached copies with no seed, engine, or evaluator data
+  ---
+  duration_ms: 0.412462
+  type: 'test'
+  ...
+# Subtest: launch is unavailable while the claw is busy
+ok 5 - launch is unavailable while the claw is busy
+  ---
+  duration_ms: 0.347695
+  type: 'test'
+  ...
+# Subtest: a straight launch completes a verified successful path and delivers exact value
+ok 6 - a straight launch completes a verified successful path and delivers exact value
+  ---
+  duration_ms: 0.256761
+  type: 'test'
+  ...
+# Subtest: nearest intercepted object wins over a more valuable object behind it
+ok 7 - nearest intercepted object wins over a more valuable object behind it
+  ---
+  duration_ms: 0.391609
+  type: 'test'
+  ...
+# Subtest: heavier loads take more simulated time to deliver
+ok 8 - heavier loads take more simulated time to deliver
+  ---
+  duration_ms: 0.595533
+  type: 'test'
+  ...
+# Subtest: timer expiry is exact and distinguishable from step exhaustion
+ok 9 - timer expiry is exact and distinguishable from step exhaustion
+  ---
+  duration_ms: 0.518234
+  type: 'test'
+  ...
+# Subtest: launch-frame offset is executed by physics rather than an aiming oracle
+ok 10 - launch-frame offset is executed by physics rather than an aiming oracle
+  ---
+  duration_ms: 0.513522
+  type: 'test'
+  ...
+# Subtest: observed integration regression: an empty launch retracts without a rendering callback
+ok 11 - observed integration regression: an empty launch retracts without a rendering callback
+  ---
+  duration_ms: 0.926987
+  type: 'test'
+  ...
+# Subtest: one-second wait advances 60 physics frames and expiry stops at 135 frames
+ok 12 - one-second wait advances 60 physics frames and expiry stops at 135 frames
+  ---
+  duration_ms: 7.155723
+  type: 'test'
+  ...
+# Subtest: last launch offset 59 fires after 59 ticks while 60 is rejected without mutation
+ok 13 - last launch offset 59 fires after 59 ticks while 60 is rejected without mutation
+  ---
+  duration_ms: 6.430356
+  type: 'test'
+  ...
+# Subtest: observed review regression: call-limited replays preserve failure and terminal reason
+ok 14 - observed review regression: call-limited replays preserve failure and terminal reason
+  ---
+  duration_ms: 12.132837
+  type: 'test'
+  ...
+# Subtest: replay rejects a recorded score that disagrees with current physics
+ok 15 - replay rejects a recorded score that disagrees with current physics
+  ---
+  duration_ms: 3.924705
+  type: 'test'
+  ...
+# Subtest: baseline completes all development scenarios using only observations
+ok 16 - baseline completes all development scenarios using only observations
+  ---
+  duration_ms: 24.417366
+  type: 'test'
+  ...
+# Subtest: model call exhaustion is enforced and explicit
+ok 17 - model call exhaustion is enforced and explicit
+  ---
+  duration_ms: 3.587637
+  type: 'test'
+  ...
+# Subtest: invalid model actions consume budget and never mutate gameplay
+ok 18 - invalid model actions consume budget and never mutate gameplay
+  ---
+  duration_ms: 2.553876
+  type: 'test'
+  ...
+# Subtest: a stuck provider is aborted and recorded as a failed call
+ok 19 - a stuck provider is aborted and recorded as a failed call
+  ---
+  duration_ms: 12.594427
+  type: 'test'
+  ...
+# Subtest: wall limit is distinct from request timeout
+ok 20 - wall limit is distinct from request timeout
+  ---
+  duration_ms: 34.891032
+  type: 'test'
+  ...
+# Subtest: provider errors are not replaced with baseline actions
+ok 21 - provider errors are not replaced with baseline actions
+  ---
+  duration_ms: 2.176103
+  type: 'test'
+  ...
+# Subtest: forced waits are counted separately from player decisions
+ok 22 - forced waits are counted separately from player decisions
+  ---
+  duration_ms: 2.447402
+  type: 'test'
+  ...
+# Subtest: current observation mode does not leak previous moves into history
+ok 23 - current observation mode does not leak previous moves into history
+  ---
+  duration_ms: 2.401884
+  type: 'test'
+  ...
+# Subtest: timing skill checks the declared engine, provider schema and full development episodes offline
+ok 24 - timing skill checks the declared engine, provider schema and full development episodes offline
+  ---
+  duration_ms: 84.355686
+  type: 'test'
+  ...
+# Subtest: timing skill rejects a requested interval that the runtime has not implemented
+ok 25 - timing skill rejects a requested interval that the runtime has not implemented
+  ---
+  duration_ms: 34.984674
+  type: 'test'
+  ...
+# Subtest: timing skill rejects a duration between physics ticks rather than rounding it
+ok 26 - timing skill rejects a duration between physics ticks rather than rounding it
+  ---
+  duration_ms: 33.379741
+  type: 'test'
+  ...
+# Subtest: timing skill catches drift between the engine and the outgoing provider action schema
+ok 27 - timing skill catches drift between the engine and the outgoing provider action schema
+  ---
+  duration_ms: 58.560573
+  type: 'test'
+  ...
+# Subtest: original checkpoint trace is rejected by the one-second runtime version
+ok 28 - original checkpoint trace is rejected by the one-second runtime version
+  ---
+  duration_ms: 64.695869
+  type: 'test'
+  ...
+# Subtest: Vertex adapter sends only observation, actions and bounded history with no model tools
+ok 29 - Vertex adapter sends only observation, actions and bounded history with no model tools
+  ---
+  duration_ms: 2.046168
+  type: 'test'
+  ...
+# Subtest: Vertex refuses to run without a configured project
+ok 30 - Vertex refuses to run without a configured project
+  ---
+  duration_ms: 0.50099
+  type: 'test'
+  ...
+# Subtest: non-JSON model output remains an invalid action with token usage recorded
+ok 31 - non-JSON model output remains an invalid action with token usage recorded
+  ---
+  duration_ms: 1.491941
+  type: 'test'
+  ...
+# Subtest: HTTP errors do not include credentials or raw provider messages
+ok 32 - HTTP errors do not include credentials or raw provider messages
+  ---
+  duration_ms: 0.314509
+  type: 'test'
+  ...
+1..32
+# tests 32
+# suites 0
+# pass 32
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 347.881071

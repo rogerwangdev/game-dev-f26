@@ -15,7 +15,7 @@ Draft map created before the engine adaptation. Source paths below refer to the 
 | Value is delivered when the claw returns to its resting length | code | `vendor/gold-miner/js/hook.js`, retract branch and `Game.onDeliver` in `js/game.js` |
 | Level timer advances by simulated delta time | code | `vendor/gold-miner/js/game.js`, `Game.update` |
 | Checkpoint uses static gold, diamonds, and rocks with known values, no shop, combo, dynamite, bags, or animals | design | `src/episode.js` and `src/scenarios.js`. Bounded scope isolates timing and value/time decisions |
-| Physics advances at 60 Hz, decisions advance 30 frames, launch optionally occurs at an explicit frame 0–29 | design | `src/episode.js`. Fixed interval preserves timed aiming without API latency changing the game |
+| Physics advances at 60 Hz, decisions advance 30 frames, launch optionally occurs at an explicit frame 0–29 | design | `src/episode.js`. Fixed interval preserves timed aiming without API latency changing the game. The timing-change procedure is in `skills/gold-miner-rule-change/references/simulation-timing.md`, with an offline contract check in `scripts/check-timing.mjs` inside that skill. The October 28 skill work does not change this rule |
 | Invalid commands leave gameplay unchanged, with runner-counted failures and finite budgets | design | `src/episode.js`, `src/runner.js` |
 | Episode ends at time expiry or field clearance, with quota-based success | design | `src/episode.js`. One standalone bounded level |
 | Players receive visible objects, public physics, claw state, timer, score, and legal controls as copies | design | `src/episode.js`. No engine, seeds, credentials, or evaluator annotations |

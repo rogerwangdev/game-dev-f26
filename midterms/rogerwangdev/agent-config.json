@@ -1,5 +1,12 @@
 {
-  "implementation": { "instructions": "AGENTS.md", "skill": "skills/gold-miner-rule-change/SKILL.md", "evidence": "docs/work-log.md" },
+  "implementation": {
+    "instructions": "AGENTS.md", "skill": "skills/gold-miner-rule-change/SKILL.md", "evidence": "docs/work-log.md",
+    "timing_procedure": "skills/gold-miner-rule-change/references/simulation-timing.md",
+    "offline_timing_check": "npm run check:timing",
+    "rubric_evidence": "docs/agent-team-evidence.md",
+    "standalone_skill_sessions_documented": 1,
+    "second_session_status": "Pending. Same-chat turns and subagent validation are not counted."
+  },
   "independent_review": { "mode": "separate read-only context", "findings": "review.md", "cannot": ["edit implementation", "approve", "merge"] },
   "playing_agent": {
     "provider": "vertex", "model": "gemini-3.5-flash-lite", "location": "global", "project": "GOOGLE_CLOUD_PROJECT environment variable",

@@ -6,7 +6,7 @@ A bounded adaptation of [Lor3walker/gold-miner](https://github.com/Lor3walker/go
 
 - Playable browser game and five-operation engine implemented.
 - Heuristic completes all three development situations and reaches their quotas.
-- All 25 deterministic engine, runner, replay, and mocked Vertex adapter tests pass locally. Independent review findings were addressed and rechecked in [review.md](review.md).
+- All 29 deterministic engine, runner, replay, mocked Vertex adapter, and timing-skill tests pass locally. Independent review evidence is in [review.md](review.md).
 - **The first live Vertex episode and preliminary comparison are complete.** On `open-dev`, the model scored $0 against the $750 quota, compared with the heuristic's $1011. The failed episode is retained with all 32 real API calls and its full trace in [EVALUATION.md](EVALUATION.md).
 - Dedicated [GitHub CI run passed](https://github.com/rogerwangdev/game-dev-f26/actions/runs/40376569370), including source verification, all 25 tests, and development baseline runs.
 
@@ -25,6 +25,7 @@ Run every command below from `midterms/rogerwangdev/`:
 ```bash
 npm test
 npm run verify-source
+npm run check:timing
 npm run baseline
 npm run serve
 ```
@@ -73,7 +74,7 @@ Do not use held-out results to tune the prompt. [SUITE.json](SUITE.json) records
 
 ## Development workflow and remaining submission work
 
-Project instructions are in [AGENTS.md](AGENTS.md). The committed [gold-miner-rule-change skill](skills/gold-miner-rule-change/SKILL.md) connects design rationale, source evidence, failing tests, implementation, boundary checks, and independent review. Actual usage is recorded in [the work log](docs/work-log.md). A second standalone session invocation remains pending.
+Project instructions are in [AGENTS.md](AGENTS.md). The committed [gold-miner-rule-change skill](skills/gold-miner-rule-change/SKILL.md) connects design rationale, source evidence, failing tests, implementation, boundary checks, and independent review. Its [simulation-timing procedure](skills/gold-miner-rule-change/references/simulation-timing.md) explains changes such as 0.5-second to 1-second decisions and includes an offline `npm run check:timing` helper. The active game still uses 0.5-second decisions. Actual usage is recorded in [the work log](docs/work-log.md). The [agent-team evidence index](docs/agent-team-evidence.md) lists the remaining rubric work and supplies a concrete second-session task. A second standalone session invocation remains pending.
 
 Codex assisted with implementation and suggested wrapping the existing claw simulation rather than replacing timing with target selection. This suggestion was retained in the implementation. The student still needs to write their own one-page `AGENT-TEAM.md` explaining their decisions. Human playtest observations, the final recording, and final evaluation are also pending and must not be inferred from automated tests.
 

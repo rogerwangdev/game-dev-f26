@@ -1,0 +1,164 @@
+--- a/src/episode.js
++++ b/src/episode.js
+@@ -2 +2 @@
+-export const DECISION_FRAMES = 30
++export const DECISION_FRAMES = 60
+--- a/src/vertex.js
++++ b/src/vertex.js
+@@ -5 +5 @@
+-export const SYSTEM_PROMPT = `You play a bounded Gold Miner level. Choose actions yourself using only the provided visible observation. Collect enough value to meet the quota before simulated time expires. Prioritize value relative to waiting, extension and weight-dependent return time, and avoid intercepting rocks. Angles are radians from downward vertical. The claw swings automatically. A decision advances exactly 30 frames at 60 Hz. Return either {"type":"wait"} or {"type":"launch","frame":N}, where N is an integer from 0 through 29. A launch waits N physics frames within this interval then fires along the resulting angle. Never select a target ID or change state. Do not include frame in a wait action. You have no repository tools, hidden-state access, or evaluator tools.`
++export const SYSTEM_PROMPT = `You play a bounded Gold Miner level. Choose actions yourself using only the provided visible observation. Collect enough value to meet the quota before simulated time expires. Prioritize value relative to waiting, extension and weight-dependent return time, and avoid intercepting rocks. Angles are radians from downward vertical. The claw swings automatically. A decision advances exactly 60 frames at 60 Hz. Return either {"type":"wait"} or {"type":"launch","frame":N}, where N is an integer from 0 through 59. A launch waits N physics frames within this interval then fires along the resulting angle. Never select a target ID or change state. Do not include frame in a wait action. You have no repository tools, hidden-state access, or evaluator tools.`
+@@ -23 +23 @@
+-          responseSchema: { type: 'OBJECT', properties: { type: { type: 'STRING', enum: ['wait', 'launch'] }, frame: { type: 'INTEGER', minimum: 0, maximum: 29 } }, required: ['type'] }
++          responseSchema: { type: 'OBJECT', properties: { type: { type: 'STRING', enum: ['wait', 'launch'] }, frame: { type: 'INTEGER', minimum: 0, maximum: 59 } }, required: ['type'] }
+--- a/src/browser.js
++++ b/src/browser.js
+@@ -140 +140 @@
+-}, 500)
++}, 1000)
+--- a/index.html
++++ b/index.html
+@@ -19 +19 @@
+-    <section class="controls"><button id="launch" class="primary">Launch claw <kbd>Space / ↓</kbd></button><button id="wait">Wait 0.5 seconds <kbd>→</kbd></button><button id="download">Download trace</button><label class="upload">Replay saved trace<input id="replay" type="file" accept="application/json,.json"></label></section>
++    <section class="controls"><button id="launch" class="primary">Launch claw <kbd>Space / ↓</kbd></button><button id="wait">Wait 1 second <kbd>→</kbd></button><button id="download">Download trace</button><label class="upload">Replay saved trace<input id="replay" type="file" accept="application/json,.json"></label></section>
+@@ -27 +27 @@
+-    <p class="explanation">The game uses 60 physics frames per simulated second and 30 frames per decision. Pause or advance one step to inspect a decision. Launch timing, collisions, and retrieval use the same engine as automated evaluation.</p>
++    <p class="explanation">The game uses 60 physics frames per simulated second and 60 frames per decision. Pause or advance one step to inspect a decision. Launch timing, collisions, and retrieval use the same engine as automated evaluation.</p>
+--- a/test/episode.test.js
++++ b/test/episode.test.js
+@@ -13 +13 @@
+-test('one decision advances exactly 30 physics frames without wall-time dependence', async () => {
++test('one decision advances exactly 60 physics frames without wall-time dependence', async () => {
+@@ -20,2 +20,2 @@
+-  assert.equal(a.observe().frame, 30)
+-  assert.equal(a.observe().timeLeft, 11.5)
++  assert.equal(a.observe().frame, 60)
++  assert.equal(a.observe().timeLeft, 11)
+@@ -36 +36 @@
+-  for (const [player, action] of [[1, { type: 'wait' }], [0, { type: 'cheat' }], [0, { type: 'launch', frame: 30 }], [0, { type: 'launch', frame: -1 }], [0, { type: 'launch', frame: 0.5 }], [0, { type: 'wait', score: 9000 }], [0, null]]) {
++  for (const [player, action] of [[1, { type: 'wait' }], [0, { type: 'cheat' }], [0, { type: 'launch', frame: 60 }], [0, { type: 'launch', frame: -1 }], [0, { type: 'launch', frame: 0.5 }], [0, { type: 'wait', score: 9000 }], [0, null]]) {
+@@ -90 +90 @@
+-  e.step(0, { type: 'wait' }); e.step(0, { type: 'wait' })
++  e.step(0, { type: 'wait' })
+--- a/test/timing-skill.test.js
++++ b/test/timing-skill.test.js
+@@ -12 +12 @@
+-const run = (args = [], cwd = root) => spawnSync(process.execPath, [helper, ...args], { cwd, encoding: 'utf8', timeout: 20000 })
++const run = (args = [], cwd = root) => spawnSync(process.execPath, [helper, '--declaration', 'SUITE-timing-rehearsal.json', ...args], { cwd, encoding: 'utf8', timeout: 20000 })
+@@ -15 +15 @@
+-  const result = run(['--trace', 'reports/2026-10-26T19-22-31-872Z-vertex-open-dev-1.json'])
++  const result = run()
+@@ -21 +21 @@
+-  assert.equal(report.replayedSteps, 60)
++  assert.equal(report.replayedSteps, 0)
+@@ -40 +40 @@
+-    for (const path of ['package.json', 'SOURCE.json', 'SUITE.json', 'src', 'vendor', 'skills', 'scripts']) cpSync(join(root, path), join(fixture, path), { recursive: true })
++    for (const path of ['package.json', 'SOURCE.json', 'SUITE.json', 'SUITE-timing-rehearsal.json', 'src', 'vendor', 'skills', 'scripts']) cpSync(join(root, path), join(fixture, path), { recursive: true })
+@@ -50,0 +51,6 @@
++
++test('original checkpoint trace is rejected by the one-second runtime version',()=>{
++ const result=run(['--trace','reports/2026-10-26T19-22-31-872Z-vertex-open-dev-1.json'])
++ assert.equal(result.status,1)
++ assert.match(result.stderr,/Recording game version differs/)
++})
+--- /dev/null
++++ b/test/forward-one-second.test.js
+@@ -0,0 +1,15 @@
++import test from 'node:test'
++import assert from 'node:assert/strict'
++import { Episode } from '../src/episode.js'
++import { loadCore } from '../src/load-core.js'
++const scenario = {id:'one-second-rehearsal', seconds:2.25, quota:50, angle:0, speed:0.1, items:[{kind:'gold_s',x:900,y:600}]}
++const make = () => new Episode(loadCore(),scenario)
++test('one-second wait advances 60 physics frames and expiry stops at 135 frames', () => {
++ const e=make();e.step(0,{type:'wait'});assert.equal(e.observe().frame,60);assert.equal(e.observe().timeLeft,1.25)
++ e.step(0,{type:'wait'});e.step(0,{type:'wait'});assert.equal(e.observe().frame,135);assert.equal(e.outcome().reason,'timer_expired')
++})
++test('last launch offset 59 fires after 59 ticks while 60 is rejected without mutation', () => {
++ const e=make();assert.deepEqual(e.legal_actions()[1],{type:'launch',frame_min:0,frame_max:59})
++ e.step(0,{type:'launch',frame:59});assert.ok(Math.abs(e.observe().claw.angle-59*0.1/60)<1e-10)
++ const invalid=make(),before=invalid.observe();assert.throws(()=>invalid.step(0,{type:'launch',frame:60}));assert.deepEqual(invalid.observe(),before)
++})
+--- /dev/null
++++ b/SUITE-timing-rehearsal.json
+@@ -0,0 +1,80 @@
++{
++  "declaredAt": "2026-10-26T18:09:34.390Z",
++  "status": "Isolated offline skill rehearsal, no production or live evaluation",
++  "scenariosSha256": "5c15dcd44a43949e53b20e532ecb67b088090eec8b74f5b3be86f0df26b83360",
++  "cases": [
++    {
++      "id": "open-dev",
++      "split": "development",
++      "seed": 101,
++      "quota": 750,
++      "seconds": 30
++    },
++    {
++      "id": "blocked-dev",
++      "split": "development",
++      "seed": 102,
++      "quota": 700,
++      "seconds": 35
++    },
++    {
++      "id": "budget-dev",
++      "split": "development",
++      "seed": 103,
++      "quota": 650,
++      "seconds": 12
++    },
++    {
++      "id": "open-heldout",
++      "split": "heldout",
++      "seed": 701,
++      "quota": 750,
++      "seconds": 30
++    },
++    {
++      "id": "blocked-heldout",
++      "split": "heldout",
++      "seed": 702,
++      "quota": 700,
++      "seconds": 35
++    },
++    {
++      "id": "budget-heldout",
++      "split": "heldout",
++      "seed": 703,
++      "quota": 650,
++      "seconds": 12
++    }
++  ],
++  "physicsHz": 60,
++  "decisionFrames": 60,
++  "launchFrames": [
++    0,
++    59
++  ],
++  "limits": {
++    "maxSteps": 200,
++    "maxCalls": 60,
++    "maxInvalid": 3,
++    "callTimeoutMs": 15000,
++    "wallTimeoutMs": 180000
++  },
++  "primary": {
++    "suite": "heldout",
++    "trialsPerCase": 2
++  },
++  "historyComparison": {
++    "historySizes": [
++      0,
++      4
++    ],
++    "sameSuite": true
++  },
++  "checkpoint": {
++    "suite": "development",
++    "scenario": "open-dev",
++    "trials": 1
++  },
++  "liveStatus": "Pending course project setup. No live calls authorized until project ID is provided.",
++  "amends": "SUITE.json"
++}

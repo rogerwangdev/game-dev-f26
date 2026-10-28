@@ -1,0 +1,51 @@
+{
+  "kind": "offline_skill_validation",
+  "date": "2026-10-28",
+  "baseCommit": "7299c2215b2a892e8175e115a2498f65b7143977",
+  "command": "node skills/gold-miner-rule-change/scripts/check-timing.mjs --trace reports/2026-10-26T19-22-31-872Z-vertex-open-dev-1.json",
+  "result": {
+    "physicsHz": 60,
+    "decisionFrames": 30,
+    "decisionSeconds": 0.5,
+    "launchFrames": [
+      0,
+      29
+    ],
+    "declaration": "SUITE.json",
+    "gameHash": "67ca7cefe52c686116bbe8759b99dd9a96f4349ce6af2fe7708b1b6501462ee0",
+    "providerRequests": 0,
+    "baseline": [
+      {
+        "scenario": "open-dev",
+        "score": 1011,
+        "success": true,
+        "steps": 29
+      },
+      {
+        "scenario": "blocked-dev",
+        "score": 1570,
+        "success": true,
+        "steps": 27
+      },
+      {
+        "scenario": "budget-dev",
+        "score": 1150,
+        "success": true,
+        "steps": 24
+      }
+    ],
+    "replayedSteps": 60,
+    "manualReview": [
+      "system prompt wording",
+      "browser timing and labels",
+      "evaluation version selection"
+    ]
+  },
+  "standaloneAuthoringSessionsDocumented": 1,
+  "secondStandaloneSession": "pending",
+  "limitations": [
+    "No new live model episode",
+    "Prompt wording and browser behavior require separate review",
+    "This report is not student-authored reflection"
+  ]
+}
