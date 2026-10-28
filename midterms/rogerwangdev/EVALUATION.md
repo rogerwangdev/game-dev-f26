@@ -57,7 +57,7 @@ For `gemini-3.5-flash-lite` standard global on-demand requests, published prices
 
 ## Limitations and outstanding evidence
 
-The October 26 checkpoint now has a playable five-operation game, completed baseline runs, a completed live model episode and trace, an initial comparison, and passing deterministic CI. The live model failed its quota and that failure is retained. One development trial cannot establish model competence or statistical certainty, and history has not been tested. Held-out trials, a human peer playtest, the student's own reflection, a second standalone skill-use session, and a final three-to-five-minute recording remain pending for the final submission.
+The October 26 checkpoint now has a playable five-operation game, completed baseline runs, a completed live model episode and trace, an initial comparison, and passing deterministic CI. The live model failed its quota and that failure is retained. One development trial cannot establish model competence or statistical certainty, and history has not been tested. Held-out trials, a human peer playtest, the student's own reflection, and a final three-to-five-minute recording remain pending for the final submission. A second standalone skill-use session was subsequently completed and exported on October 28, as indexed in `docs/sessions/README.md`.
 
 The browser is a stepped checkpoint interface. It deliberately pauses between manual steps and renders decision intervals rather than every physics frame. A later visual polish pass can improve animation without changing the authoritative physics or agent controls.
 
@@ -67,4 +67,4 @@ Extended the reusable rule-change skill with a concrete simulation-interval proc
 
 The [saved offline check](reports/2026-10-28-timing-skill-check.json) records the unchanged game hash and exact replay of all 60 intervals in the original live trace. The three baseline quotas are still reached with scores 1011, 1570 and 1150. There are no new live trials or provider requests. The active decision interval remains 0.5 seconds. A requested one-second contract is correctly rejected by the checker until implemented.
 
-The [agent-team evidence index](docs/agent-team-evidence.md) separates completed artifacts from the pending second standalone skill-use session, session links, and student-authored reflection. An isolated subagent rehearsal validates the skill but does not fulfill that second-session requirement. Independent review evidence is in [review.md](review.md).
+The [agent-team evidence index](docs/agent-team-evidence.md) separates the earlier subagent validation from the later actual standalone session. [Two exported authoring sessions](docs/sessions/README.md) now document named skill use. Course PR publication/links and student-authored reflection remain pending. Independent review evidence is in [review.md](review.md).

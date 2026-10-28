@@ -52,3 +52,15 @@ The reviewer explicitly used `gold-miner-rule-change` for a 0.5-second to 1-seco
 Limitation: the temporary copy did not implement evaluator declaration selection or final production evaluation. This is a partial migration rehearsal demonstrating the skill, rather than a complete production migration or new model-performance evidence. No held-out tuning or live provider calls occurred.
 
 Files reviewed included parent/project and reviewer instructions, the skill and timing reference/helper, new/existing tests, package/workflow changes, engine, runner, provider, baseline, browser/replay/version/evaluation code, declarations, evidence index, README, configuration, rule map, work log and saved offline validation report.
+
+## Actual standalone session and transcript review, October 28
+
+Reviewer: separate read-only context `session_evidence_review`. It did not author the standalone session's implementation or the transcript exporter. It reported **No findings**.
+
+The reviewer verified that Session 01 is the actual VS Code session `01a13d3a-ca69-73c1-9754-390b76c321f3`, and its 25 selected exported records match the original public messages and tool inputs in source order. Session 02 is the distinct persisted `exec` session `01a1839b-f210-7e42-acdb-e47be9825ea6`, with no fork source. Its original prompt is present in the persisted recording, and the Markdown export matches all five public agent messages and 31 executed command records, including aggregated output. The second session is not this reviewer or either earlier validation subagent. No credential or private reasoning content was identified in the exports.
+
+In Session 02's isolated checkout, the reviewer independently ran all 40 tests, verified all 13 imported-source hashes and the one-second timing contract, and checked baseline scores 1011/750, 1570/700 and 1150/650. Six saved rehearsal traces match their game/declaration hashes and history settings 0 and 4. All 23 original vendor, declaration and report files remain byte-for-byte unchanged in both the main workspace and copied checkout. The main production engine, prompt, scenarios and timing remain unchanged.
+
+The reviewer read the instructions, skill/reference, rule map, engine, declaration/evaluator, provider, baseline, browser/replay changes, relevant tests, rehearsal declaration/report, six traces, exported transcripts, source metadata/event stream and retained patch. It made no edits, game-provider calls, approvals, commits, pushes or further delegations.
+
+Limitations: browser interaction was not tested. The migration is isolated, not deployed. These deterministic offline runs do not complete held-out live evaluation or establish a model history benefit. The [author's report](docs/sessions/session-02-rehearsal-report.md) is retained as originally written, including its then-pending review statement. This section records the subsequent independent review. [The session index](docs/sessions/README.md) links the actual exports and unapplied patch.

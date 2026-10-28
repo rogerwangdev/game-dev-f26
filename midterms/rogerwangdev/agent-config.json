@@ -1,22 +1,67 @@
 {
   "implementation": {
-    "instructions": "AGENTS.md", "skill": "skills/gold-miner-rule-change/SKILL.md", "evidence": "docs/work-log.md",
+    "instructions": "AGENTS.md",
+    "skill": "skills/gold-miner-rule-change/SKILL.md",
+    "evidence": "docs/work-log.md",
     "timing_procedure": "skills/gold-miner-rule-change/references/simulation-timing.md",
     "offline_timing_check": "npm run check:timing",
     "rubric_evidence": "docs/agent-team-evidence.md",
-    "standalone_skill_sessions_documented": 1,
-    "second_session_status": "Pending. Same-chat turns and subagent validation are not counted."
+    "standalone_skill_sessions_documented": 2,
+    "second_session_status": "Completed in a fresh standalone Codex exec session on October 28, 2026. Isolated offline timing rehearsal, not a production change or live model trial.",
+    "session_evidence": [
+      {
+        "id": "01a13d3a-ca69-73c1-9754-390b76c321f3",
+        "source": "vscode",
+        "evidence": "docs/sessions/session-01-implementation.md",
+        "format": "selected actual transcript records"
+      },
+      {
+        "id": "01a1839b-f210-7e42-acdb-e47be9825ea6",
+        "source": "exec",
+        "evidence": "docs/sessions/session-02-timing-skill.md",
+        "format": "actual prompt and completed public CLI events"
+      }
+    ]
   },
-  "independent_review": { "mode": "separate read-only context", "findings": "review.md", "cannot": ["edit implementation", "approve", "merge"] },
+  "independent_review": {
+    "mode": "separate read-only context",
+    "findings": "review.md",
+    "cannot": [
+      "edit implementation",
+      "approve",
+      "merge"
+    ]
+  },
   "playing_agent": {
-    "provider": "vertex", "model": "gemini-3.5-flash-lite", "location": "global", "project": "GOOGLE_CLOUD_PROJECT environment variable",
-    "prompt": "src/vertex.js:SYSTEM_PROMPT", "tools": [], "observations": "src/episode.js:observe", "actions": "src/episode.js:legal_actions",
+    "provider": "vertex",
+    "model": "gemini-3.5-flash-lite",
+    "location": "global",
+    "project": "GOOGLE_CLOUD_PROJECT environment variable",
+    "prompt": "src/vertex.js:SYSTEM_PROMPT",
+    "tools": [],
+    "observations": "src/episode.js:observe",
+    "actions": "src/episode.js:legal_actions",
     "memory": "0 or 4 previous decision/result entries, explicitly selected per trial",
-    "limits": { "maxSteps": 200, "maxCalls": 60, "maxInvalid": 3, "callTimeoutMs": 15000, "wallTimeoutMs": 180000 },
-    "retries": 0, "fallbacks": 0, "failure_policy": "Count and terminate with explicit reason",
+    "limits": {
+      "maxSteps": 200,
+      "maxCalls": 60,
+      "maxInvalid": 3,
+      "callTimeoutMs": 15000,
+      "wallTimeoutMs": 180000
+    },
+    "retries": 0,
+    "fallbacks": 0,
+    "failure_policy": "Count and terminate with explicit reason",
     "checkpoint_project_id": "game-dev-f26-lw3240",
     "live_status": "One live development episode completed on October 26, 2026. Score 0/750, timer expired. Full trace and comparison in EVALUATION.md. Final held-out trials pending."
   },
-  "baseline": { "implementation": "src/baseline.js", "algorithm": "visible-geometry value per estimated total collection time", "lookaheadFrames": 240, "information": "Same public observation and action interface as model" },
-  "tests": "npm test", "suite": "SUITE.json", "report": "EVALUATION.md"
+  "baseline": {
+    "implementation": "src/baseline.js",
+    "algorithm": "visible-geometry value per estimated total collection time",
+    "lookaheadFrames": 240,
+    "information": "Same public observation and action interface as model"
+  },
+  "tests": "npm test",
+  "suite": "SUITE.json",
+  "report": "EVALUATION.md"
 }
