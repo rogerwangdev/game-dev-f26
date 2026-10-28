@@ -23,4 +23,5 @@ jobs:
       - run: npm run verify-source
       - run: npm test
       - run: npm run check:timing
+      - run: npm run audit:evaluation
       - run: npm run baseline

@@ -53,7 +53,7 @@
     "fallbacks": 0,
     "failure_policy": "Count and terminate with explicit reason",
     "checkpoint_project_id": "game-dev-f26-lw3240",
-    "live_status": "One live development episode completed on October 26, 2026. Score 0/750, timer expired. Full trace and comparison in EVALUATION.md. Final held-out trials pending."
+    "live_status": "Final held-out comparison complete on October28:12 live episodes,314calls. H0 quota successes2/6, H4 0/6. Frozen protocol and all failures retained. No further prompt tuning."
   },
   "baseline": {
     "implementation": "src/baseline.js",
@@ -63,5 +63,17 @@
   },
   "tests": "npm test",
   "suite": "SUITE.json",
-  "report": "EVALUATION.md"
+  "report": "EVALUATION.md",
+  "artifacts": {
+    "final_protocol": "FINAL-EVALUATION.json",
+    "final_analysis": "reports/final-analysis.json",
+    "per_trial_metrics": "reports/final-results.csv",
+    "recording": "recordings/gold-miner-demo.webm",
+    "recording_provenance": "recordings/capture-check.json",
+    "student_reflection": "AGENT-TEAM.md \u2014 incomplete student worksheet",
+    "peer_notes": "PEER-NOTES.md \u2014 intentionally blank",
+    "pr_draft": "docs/PR-DESCRIPTION.md",
+    "verification": "docs/verification.md",
+    "publication": "Not pushed. Student authorization required."
+  }
 }

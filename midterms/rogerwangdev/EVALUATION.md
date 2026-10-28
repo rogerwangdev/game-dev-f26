@@ -6,6 +6,48 @@ The concrete suite is in `src/scenarios.js`, with its pre-live declaration and h
 
 The shared controls use 60 Hz physics, 30 frames per decision, and a launch offset of 0–29 frames. The baseline predicts intercepts from visible geometry and ranks value per estimated waiting, outward, and return time with a 240-frame horizon. Both players get the same observations. `SUITE.json` is preserved as the original pre-live declaration, including its historical setup status. Current results are recorded below.
 
+## Final held-out evaluation, October 28
+
+The unchanged Gemini player reached **2 of 6 quotas with observation-only input**, compared with **0 of 6 with four previous decision/result entries**. The geometry-based heuristic reached all six quotas in each arm. These are a small classroom sample, not estimates of general success rates.
+
+The [final protocol](FINAL-EVALUATION.json) was committed as `e7e4ec2` before the first held-out episode. It preserves the original scenario declaration, prompt, rules, seeds, 0.5-second decisions and resource limits. The recorded gameplay hash is `67ca7cefe52c686116bbe8759b99dd9a96f4349ce6af2fe7708b1b6501462ee0`. No held-out result was used to change a prompt, layout, quota or policy. Each arm ran two trials per case. Both heuristic history arms ran first, followed by model H0 and model H4.
+
+| Case / quota | Heuristic scores (both history arms) | Gemini H0 scores / wins | Gemini H4 scores / wins |
+| --- | --- | --- | --- |
+| open-heldout / 750 | 1011, 1011 | 11, 1011 / 1/2 | 161, 161 / 0/2 |
+| blocked-heldout / 700 | 1570, 1570 | 970, 370 / 1/2 | 370, 370 / 0/2 |
+| budget-heldout / 650 | 1150, 1150 | 0, 0 / 0/2 | 50, 20 / 0/2 |
+
+| Player | History entries | Quota reached | Mean raw score | Model calls | Input / output tokens | Estimated USD |
+| --- | --- | --- | --- | --- | --- | --- |
+| baseline | 0 | 6/6 | 1243.7 | 0 | 0 / 0 | 0.0000000 |
+| baseline | 4 | 6/6 | 1243.7 | 0 | 0 / 0 | 0.0000000 |
+| vertex | 0 | 2/6 | 393.7 | 157 | 96,113 / 1,287 | 0.0320514 |
+| vertex | 4 | 0/6 | 188.7 | 157 | 543,596 / 1,713 | 0.1673613 |
+
+| Model arm | Mean / median / p95 latency (ms) | Total episode wall seconds |
+| --- | --- | --- |
+| H0 | 731.2 / 713.7 / 897.7 | 114.87 |
+| H4 | 957.0 / 828.4 / 1688.0 | 150.32 |
+
+All 12 live episodes reached ordinary game termination, with zero illegal actions, fallbacks, provider errors, request timeouts or exhausted call budgets. The 314 API calls reported 639,709 input tokens and 3,000 output tokens, for **$0.1994127 USD** estimated cost. All failures remain in the committed traces. Baseline decisions are local computations, not API calls.
+
+### Reproducibility and metrics
+
+[Per-trial CSV](reports/final-results.csv), [audited JSON](reports/final-analysis.json), and [campaign ledger](reports/final-campaign-ledger.json) retain all 24 runs. The JSON links every complete trace and reports score/quota, success, terminal reason, seed through its trace, simulated and wall time, decisions/model calls, forced waits, invalid actions, launch/grab/delivery counts, rock grabs, completed empty retrievals, unfinished empty launches, latency, tokens, dated cost and model versions. `npm run audit:evaluation` independently replays each action and verifies every recorded observation, event, outcome and metric total against the frozen game.
+
+An empty retrieval means a launched claw returned without grabbing an object. An empty launch still in flight at episode expiry is reported separately, rather than counted as a completed miss. Per-trial latency quantiles use nearest ranks. The arm-level median above uses the ordinary median of all recorded requests, and p95 uses nearest rank. Pooled raw scores mix different quotas and layouts, so the per-case table and quota counts are the primary comparison. Deterministic baseline repeats verify reproducibility and are not independent stochastic samples.
+
+The requested and resolved model was `gemini-3.5-flash-lite`, Vertex global, temperature 0.2, maximum output 1024 tokens. A request uses the system prompt plus public observation, legal actions and either zero or at most four previous model-decision/result entries. Forced busy waits are not history decisions and do not invoke the provider. Both players use the same visible physics and legal controls. The heuristic performs an explicit 240-frame public-geometry search and ignores history, which is disclosed rather than described as equal computation.
+
+Prices were rechecked on October 28: global standard input $0.30 and response/reasoning output $2.50 per million tokens. Trace pricing retains its original October 26 verification date, with the same verified rates. The $5 campaign estimate ceiling was not approached. Estimates exclude billing rounding, discounts and unreported failed-request usage. [Google pricing](https://cloud.google.com/gemini-enterprise-agent-platform/generative-ai/pricing).
+
+### What history did and did not show
+
+The game is fully observed and deterministic given an action. Past shots could help a model recognize repeated errors, but add no hidden state needed to compute current trajectories. Here, H4 used about **5.7 times the input tokens and 5.2 times the estimated cost**, with the same 157 model calls and fewer sampled quota successes. It collected somewhat more in the two tight-budget runs, while doing worse in the open and blocked cases. This supports keeping observation-only input as the default for this bounded experiment. It does not establish that memory generally harms play.
+
+The two trials per cell, fixed initial seeds, sequential arm order and possible provider variation limit causal interpretation. Repeating the same unchanged model is not training or self-improvement. No model thought text or intended target IDs were recorded, so explanations do not invent what the model was thinking. Neither automated wins nor these observations establish player enjoyment. Peer feedback remains blank pending the required human exchange.
+
 ## October 26 preliminary comparison
 
 | Situation | Player | Score / quota | Result | Simulated seconds | Decisions | Forced waits | Invalid actions |
@@ -49,7 +91,7 @@ Course PR integration remains separate from the successful fork CI: the current 
 
 ## Live protocol and cost
 
-The student selected Google Vertex AI using course credits and subsequently supplied project `game-dev-f26-lw3240`. One live development episode was run with `--live`, observation-only input, and the originally declared budgets. The suite and prompt were unchanged. Final primary evaluation still needs each held-out situation run twice with the baseline and live model. Compare observation-only mode with four retained decision/result entries on the same suite. All failures stay in the report.
+The student selected Google Vertex AI using course credits and subsequently supplied project `game-dev-f26-lw3240`. One live development episode was run with `--live`, observation-only input, and the originally declared budgets. The suite and prompt were unchanged. The declared final primary and four-entry history evaluations are now complete, as reported above. All 24 traces, including failures, are retained.
 
 Record the requested and resolved model identifiers, latency, calls, invalid actions, limits, fallback count, token usage, and game version. The adapter requests JSON actions, has no tools, and makes no automatic retries. It never silently substitutes the baseline.
 
@@ -57,7 +99,7 @@ For `gemini-3.5-flash-lite` standard global on-demand requests, published prices
 
 ## Limitations and outstanding evidence
 
-The October 26 checkpoint now has a playable five-operation game, completed baseline runs, a completed live model episode and trace, an initial comparison, and passing deterministic CI. The live model failed its quota and that failure is retained. One development trial cannot establish model competence or statistical certainty, and history has not been tested. Held-out trials, a human peer playtest, the student's own reflection, and a final three-to-five-minute recording remain pending for the final submission. A second standalone skill-use session was subsequently completed and exported on October 28, as indexed in `docs/sessions/README.md`.
+The October 26 checkpoint now has a playable five-operation game, completed baseline runs, a completed live model episode and trace, an initial comparison, and passing deterministic CI. The live model failed its quota and that failure is retained. The completed held-out/history comparison remains a small sample with the limitations above. A human peer playtest, the student's own reflection and final publication remain pending. The local recording and verification status are linked from the README. A second standalone skill-use session was subsequently completed and exported on October 28, as indexed in `docs/sessions/README.md`.
 
 The browser is a stepped checkpoint interface. It deliberately pauses between manual steps and renders decision intervals rather than every physics frame. A later visual polish pass can improve animation without changing the authoritative physics or agent controls.
 

@@ -58,3 +58,33 @@ test('current observation mode does not leak previous moves into history', async
   const result = await runEpisode(make(), ({ history }) => { assert.deepEqual(history, []); return { type: 'wait' } }, { maxCalls: 2 })
   assert.equal(result.summary.reason, 'call_limit')
 })
+
+test('bounded history contains only previous decisions and cannot mutate retained results', async () => {
+  const episode = () => new Episode(loadCore(), { ...scenarios[0], seconds: 1.5 })
+  const lengths = []
+  const trace = await runEpisode(episode(), ({ observation, history }) => {
+    lengths.push(history.length)
+    assert.equal(observation.score, 0)
+    for (const entry of history) {
+      assert.equal(entry.observation.score, 0)
+      assert.ok(entry.observation.frame < observation.frame)
+      entry.observation.score = 9999
+      entry.result.observation.score = 9999
+    }
+    return { type: 'wait' }
+  }, { historySize: 2 })
+  assert.deepEqual(lengths, [0, 1, 2])
+  assert.ok(trace.steps.every(step => step.observation.score === 0 && step.result.observation.score === 0))
+})
+
+test('provider response delay does not change actions or simulated results', async () => {
+  const run = delay => runEpisode(new Episode(loadCore(), { ...scenarios[0], seconds: 1.5 }), async () => {
+    if (delay) await new Promise(resolve => setTimeout(resolve, delay))
+    return { type: 'wait' }
+  })
+  const immediate = await run(0), delayed = await run(5)
+  const gameplay = trace => trace.steps.map(({ observation, action, result }) => ({ observation, action, result }))
+  assert.deepEqual(gameplay(delayed), gameplay(immediate))
+  assert.equal(delayed.summary.simulatedSeconds, immediate.summary.simulatedSeconds)
+  assert.equal(delayed.summary.calls, immediate.summary.calls)
+})

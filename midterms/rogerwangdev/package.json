@@ -9,6 +9,7 @@
     "evaluate": "node scripts/evaluate.js",
     "serve": "python3 -m http.server 8765 --bind 127.0.0.1",
     "verify-source": "node scripts/verify-source.js",
-    "check:timing": "node skills/gold-miner-rule-change/scripts/check-timing.mjs"
+    "check:timing": "node skills/gold-miner-rule-change/scripts/check-timing.mjs",
+    "audit:evaluation": "node scripts/audit-evaluation.mjs"
   }
 }
