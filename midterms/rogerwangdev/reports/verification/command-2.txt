@@ -1,0 +1,42 @@
+
+> check:timing
+> node skills/gold-miner-rule-change/scripts/check-timing.mjs
+
+{
+  "physicsHz": 60,
+  "decisionFrames": 30,
+  "decisionSeconds": 0.5,
+  "launchFrames": [
+    0,
+    29
+  ],
+  "declaration": "SUITE.json",
+  "gameHash": "67ca7cefe52c686116bbe8759b99dd9a96f4349ce6af2fe7708b1b6501462ee0",
+  "providerRequests": 0,
+  "baseline": [
+    {
+      "scenario": "open-dev",
+      "score": 1011,
+      "success": true,
+      "steps": 29
+    },
+    {
+      "scenario": "blocked-dev",
+      "score": 1570,
+      "success": true,
+      "steps": 27
+    },
+    {
+      "scenario": "budget-dev",
+      "score": 1150,
+      "success": true,
+      "steps": 24
+    }
+  ],
+  "replayedSteps": 0,
+  "manualReview": [
+    "system prompt wording",
+    "browser timing and labels",
+    "evaluation version selection"
+  ]
+}

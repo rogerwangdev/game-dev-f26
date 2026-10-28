@@ -1,6 +1,6 @@
 # Rules and source evidence
 
-Draft map created before the engine adaptation. Source paths below refer to the upstream revision in `SOURCE.json`. Project locators will be updated as code lands.
+Source paths below refer to the pinned upstream revision in `SOURCE.json`. Project locators identify the implemented adapter and evaluation contract. Inherited behavior is labeled `code`, and deliberate adaptations are labeled `design`.
 
 | Rule | Evidence | Locator and decision |
 | --- | --- | --- |

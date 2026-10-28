@@ -79,7 +79,7 @@ Live checkpoint evidence for commit `07fabe4`:
 
 The model selected 20 waits and 12 launches. The trace records one small rock grabbed at 27.9 simulated seconds and no delivered objects before the timer expired. All 60 simulation intervals were replayed independently and matched their saved observations, events, and outcomes exactly. The result demonstrates a working autonomous model loop but poor first-trial performance. It does not establish a general model success rate or a history benefit. No prompt tuning or additional live episodes were performed for this checkpoint.
 
-## Verification
+## Checkpoint verification, October 26
 
 The deterministic test suite covers rule invariants, legal and illegal actions, a successful collection path, termination, a real integration regression, and episode limits. The regression was observed as `game.puff is not a function` when an empty grab left the playfield in the headless adapter. Its behavioral test failed before adding the rendering-neutral callback and passes afterward. The imported hook file remains unchanged.
 
@@ -110,3 +110,9 @@ Extended the reusable rule-change skill with a concrete simulation-interval proc
 The [saved offline check](reports/2026-10-28-timing-skill-check.json) records the unchanged game hash and exact replay of all 60 intervals in the original live trace. The three baseline quotas are still reached with scores 1011, 1570 and 1150. There are no new live trials or provider requests. The active decision interval remains 0.5 seconds. A requested one-second contract is correctly rejected by the checker until implemented.
 
 The [agent-team evidence index](docs/agent-team-evidence.md) separates the earlier subagent validation from the later actual standalone session. [Two exported authoring sessions](docs/sessions/README.md) now document named skill use. Course PR publication/links and student-authored reflection remain pending. Independent review evidence is in [review.md](review.md).
+
+## Final local verification
+
+The completed candidate was independently cloned and checked with 34 passing tests, all 13 source hashes, the timing contract, exact replay of all 24 final traces, and complete development baseline episodes. Browser controls, reset, a real held-out replay, phone layout and the 211.6-second compressed recording were verified. See [the version-specific verification record](docs/verification.md), [machine-readable results](reports/verification-clean-clone.json) and [independent follow-up](review.md). No additional paid trial was needed for these checks.
+
+The local recording and evidence are ready for publication, but no push or course PR has been made. The student-authored reflection and peer fields are intentionally incomplete. The trusted-base workflow policy conflict is documented rather than bypassed.
