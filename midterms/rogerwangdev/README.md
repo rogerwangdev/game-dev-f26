@@ -6,9 +6,13 @@ A bounded adaptation of [Lor3walker/gold-miner](https://github.com/Lor3walker/go
 
 - Playable browser game and five-operation engine implemented.
 - Heuristic reaches the quota in all three development and all three held-out situations.
-- All 34 deterministic engine, runner, replay, mocked adapter, timing-skill and evaluation-audit tests pass locally. Independent review evidence is in [review.md](review.md).
+- All 38 deterministic engine, human-frame parity, runner, replay, mocked adapter, timing-skill and evaluation-audit tests pass locally. Independent review evidence is in [review.md](review.md).
 - **Final held-out evaluation is complete.** Twelve fresh Vertex episodes compare observation-only input and four-entry history. Gemini reached 2/6 quotas with H0 and 0/6 with H4. The heuristic reached all quotas. All 24 final traces, the original failed checkpoint and the $0.1994127 final token-cost estimate are retained in [EVALUATION.md](EVALUATION.md).
-- The latest published [fork CI at 67c25ee passed](https://github.com/rogerwangdev/game-dev-f26/actions/runs/40728983100). Current work is committed locally only. No new remote CI or course PR is claimed. See the [local verification record](docs/verification.md) and [course integration status](docs/course-integration.md).
+- The latest published [fork CI at 7b3bfa2 passed](https://github.com/rogerwangdev/game-dev-f26/actions/runs/40924048142). The later human-animation fix is verified locally. No course PR is claimed. See the [local verification record](docs/verification.md) and [course integration status](docs/course-integration.md).
+
+## Shareable playtest
+
+[Play Gold Miner](https://gold-miner-peer-playtest.rogerwang0506.chatgpt.site/) or share the [15-minute playtest guide](https://gold-miner-peer-playtest.rogerwang0506.chatgpt.site/playtest.html). Anyone with the link can play without installing software or providing credentials. The guide links the captioned agent recording and feedback prompts. Send actual feedback through the agreed course/private channel. The site does not collect feedback or start paid provider calls.
 
 ## Run locally
 
@@ -31,7 +35,9 @@ npm run baseline
 npm run serve
 ```
 
-Open <http://127.0.0.1:8765>. Choose a situation and player. Start the clock for automatic play, or use **Wait 0.5 seconds** and **Launch claw** to inspect individual decisions. Space or Down launches and Right advances one interval. Download traces or replay an evaluation JSON file. Replays make no provider calls.
+Open <http://127.0.0.1:8765>. Choose a situation and player. With **You** selected, **Start clock** runs smooth 60 Hz human play. Click the field, click **Launch claw**, or press Space/Down to launch on the next physics tick at the visible angle. Launch also starts a paused human game when debugging is off. Hidden tabs pause automatically.
+
+Enable **Debug stepping** to pause and reveal **Wait 0.5 seconds**. While paused, Right advances that interval and Launch fires before advancing it. Turn debugging off and use Start clock to resume smooth play. Heuristic and recorded model decisions retain the evaluation's 0.5-second steps. Human downloads identify `human-realtime-60hz` timing and per-record frame counts so they replay through the frame adapter. Old evaluation recordings still replay through the frozen agent engine. Replays make no provider calls.
 
 To watch the actual first Gemini run, open <http://127.0.0.1:8765/?replay=vertex> or click **Watch saved Gemini episode**. Use **Pause replay**, then **Next recorded step** to inspect each observation, returned action, latency, and result in the agent inspector. Automatic waits are labeled separately and make no model request. This recording ends with the actual failed $0/750 outcome. No new API calls are made when watching it.
 
@@ -49,11 +55,11 @@ The agent loop runs locally in `src/runner.js`. It sends visible numeric state a
 
 One complete level format includes static gold, diamonds, rocks, quotas, and a simulated timer. Value is awarded after retrieval. A run ends when the field is cleared or time expires. Success means reaching the quota. Shops, upgrades, combos, dynamite, hidden-value bags, moving animals, and the original campaign are excluded to isolate timing and value/time decisions.
 
-The shared engine uses 60 Hz physics and 30 frames per decision. An action is `{"type":"wait"}` or `{"type":"launch","frame":N}` for integer `N` from 0 to 29. A launch waits exactly N physics frames in the current interval before firing. Model thinking time does not advance the game. The runner advances forced waits without model calls while the claw cannot accept another launch. Both players use identical controls.
+The evaluation engine uses 60 Hz physics and 30 frames per decision. An action is `{"type":"wait"}` or `{"type":"launch","frame":N}` for integer `N` from 0 to 29. A launch waits exactly N physics frames in the current interval before firing. Model thinking time does not advance the game. The runner advances forced waits without model calls while the claw cannot accept another launch. Both players use identical controls.
 
 The authoritative engine exposes `reset(seed)`, `observe(player_id)`, `legal_actions(player_id)`, `step(player_id, action)`, and `outcome()`. Public numeric object properties support evaluation without a vision model. Players receive copied observations and have no engine handle, file-reading tools, credentials, or evaluator annotations.
 
-The [rule/source map](docs/rule-source-map.md) distinguishes inherited rules from intentional adaptations. Our contribution is the fixed-step interface, bounded level scenarios, baseline, model adapter, runner, tests, traces, and English checkpoint interface.
+The [rule/source map](docs/rule-source-map.md) distinguishes inherited rules from intentional adaptations. Our contribution is the fixed-step agent interface, smooth human frame adapter, bounded level scenarios, baseline, model adapter, runner, tests, traces, and English checkpoint interface. `src/human-episode.js` is browser-only and reuses the original hook physics. Parity tests compare every interval of all development baseline episodes against the frozen evaluation engine. Human play is not a new model-performance evaluation.
 
 ## Run another live Vertex episode
 

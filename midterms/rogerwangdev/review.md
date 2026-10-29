@@ -78,3 +78,16 @@ The initial raw video was subsequently compressed from about 30 MB to 2,009,066 
 Final fresh-clone and compressed-artifact follow-up checks are recorded in [verification.md](docs/verification.md). Publication/course CI, the student's own reflection and peer feedback remain outside these automated findings.
 
 The independent final follow-up reported **No findings**. All 82 tested-file hashes matched the candidate commit, main workspace and clean clone. All five saved command-log hashes matched successful outputs. The reviewer independently reran the clone's 34 tests and complete 24-trace audit, with an empty tracked diff. The final compressed video matched its SHA-256 and 2,009,066-byte size, decoded at 1280×900 for 211.6 seconds, sought to 110 seconds, and retained readable actions, observation excerpts and replay labels. No browser errors, external requests or broken final-documentation links were found. Personal reflection and peer fields remained accurately incomplete. No edits, live calls, approvals, commits or pushes were performed by this reviewer.
+
+## Human realtime controls review, October 29
+
+Independent read-only reviewer: `human_realtime_review`. Read parent/project and reviewer instructions, the rule map, `src/human-episode.js`, `src/browser.js`, `src/episode.js`, `src/replay.js`, pinned hook source, `index.html`, the human tests and README.
+
+Initial findings, reproduced in a browser:
+
+- ArrowRight advanced 0.5 seconds while Debug stepping was unchecked, because the key handler programmatically clicked a hidden button. Fixed by gating the handler on debug mode or a loaded recording. Follow-up confirmed no advancement with debug off and exactly 0.5 seconds with debug on.
+- Human trace inspection claimed request latency of zero milliseconds although there was no request. Fixed with Recorded human input and an explicit no-model-request explanation. Follow-up confirmed the corrected labels.
+
+Final follow-up: **No findings**. All 38 tests and 24 historical trace audits passed, and the timing checker retained the original game hash and 0.5-second agent interval. Frozen engine, runner, provider, cases, declarations, version hashing and imported files were unchanged. Browser start, pause, launch, debug stepping, download and partial human replay worked without page errors. Human replay preserved its recorded timing. No edits, provider calls, approvals, commits or pushes were performed by the reviewer.
+
+The human adapter intentionally duplicates the small episode setup/observation/end/render wrapper to preserve the frozen evaluation source identity. It reuses the original Hook physics. Parity tests across all development episodes guard against the two wrappers drifting. Historic model scores remain results of the unchanged agent interface, not measurements of human control.

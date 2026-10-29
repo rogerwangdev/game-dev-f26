@@ -2,11 +2,15 @@ import { Episode } from './episode.js'
 import { baseline } from './baseline.js'
 import { scenarios } from './scenarios.js'
 import { finishReplay } from './replay.js'
+import { HumanEpisode } from './human-episode.js'
 
 const $ = id => document.getElementById(id)
 const canvas = $('game'), ctx = canvas.getContext('2d'), GM = window.GM
 const background = GM.Sprites.background(960, 640, 150, 1)
 let episode, trace, running = false, queued = null, playback = null, recording = null
+let lastFrame = null, accumulatedMs = 0
+const tickMs = 1000 / 60
+const resetClock = () => { lastFrame = null; accumulatedMs = 0 }
 for (const s of scenarios.filter(x => x.split === 'development')) $('scenario').add(new Option(s.id.replace('-dev', ''), s.id))
 function draw() {
   episode.draw(ctx, GM.Sprites, background)
@@ -17,6 +21,8 @@ function draw() {
   $('claw').textContent = o.claw.state
   $('launch').disabled = end.terminal || o.claw.state !== 'swing' || $('mode').value !== 'human' || !!recording
   $('wait').disabled = end.terminal || !!recording
+  $('wait').hidden = !$('debug').checked
+  $('wait').disabled ||= running
   $('next-recorded').disabled = !playback || running || end.terminal
   $('run').disabled = end.terminal || (!!recording && !playback)
   if (end.terminal) {
@@ -25,14 +31,16 @@ function draw() {
   }
   $('run').textContent = recording ? (running ? 'Pause replay' : 'Resume replay') : (running ? 'Pause clock' : 'Start clock')
 }
-function reset(scenario = scenarios.find(x => x.id === $('scenario').value), seed = scenario.seed) {
+function reset(scenario = scenarios.find(x => x.id === $('scenario').value), seed = scenario.seed, timing = null) {
   running = false; queued = null; playback = null; recording = null
+  resetClock()
   if ($('mode').value === 'recorded') $('mode').value = 'human'
   $('mode').querySelector('option[value="recorded"]')?.remove()
   $('mode').disabled = false
-  episode = new Episode(GM, scenario)
+  const human = timing === 'human-realtime-60hz' || (!timing && $('mode').value === 'human')
+  episode = human ? new HumanEpisode(GM, scenario) : new Episode(GM, scenario)
   episode.reset(seed)
-  trace = { metadata: { kind: 'browser', scenario: scenario.id, player: $('mode').value }, seed, steps: [] }
+  trace = { metadata: { kind: 'browser', scenario: scenario.id, player: $('mode').value, ...(human ? { timing: 'human-realtime-60hz' } : {}) }, seed, steps: [] }
   $('status').textContent = 'Choose a target. Large gold is valuable but heavy. Rocks cost precious time.'
   $('replay-progress').textContent = 'Saved recording · no API calls'
   $('decision-label').textContent = 'Load a recording to inspect its decisions'
@@ -41,31 +49,35 @@ function reset(scenario = scenarios.find(x => x.id === $('scenario').value), see
   $('agent-action').textContent = 'No recorded step selected.'
   draw()
 }
-function step(action) {
+function step(action, frames = 30, redraw = true) {
   if (episode.outcome().terminal) return
   const observation = episode.observe()
   try {
-    const result = episode.step(0, action)
-    trace.steps.push({ observation, action, source: $('mode').value, result })
-    draw()
+    const human = episode instanceof HumanEpisode
+    const result = human ? episode.advance(frames, action) : episode.step(0, action)
+    trace.steps.push({ observation, action, source: $('mode').value, ...(human ? { frames } : {}), result })
+    if (redraw) draw()
     return result
   } catch (error) { $('status').textContent = error.message }
 }
 $('restart').onclick = () => reset()
 $('scenario').onchange = () => reset()
 $('mode').onchange = () => reset()
-$('run').onclick = () => { if (!episode.outcome().terminal) running = !running; draw() }
+$('run').onclick = () => { if (!episode.outcome().terminal) running = !running; queued = null; resetClock(); draw() }
+$('debug').onchange = () => { running = false; queued = null; resetClock(); draw() }
 $('wait').onclick = () => step({ type: 'wait' })
 $('launch').onclick = () => {
   if ($('launch').disabled) return
   if (running) queued = { type: 'launch', frame: 0 }
-  else step({ type: 'launch', frame: 0 })
+  else if (episode instanceof HumanEpisode && !$('debug').checked) {
+    queued = { type: 'launch', frame: 0 }; running = true; resetClock(); draw()
+  } else step({ type: 'launch', frame: 0 })
 }
 canvas.onclick = () => $('launch').click()
 window.addEventListener('keydown', event => {
   if (['SELECT', 'INPUT'].includes(event.target.tagName)) return
   if (event.code === 'Space' || event.code === 'ArrowDown') { event.preventDefault(); $('launch').click() }
-  if (event.code === 'ArrowRight') { event.preventDefault(); $(recording ? 'next-recorded' : 'wait').click() }
+  if (event.code === 'ArrowRight' && (recording || $('debug').checked)) { event.preventDefault(); $(recording ? 'next-recorded' : 'wait').click() }
 })
 $('download').onclick = () => {
   if (!recording) trace.summary = episode.outcome()
@@ -76,7 +88,9 @@ $('download').onclick = () => {
 function loadRecording(saved) {
   const scenario = scenarios.find(x => x.id === saved.metadata?.scenario)
   if (!scenario || !Array.isArray(saved.steps)) throw new Error('Trace has no supported scenario')
-  reset(scenario, saved.seed)
+  const human = saved.metadata.timing === 'human-realtime-60hz'
+  if (human && saved.steps.some(s => !Number.isInteger(s.frames) || s.frames < 1 || s.frames > 30)) throw new Error('Human trace has an invalid frame count')
+  reset(scenario, saved.seed, human ? 'human-realtime-60hz' : 'agent-fixed-step')
   if (![...$('scenario').options].some(option => option.value === scenario.id)) $('scenario').add(new Option(`${scenario.id} (recorded)`, scenario.id))
   $('scenario').value = scenario.id
   $('mode').add(new Option(`${saved.metadata.player} · recorded`, 'recorded'))
@@ -113,12 +127,13 @@ function advancePlayback() {
       if (record) {
         playback.index++
         const forced = record.source === 'forced_wait'
-        $('decision-label').textContent = forced ? 'Engine wait while claw is busy' : 'Recorded player decision'
-        $('decision-meta').textContent = forced ? 'Only waiting was legal in this interval, so the engine made no model request.' : `${record.modelVersion ?? recording.metadata.player} · request latency ${(record.latencyMs ?? 0).toFixed(0)} ms · action selected from the observation below`
+        const humanInput = recording.metadata.timing === 'human-realtime-60hz'
+        $('decision-label').textContent = humanInput ? 'Recorded human input' : forced ? 'Engine wait while claw is busy' : 'Recorded player decision'
+        $('decision-meta').textContent = humanInput ? `${record.frames} recorded physics tick(s). Human input and clock advancement, no model request.` : forced ? 'Only waiting was legal in this interval, so the engine made no model request.' : `${record.modelVersion ?? recording.metadata.player} · request latency ${(record.latencyMs ?? 0).toFixed(0)} ms · action selected from the observation below`
         $('agent-observation').textContent = JSON.stringify(record.observation, null, 2)
         $('agent-action').textContent = JSON.stringify({ source: record.source, action: record.action, events: record.result.events, scoreAfter: record.result.observation.score, timeLeftAfter: record.result.observation.timeLeft }, null, 2)
         $('replay-progress').textContent = `${playback.index} / ${playback.total} steps · recorded episode · no API calls`
-        const result = step(record.action)
+        const result = step(record.action, record.frames ?? 30)
         if (JSON.stringify(result?.observation) !== JSON.stringify(record.result.observation)) throw new Error('Replay mismatch: this game version produces a different observation')
       }
       if (!playback.steps.length) {
@@ -130,7 +145,7 @@ function advancePlayback() {
 }
 $('next-recorded').onclick = () => { if (!running) advancePlayback() }
 setInterval(() => {
-  if (!running || episode.outcome().terminal) return
+  if (!running || episode.outcome().terminal || episode instanceof HumanEpisode) return
   if (playback) advancePlayback()
   else {
     const action = $('mode').value === 'baseline' ? baseline(episode.observe()) : queued ?? { type: 'wait' }
@@ -138,5 +153,34 @@ setInterval(() => {
     step(action)
   }
 }, 500)
+function animate(now) {
+  const elapsed = lastFrame === null ? 0 : Math.min(100, now - lastFrame)
+  lastFrame = now
+  if (running && episode instanceof HumanEpisode && !episode.outcome().terminal) {
+    accumulatedMs += elapsed
+    if (recording) {
+      while (playback && accumulatedMs >= (playback.steps[0]?.frames ?? 1) * tickMs) {
+        const duration = (playback.steps[0]?.frames ?? 1) * tickMs
+        advancePlayback()
+        accumulatedMs -= duration
+      }
+    } else {
+      while (accumulatedMs >= tickMs && !episode.outcome().terminal) {
+        step(queued ?? { type: 'wait' }, 1, false)
+        queued = null
+        accumulatedMs -= tickMs
+      }
+    }
+    draw()
+  }
+  requestAnimationFrame(animate)
+}
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden && running) {
+    running = false; queued = null; resetClock(); draw()
+    $('status').textContent = 'Paused while this tab is hidden. Press Start clock or Resume replay to continue.'
+  }
+})
 reset()
+requestAnimationFrame(animate)
 if (new URLSearchParams(location.search).get('replay') === 'vertex') watchModel()

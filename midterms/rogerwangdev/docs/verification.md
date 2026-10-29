@@ -36,3 +36,9 @@ The latest published fork CI is the earlier passing run on `67c25ee`. These fres
 ## Independent follow-up
 
 The separate read-only `final_gap_review` context reported **No findings**. It independently reran the fresh clone's 34 tests and 24-trace audit, compared all 82 checked-file hashes against the candidate, main workspace and clean clone, verified all five saved command-log hashes, checked the empty tracked diff, and verified compressed-video hash, size, decoding, duration, seeking and readability. It found no browser errors, external requests or broken final-documentation links. Personal and peer fields remained correctly labeled incomplete. Details are retained in [review.md](../review.md).
+
+## Subsequent human-control fix, October 29
+
+The October 28 clean-clone evidence above is historical. The later human browser fix adds a separate frame adapter, 60 Hz animation and explicit debug controls. All 38 current tests, source verification, timing checks and the complete 24-trace audit passed locally. The frozen evaluation code/hash and retained experiment remain unchanged. New browser evidence is in [the human check report](../reports/2026-10-29-human-browser-check.json). Independent review and resolved findings are recorded in [review.md](../review.md#human-realtime-controls-review-october-29).
+
+Commit `7b3bfa2` was subsequently pushed with permission and [fork CI passed](https://github.com/rogerwangdev/game-dev-f26/actions/runs/40924048142). The human-control edit is a later local commit with no claimed new GitHub CI result. The public Sites copy is published separately from the course repository. Peer feedback and personal reflection are still pending.
