@@ -8,6 +8,7 @@ const $ = id => document.getElementById(id)
 const canvas = $('game'), ctx = canvas.getContext('2d'), GM = window.GM
 const background = GM.Sprites.background(960, 640, 150, 1)
 let episode, trace, running = false, queued = null, playback = null, recording = null
+let savedEpisodes = [], replayRequest = 0
 let lastFrame = null, accumulatedMs = 0
 const tickMs = 1000 / 60
 const resetClock = () => { lastFrame = null; accumulatedMs = 0 }
@@ -33,6 +34,8 @@ function draw() {
 }
 function reset(scenario = scenarios.find(x => x.id === $('scenario').value), seed = scenario.seed, timing = null) {
   running = false; queued = null; playback = null; recording = null
+  replayRequest++
+  $('watch-model').disabled = savedEpisodes.length === 0
   resetClock()
   if ($('mode').value === 'recorded') $('mode').value = 'human'
   $('mode').querySelector('option[value="recorded"]')?.remove()
@@ -111,15 +114,46 @@ $('replay').onchange = async event => {
   } catch (error) { $('status').textContent = error.message }
 }
 async function watchModel() {
+  const selected = savedEpisodes.find(item => item.id === $('model-recording').value)
+  if (!selected) return
+  const request = ++replayRequest
+  running = false
+  draw()
   $('watch-model').disabled = true
   try {
-    const response = await fetch('reports/2026-10-26T19-22-31-872Z-vertex-open-dev-1.json')
+    const response = await fetch(selected.path)
     if (!response.ok) throw new Error('Cannot load the saved Gemini trace')
-    loadRecording(await response.json())
-  } catch (error) { $('status').textContent = error.message }
-  finally { $('watch-model').disabled = false }
+    const saved = await response.json()
+    if (request === replayRequest) loadRecording(saved)
+  } catch (error) { if (request === replayRequest) $('status').textContent = error.message }
+  finally { if (request === replayRequest) $('watch-model').disabled = false }
 }
 $('watch-model').onclick = watchModel
+$('model-recording').onchange = watchModel
+async function loadEpisodeChoices() {
+  try {
+    const response = await fetch('recordings/episodes.json')
+    if (!response.ok) throw new Error('Cannot load the saved episode list')
+    savedEpisodes = (await response.json()).episodes
+    $('model-recording').replaceChildren()
+    const groups = new Map()
+    for (const item of savedEpisodes) {
+      if (!groups.has(item.group)) {
+        const group = document.createElement('optgroup')
+        group.label = item.group
+        groups.set(item.group, group)
+        $('model-recording').append(group)
+      }
+      groups.get(item.group).append(new Option(item.label, item.id))
+    }
+    $('model-recording').disabled = false
+    $('watch-model').disabled = false
+    const params = new URLSearchParams(location.search)
+    const id = params.get('episode')
+    if (savedEpisodes.some(item => item.id === id)) $('model-recording').value = id
+    if (params.get('replay') === 'vertex' || id) await watchModel()
+  } catch (error) { $('status').textContent = error.message }
+}
 function advancePlayback() {
   if (!playback || episode.outcome().terminal) return
     try {
@@ -183,4 +217,4 @@ document.addEventListener('visibilitychange', () => {
 })
 reset()
 requestAnimationFrame(animate)
-if (new URLSearchParams(location.search).get('replay') === 'vertex') watchModel()
+loadEpisodeChoices()
