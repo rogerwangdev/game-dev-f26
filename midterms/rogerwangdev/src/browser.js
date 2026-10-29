@@ -113,9 +113,19 @@ $('replay').onchange = async event => {
     loadRecording(saved)
   } catch (error) { $('status').textContent = error.message }
 }
+function describeRecording(selected) {
+  if (!selected) return
+  const explanation = selected.id === 'checkpoint'
+    ? 'Original checkpoint · Early October 26 run with current-state input and no previous decisions.'
+    : selected.id.startsWith('h4-')
+      ? '4 previous decisions · Current game state plus up to four earlier decisions and results from this episode.'
+      : 'No history · Current game state and legal actions only, without previous decisions.'
+  $('recording-context').textContent = explanation
+}
 async function watchModel() {
   const selected = savedEpisodes.find(item => item.id === $('model-recording').value)
   if (!selected) return
+  describeRecording(selected)
   const request = ++replayRequest
   running = false
   draw()
@@ -151,6 +161,7 @@ async function loadEpisodeChoices() {
     const params = new URLSearchParams(location.search)
     const id = params.get('episode')
     if (savedEpisodes.some(item => item.id === id)) $('model-recording').value = id
+    describeRecording(savedEpisodes.find(item => item.id === $('model-recording').value))
     if (params.get('replay') === 'vertex' || id) await watchModel()
   } catch (error) { $('status').textContent = error.message }
 }

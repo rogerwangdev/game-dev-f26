@@ -1,0 +1,122 @@
+{
+  "layouts": [
+    {
+      "width": 1440,
+      "overflow": false,
+      "select": {
+        "top": 1301.546875,
+        "bottom": 1347.546875,
+        "height": 46,
+        "width": 631.09375
+      },
+      "watch": {
+        "top": 1301.546875,
+        "bottom": 1347.546875,
+        "height": 46,
+        "width": 188.453125
+      },
+      "next": {
+        "top": 1301.546875,
+        "bottom": 1347.546875,
+        "height": 46,
+        "width": 158.453125
+      }
+    },
+    {
+      "width": 1024,
+      "overflow": false,
+      "select": {
+        "top": 1250.890625,
+        "bottom": 1296.890625,
+        "height": 46,
+        "width": 555.09375
+      },
+      "watch": {
+        "top": 1250.890625,
+        "bottom": 1296.890625,
+        "height": 46,
+        "width": 188.453125
+      },
+      "next": {
+        "top": 1250.890625,
+        "bottom": 1296.890625,
+        "height": 46,
+        "width": 158.453125
+      }
+    },
+    {
+      "width": 768,
+      "overflow": false,
+      "select": {
+        "top": 1178.21875,
+        "bottom": 1224.21875,
+        "height": 46,
+        "width": 670
+      },
+      "watch": {
+        "top": 1236.21875,
+        "bottom": 1282.21875,
+        "height": 46,
+        "width": 329
+      },
+      "next": {
+        "top": 1236.21875,
+        "bottom": 1282.21875,
+        "height": 46,
+        "width": 329
+      }
+    },
+    {
+      "width": 390,
+      "overflow": false,
+      "select": {
+        "top": 1024.453125,
+        "bottom": 1070.453125,
+        "height": 46,
+        "width": 332
+      },
+      "watch": {
+        "top": 1080.453125,
+        "bottom": 1126.453125,
+        "height": 46,
+        "width": 161
+      },
+      "next": {
+        "top": 1080.453125,
+        "bottom": 1126.453125,
+        "height": 46,
+        "width": 161
+      }
+    },
+    {
+      "width": 320,
+      "overflow": false,
+      "select": {
+        "top": 997.796875,
+        "bottom": 1043.796875,
+        "height": 46,
+        "width": 262
+      },
+      "watch": {
+        "top": 1053.796875,
+        "bottom": 1115.796875,
+        "height": 62,
+        "width": 126
+      },
+      "next": {
+        "top": 1053.796875,
+        "bottom": 1115.796875,
+        "height": 62,
+        "width": 126
+      }
+    }
+  ],
+  "historyGroups": [
+    "Original checkpoint",
+    "No history",
+    "4 previous decisions"
+  ],
+  "humanClock": "29.9s",
+  "recordingPresentationPanelsHidden": true,
+  "errors": []
+}
