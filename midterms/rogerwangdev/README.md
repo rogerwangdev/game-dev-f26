@@ -14,6 +14,8 @@ A bounded adaptation of [Lor3walker/gold-miner](https://github.com/Lor3walker/go
 
 [Play Gold Miner](https://gold-miner-peer-playtest.rogerwang0506.chatgpt.site/) or share the [15-minute playtest guide](https://gold-miner-peer-playtest.rogerwang0506.chatgpt.site/playtest.html). Anyone with the link can play without installing software or providing credentials. The guide links the captioned agent recording and feedback prompts. Send actual feedback through the agreed course/private channel. The site does not collect feedback or start paid provider calls.
 
+Send [PLAYTEST.md](PLAYTEST.md) to your peer for a concise checklist, a 1–4 usability rating form and an optional LLM prompt for organizing their actual observations. Completed human feedback belongs in [PEER-NOTES.md](PEER-NOTES.md).
+
 ## Run locally
 
 Use Node.js 22 or later and Python 3 for the static server. No npm dependencies are required for the game, tests, baseline or saved-trace audit. Live Vertex play also requires Google Cloud CLI (`gcloud`), funded project access, and application-default authentication. Video capture is an optional development tool with separate Playwright requirements.
