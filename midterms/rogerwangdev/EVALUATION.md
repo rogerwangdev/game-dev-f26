@@ -127,6 +127,6 @@ npm run audit:evaluation
 npm run baseline
 ```
 
-The [dedicated workflow](../../.github/workflows/midterm-rogerwangdev.yml) runs these checks without provider credentials. [Fork CI passed at `7b3bfa2`](https://github.com/rogerwangdev/game-dev-f26/actions/runs/40924048142). Later revisions have local verification but no newer remote CI result. Before submission, the course's trusted path policy must permit the assignment-required workflow under `.github/workflows/`. No successful course-PR boundary result is claimed.
+The [dedicated workflow](../../.github/workflows/midterm-rogerwangdev.yml) runs these checks without provider credentials. [Fork CI passed at `675090b`](https://github.com/rogerwangdev/game-dev-f26/actions/runs/41331690374), including all 38 tests, source verification, timing checks, the 24-trace audit and development baselines. The shared setup and minigame checks also passed at that commit. [Current branch runs](https://github.com/rogerwangdev/game-dev-f26/actions?query=branch%3Arogerwangdev%2Fmidterm) show subsequent checks. Before submission, the course's trusted path policy must permit the assignment-required workflow under `.github/workflows/`. No successful course-PR boundary result is claimed.
 
 [Skill-use evidence](docs/skill-use.md) separately documents the isolated one-second rehearsal. The production gameplay hash, prompt, declared cases and retained experiment are unchanged.

@@ -8,7 +8,7 @@ A bounded adaptation of [Lor3walker/gold-miner](https://github.com/Lor3walker/go
 - Heuristic reaches the quota in all three development and all three held-out situations.
 - All 38 deterministic engine, human-frame parity, runner, replay, mocked adapter, timing-skill and evaluation-audit tests pass locally. Independent review evidence is in [review.md](review.md).
 - **Final held-out evaluation is complete.** Twelve fresh Vertex episodes compare observation-only input and four-entry history. Gemini reached 2/6 quotas with H0 and 0/6 with H4. The heuristic reached all quotas. All 24 final traces, the original failed checkpoint and the $0.1994127 final token-cost estimate are retained in [EVALUATION.md](EVALUATION.md).
-- The latest published [fork CI at 7b3bfa2 passed](https://github.com/rogerwangdev/game-dev-f26/actions/runs/40924048142). The later human-animation fix is verified locally. No course PR is claimed. See [verification and CI status](EVALUATION.md#verification).
+- [Fork CI passed at 675090b](https://github.com/rogerwangdev/game-dev-f26/actions/runs/41331690374), including source verification, tests, timing checks, the saved-trace audit and development baselines. [Current branch runs](https://github.com/rogerwangdev/game-dev-f26/actions?query=branch%3Arogerwangdev%2Fmidterm) show subsequent checks. No course PR is claimed. See [verification and CI status](EVALUATION.md#verification).
 
 ## Shareable playtest
 
