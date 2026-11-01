@@ -1,6 +1,6 @@
 # Peer playtest notes
 
-**Partially complete.** Received human feedback is filed below. Notes given to a partner, final tester confirmation and the student's own response remain pending. Automated checks and agent reviews are separate evidence. Keep identifying details and private ratings out of the public submission.
+**Partially complete.** Received human feedback is filed below. A [reflection draft based on the student's notes](AGENT-TEAM.md) now proposes responses. Student review, notes given to a partner and final tester confirmation remain pending. Automated checks and agent reviews are separate evidence. Keep identifying details and private ratings out of the public submission.
 
 ## Notes given to a partner — due November 6
 
@@ -37,8 +37,8 @@ What the player reported:
 
 | Finding | Current response / remaining work |
 | --- | --- |
-| Deadline rule unclear | Code confirms score is awarded on delivery and there is no extra retrieval time after expiry. See [human frame adapter](src/human-episode.js) and [evaluation engine](src/episode.js). A player-facing clarification remains to be decided/implemented. |
-| Beginner aiming guide/difficulty | Suggestion recorded. Student decision and rationale are pending. No feature is claimed implemented in response. |
+| Deadline rule unclear | Code confirms score is awarded on delivery and there is no extra retrieval time after expiry. See [human frame adapter](src/human-episode.js) and [evaluation engine](src/episode.js). The reflection draft proposes clearer ending instructions. Student review and implementation remain pending. |
+| Beginner aiming guide/difficulty | The student identified stage progression as a limitation. The reflection draft proposes a beginner guide as future work and prioritizes clarity/playback investigation first. Student review remains pending. No feature is claimed implemented in response. |
 | Agent precision and stutter | Exact agent/view is unknown. Identify the view and any reproduction steps before attributing the experience or changing a policy. |
 | Formal exchange record | Total elapsed session duration is unknown. Sixty seconds of reported simulation is not a measured appointment duration. Tester confirmation remains unrecorded. |
 | Technical checks | Held-out validation, invalid-action handling, information boundaries and provider limits remain Not verified by this peer. Existing [5A evaluation evidence](EVALUATION.md) and tests are separate from the human report. |
@@ -46,6 +46,8 @@ What the player reported:
 The received report is useful qualitative evidence, with two rounds on one situation and no controlled usability comparison. No original model/baseline result is replaced or supplemented by these human scores. Optional usability ratings were not provided and are not required.
 
 **Student response, in your own words:**
+
+See the [draft reflection](AGENT-TEAM.md), prepared from the student's stated reasons and interpretation with disclosed Codex editing. Its priorities and wording still need student review. The fields below remain available for final decisions and completed work.
 
 What I changed or retained because of this feedback, and why:
 

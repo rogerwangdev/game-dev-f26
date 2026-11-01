@@ -14,7 +14,7 @@ Required evidence, relative to `midterms/rogerwangdev/`:
 
 - [README and exact commands](../README.md)
 - [Evaluation, metrics and limitations](../EVALUATION.md)
-- [Student agent-team log — incomplete worksheet](../AGENT-TEAM.md)
+- [Student agent-team log — reflection draft awaiting student review](../AGENT-TEAM.md)
 - [Peer notes and response status — partial](../PEER-NOTES.md), [received October 30 feedback](playtests/2026-10-30-received.md)
 - [3½-minute recording](../recordings/gold-miner-demo.webm), [recording provenance](../recordings/README.md)
 - [Two actual named skill-use sessions](sessions/README.md)

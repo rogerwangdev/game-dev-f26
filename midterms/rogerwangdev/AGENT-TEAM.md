@@ -1,26 +1,23 @@
-# Agent-team log — student draft
+# Agent-team log and reflection
 
-**Incomplete — rubric 5B.** The course requires this one-page log in the student's own voice. The factual index below was prepared by Codex. The personal-response fields are blank and must be completed by the student before submission. [October 30 feedback](docs/playtests/2026-10-30-received.md) has been received, with limitations and pending confirmation recorded in [PEER-NOTES.md](PEER-NOTES.md).
+**Draft based on my notes, organized and edited with Codex. Student review is still pending.**
 
-| Role | Actual access and work | Evidence |
+I chose Gold Miner because I played it as a child and still enjoy its combination of timing, calculation and geometry. A well-timed launch can produce a large reward, making success feel directly connected to the player's judgment. I wanted to preserve that feedback while keeping the project small enough to test with an agent.
+
+I directed the development through Codex, using the following roles and boundaries:
+
+| Role and access | Contribution and decision | Evidence |
 | --- | --- | --- |
-| Codex implementation | Project instructions permit changes in this submission and its dedicated workflow. Built the fixed-step wrapper, baseline, runner, provider integration, tests and evidence. Imported source remains unchanged | [Instructions](AGENTS.md), [configuration](agent-config.json), [actual sessions](docs/sessions/README.md), [work log](docs/work-log.md) |
-| Reusable procedure | `gold-miner-rule-change` connects evidence, tests, implementation and review. Named use occurred in two distinct authoring sessions. The one-second migration stayed in an isolated checkout | [Skill](skills/gold-miner-rule-change/SKILL.md), [session 01](docs/sessions/session-01-implementation.md), [session 02](docs/sessions/session-02-timing-skill.md) |
-| Independent review | Separate read-only reviewers reported findings and rechecked fixes. They did not author the code under review or approve a merge | [Review record](review.md) |
-| Gemini gameplay | Receives copied public JSON state, legal actions and selected bounded history. No repository, shell, credentials, hidden state or engine handle. Returns validated timing/wait decisions | [Player adapter](src/vertex.js), [runner](src/runner.js), [evaluation](EVALUATION.md) |
+| Implementation: submission files and dedicated workflow | Adapted the existing MIT code. I retained the original claw physics and added the bounded agent interface. | [Instructions](AGENTS.md), [configuration](agent-config.json), [sessions](docs/sessions/README.md) |
+| Reusable skill: scoped rule changes and isolated checks | Connected source evidence, tests and review. Two sessions used it, including an isolated one-second timing rehearsal. | [Skill](skills/gold-miner-rule-change/SKILL.md), [session evidence](docs/sessions/README.md) |
+| Independent review: read-only access | Separate reviewers identified problems and checked fixes, including misleading human-replay request labels. | [Findings and resolutions](review.md) |
 
-**Complete these in your own words:**
+Gemini had a separate role as the gameplay agent. It received public numerical observations and legal actions, without repository or development tools.
 
-Evidence to draw on: [5A model/baseline evaluation](EVALUATION.md), [5B received peer feedback](docs/playtests/2026-10-30-received.md), and [peer observations / response status](PEER-NOTES.md). The 5A experiment is complete. The 5B personal interpretation and decisions are not supplied by these links.
+The main timing decision was to separate observation frequency from launch precision. Agent decisions advance 0.5 simulated seconds, but launches can be scheduled at 1/60-second offsets within that interval. The game pauses while Gemini responds, so response latency does not consume game time. I also requested smooth human controls after seeing that the original browser interface visibly stepped every half second. The active agent interval stayed unchanged.
 
-Why I chose this game, bounded scope and research question:
+The [evaluation](EVALUATION.md) challenged my expectation that history would improve performance. The geometry-based heuristic reached 6/6 quotas by recalculating interception and value/time from each observation. Gemini reached 2/6 without history and 0/6 with four previous decisions. This fully observed game already supplies the current information needed for a decision. The results suggest that extra history was not helpful in these runs. Spatial and timing reasoning remain possible limitations, but the traces do not establish the cause of each miss. Two trials per case are too few for a general conclusion.
 
-An agent recommendation I accepted, changed or rejected, and my reason:
+The [peer feedback](docs/playtests/2026-10-30-received.md) was useful because it connected successful grabs with satisfaction and repeated misses with frustration. It also exposed uncertainty about unfinished retrievals at the deadline. I would prioritize clearer ending instructions and investigation of the reported playback stutter before expanding the mechanics. An optional beginner aiming guide is a useful future direction. The precise agent view was not identified, so I cannot treat its apparent accuracy as evidence of unfair information. These are proposed responses, not completed changes.
 
-What I decided about timing, observations, baseline and history:
-
-What the 5A failed and successful trials taught me, including limitations:
-
-How the linked peer notes affected my decisions, including what I changed or retained and why:
-
-Do not treat this worksheet or the assistant's work log as completed personal authorship.
+The current scope uses one level format with three selectable situations, rather than a campaign. It does not reproduce the original game's increasing quotas and stage progression. A future version could vary layouts and difficulty across stages, with more valuable but harder-to-retrieve targets. That would create stronger risk/reward decisions: committing time to one large reward could leave too little time to recover from a miss. Any expansion would need its own testing and evaluation.
