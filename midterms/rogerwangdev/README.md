@@ -23,6 +23,26 @@ Peer evidence: [October 30 feedback received](docs/playtests/2026-10-30-received
 | **5A — fair evaluation** | Completed model/baseline comparison in [EVALUATION.md](EVALUATION.md), with the [pre-run protocol](FINAL-EVALUATION.json), held-out cases, complete traces, metrics and failures. Human feedback does not replace these experiments. |
 | **5B — reflection and peer feedback** | Partial. [Received feedback](docs/playtests/2026-10-30-received.md) is tracked and indexed in [PEER-NOTES.md](PEER-NOTES.md). A [reflection draft based on the student's notes](AGENT-TEAM.md) exists, with Codex editing disclosed. A [partner review](docs/playtests/2026-11-01-given-catacomb-ii.md) is prepared. Student review, final response decisions and delivery of the partner review remain pending. Tester confirmation, total session duration and the exact agent view were not recorded. |
 
+## Submission layout
+
+The submission is self-contained in `midterms/rogerwangdev/`. Its only change outside that folder is `.github/workflows/midterm-rogerwangdev.yml`.
+
+```text
+midterms/rogerwangdev/
+├── README.md, EVALUATION.md, AGENT-TEAM.md, PEER-NOTES.md
+├── package.json, agent-config.json     # Commands and agent configuration
+├── SOURCE.json, SUITE.json, FINAL-EVALUATION.json
+├── index.html, style.css, recording.html
+├── src/                               # Game, players, runner and browser
+├── test/                              # Deterministic tests
+├── scripts/                           # Evaluation, audit and capture tools
+├── docs/                              # Rule map, skill uses and peer notes
+├── skills/                            # Reusable rule-change procedure
+├── reports/                           # Recorded trials and comparison data
+├── recordings/                        # Video, replay menu and provenance
+└── vendor/gold-miner/                  # Pinned original code and MIT license
+```
+
 ## Run locally
 
 Use Node.js 22 or later and Python 3 for the static server. No npm dependencies are required for the game, tests, baseline or saved-trace audit. Live Vertex play also requires Google Cloud CLI (`gcloud`), funded project access, and application-default authentication. Video capture is an optional development tool with separate Playwright requirements.
@@ -81,7 +101,7 @@ The [rule/source map](docs/rule-source-map.md) distinguishes inherited rules fro
 These commands make paid API calls only when `--live` is present. Run from this project folder after configuring the project associated with your course credits and application-default credentials:
 
 ```bash
-export GOOGLE_CLOUD_PROJECT='game-dev-f26-lw3240'
+export GOOGLE_CLOUD_PROJECT='YOUR_GCP_PROJECT_ID'
 export GOOGLE_CLOUD_LOCATION='global'
 export COURSE_MODEL='gemini-3.5-flash-lite'
 gcloud auth application-default login
