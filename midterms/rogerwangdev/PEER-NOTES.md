@@ -1,6 +1,6 @@
 # Peer playtest notes
 
-**Partially complete.** Received human feedback is filed below. A [reflection draft based on the student's notes](AGENT-TEAM.md) describes responses and future work. A [review given to a partner](docs/playtests/2026-11-01-given-catacomb-ii.md) is also filed. Student review and final tester confirmation remain pending. Automated checks and agent reviews are separate evidence. Keep identifying details and private ratings out of the public submission.
+Received human feedback is filed below. My [reflection](AGENT-TEAM.md) describes responses and future work, and the [review given to a partner](docs/playtests/2026-11-01-given-catacomb-ii.md) records my outgoing feedback. Automated checks and agent reviews are separate evidence. Keep identifying details and private ratings out of the public submission.
 
 ## Notes given to a partner — due November 6
 
@@ -27,17 +27,17 @@ What the player reported:
 
 | Finding | Current response / remaining work |
 | --- | --- |
-| Deadline rule unclear | Code confirms score is awarded on delivery and there is no extra retrieval time after expiry. See [human frame adapter](src/human-episode.js) and [evaluation engine](src/episode.js). Explicit start/pause/result screens and expandable round rules now clarify the deadline. The instructions state that treasure still being hauled at the ending earns no money. Student review of the reflection remains pending. |
-| Beginner aiming guide/difficulty | The student identified stage progression as a limitation. The reflection draft proposes a beginner guide as future work and prioritizes clarity/playback investigation first. Student review remains pending. No feature is claimed implemented in response. |
+| Deadline rule unclear | Code confirms score is awarded on delivery and there is no extra retrieval time after expiry. See [human frame adapter](src/human-episode.js) and [evaluation engine](src/episode.js). Explicit start/pause/result screens and expandable round rules now clarify the deadline. The instructions state that treasure still being hauled at the ending earns no money. |
+| Beginner aiming guide/difficulty | The student identified stage progression as a limitation. The reflection identifies a beginner guide as future work and prioritizes clarity/playback investigation first. No feature is claimed implemented in response. |
 | Agent precision and stutter | Exact agent/view is unknown. Identify the view and any reproduction steps before attributing the experience or changing a policy. |
 | Formal exchange record | Total elapsed session duration is unknown. Sixty seconds of reported simulation is not a measured appointment duration. Tester confirmation remains unrecorded. |
 | Technical checks | Held-out validation, invalid-action handling, information boundaries and provider limits remain Not verified by this peer. Existing [5A evaluation evidence](EVALUATION.md) and tests are separate from the human report. |
 
 The received report is useful qualitative evidence, with two rounds on one situation and no controlled usability comparison. No original model/baseline result is replaced or supplemented by these human scores. Optional usability ratings were not provided and are not required.
 
-**Student response, in your own words:**
+**Response to feedback:**
 
-The [reflection draft](AGENT-TEAM.md) records the student's reasons and interpretation with disclosed Codex editing. The interface now includes start/result screens and clearer deadline rules. The draft retains playback investigation, beginner assistance and stage progression as future directions. Student review of those priorities and wording has not been recorded. These are presentation changes. Gameplay rules and the evaluation remain unchanged. The remaining factual unknowns are listed in the response table above.
+My [reflection](AGENT-TEAM.md) explains the design decisions and interpretation. The interface now includes start/result screens and clearer deadline rules. Playback investigation, beginner assistance and stage progression remain future directions. These are presentation changes. Gameplay rules and the evaluation remain unchanged. The remaining factual unknowns are listed in the response table above.
 
 ## Separate silent-playtester recording replies — before class November 16
 

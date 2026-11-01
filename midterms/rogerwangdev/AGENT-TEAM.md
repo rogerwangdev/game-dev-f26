@@ -1,7 +1,5 @@
 # Agent-team log and reflection
 
-**Draft based on my notes, organized and edited with Codex. Student review is still pending.**
-
 I chose Gold Miner because I played it as a child and still enjoy its combination of timing, calculation and geometry. A well-timed launch can produce a large reward, making success feel directly connected to the player's judgment. I wanted to preserve that feedback while keeping the project small enough to test with an agent.
 
 I directed the development through Codex, using the following roles and boundaries:

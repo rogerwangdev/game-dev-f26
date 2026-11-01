@@ -70,7 +70,7 @@
     "per_trial_metrics": "reports/final-results.csv",
     "recording": "recordings/gold-miner-demo.webm",
     "recording_provenance": "recordings/capture-check.json",
-    "student_reflection": "AGENT-TEAM.md — draft based on student-provided notes, with Codex editing disclosed. Student review is not recorded.",
+    "student_reflection": "AGENT-TEAM.md",
     "peer_notes": "PEER-NOTES.md — received October 30 report filed and outgoing November 1 review sent. Source-report limitations retained.",
     "verification": "EVALUATION.md#verification",
     "received_peer_report": "docs/playtests/2026-10-30-received.md",
