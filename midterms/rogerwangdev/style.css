@@ -92,7 +92,7 @@ footer { border-top: 1px solid #383326; padding-top: 18px; margin-top: 24px; fon
 }
 
 
-.game-layout { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 24px; align-items: start; }
+.game-layout { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 24px; align-items: stretch; }
 .game-area { min-width: 0; }
 .round-heading { display: flex; align-items: center; gap: 12px; min-height: 38px; margin-bottom: 10px; font-size: 12px; }
 .round-phase { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; color: #e3cf9c; }
@@ -110,7 +110,7 @@ footer { border-top: 1px solid #383326; padding-top: 18px; margin-top: 24px; fon
 .round-card .overlay-hint { margin: 14px 0 0; font-size: 11px; }
 .text-button { min-height: 38px; padding: 8px 0; border: 0; background: transparent; color: #dfbd7b; text-decoration: underline; text-underline-offset: 3px; }
 .round-card .text-button { display: block; margin: 10px auto 0; }
-.how-to-play { background: #1c1b16; border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-top: 48px; }
+.how-to-play { display: flex; flex-direction: column; background: #1c1b16; border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-top: 48px; }
 .how-to-play .section-eyebrow { font-size: 9px; line-height: 1.7; }
 .how-to-play h2 { margin: 8px 0 14px; font-size: 24px; letter-spacing: -.5px; }
 .goal-copy { font-size: 15px; line-height: 1.7; color: #c8bfab; margin: 0; }
@@ -146,7 +146,7 @@ footer { border-top: 1px solid #383326; padding-top: 18px; margin-top: 24px; fon
 
 .controls-heading { margin: 24px 0 0; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); font-weight: 600; }
 .control-guide { margin: 0; }
-.control-guide > div { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 10px 8px; padding: 18px 0; border-bottom: 1px solid #383326; }
+.control-guide > div { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px; padding: 12px 0; border-bottom: 1px solid #383326; }
 .control-guide dt { font-size: 13px; font-weight: 600; }
 .control-guide dd { margin: 0; min-width: 0; }
 .control-keys { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
@@ -159,3 +159,11 @@ footer { border-top: 1px solid #383326; padding-top: 18px; margin-top: 24px; fon
 .trace-tools summary { font-weight: 600; font-size: 14px; cursor: pointer; }
 .trace-tools .panel-note { margin: 14px 0; }
 .debug-controls { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 14px; }
+
+.round-help { margin-top: auto; padding-top: 16px; }
+.round-help summary { color: #e5c587; cursor: pointer; font-size: 12px; line-height: 1.7; }
+.round-help .treasure-tip { padding-top: 14px; }
+@media (max-width: 1200px) {
+  .game-layout { grid-template-columns: minmax(0, 1fr); }
+  .how-to-play { margin-top: 0; }
+}

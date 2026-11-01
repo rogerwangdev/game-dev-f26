@@ -31,7 +31,6 @@
             </div>
           </section>
         </div>
-        <p id="status" role="status">Choose a target. Large gold is valuable but heavy. Rocks cost precious time.</p>
       </section>
       <aside class="how-to-play" aria-labelledby="how-to-title">
         <p class="section-eyebrow">A LITTLE TIMING. A BIG PAYOFF.</p>
@@ -42,13 +41,13 @@
           <div>
             <dt>Launch claw</dt>
             <dd class="control-keys"><kbd>Click</kbd><kbd>Space</kbd><kbd aria-label="Down arrow">↓</kbd></dd>
-            <dd id="launch-help" class="control-description">Watch the swing, then click the field or press a key to launch toward your target. The claw reels back automatically.</dd>
+            <dd id="launch-help" class="control-description">Launch at the angle of the swing. The claw reels back automatically.</dd>
             <dd class="control-action"><button id="launch" class="primary" aria-describedby="launch-help">Launch claw</button></dd>
           </div>
           <div>
             <dt>Start / pause</dt>
             <dd><button id="run" aria-describedby="pause-help">Start game</button></dd>
-            <dd id="pause-help" class="control-description">Start, pause or resume the clock. Switching tabs also pauses play.</dd>
+            <dd id="pause-help" class="control-description">Stop or resume the clock. Switching tabs pauses play too.</dd>
           </div>
           <div>
             <dt>Start over</dt>
@@ -56,10 +55,14 @@
             <dd id="restart-help" class="control-description">Reset your score, the field and the timer.</dd>
           </div>
         </dl>
-        <div class="treasure-tip"><strong>Choose your targets</strong><p>Gold and diamonds earn money. Larger gold takes longer to haul. Rocks offer little value and use up time.</p></div>
-        <div class="round-tip"><strong>When does it end?</strong><p>The round ends when time runs out or the field is cleared. Meet the goal to win. Reaching the goal early lets you keep collecting.</p></div>
+        <details class="round-help">
+          <summary>Targets &amp; round rules</summary>
+          <div class="treasure-tip"><strong>Choose your targets</strong><p>Gold and diamonds earn money. Larger gold takes longer to haul. Rocks offer little value and use up time.</p></div>
+          <div class="round-tip"><strong>When does it end?</strong><p>The round ends when time runs out or the field is cleared. Meet the goal to win. Treasure still being hauled when the round ends earns no money. Reaching the goal early lets you keep collecting.</p></div>
+        </details>
       </aside>
     </div>
+    <p id="status" role="status">Choose a target. Large gold is valuable but heavy. Rocks cost precious time.</p>
     <details class="trace-tools control-panel">
       <summary>Replay files and debug tools</summary>
       <p class="panel-note">Save or load a playthrough, or inspect the simulation one step at a time.</p>
