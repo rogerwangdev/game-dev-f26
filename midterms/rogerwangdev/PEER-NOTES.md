@@ -4,7 +4,7 @@
 
 ## Notes given to a partner — due November 6
 
-A [Catacomb II review](docs/playtests/2026-11-01-given-catacomb-ii.md) was prepared on November 1 from the student’s reported playthrough and two replays. It covers objective/control clarity, weapon explanations, the tested facing-lock mechanic, an independent-aiming suggestion and verification limits. The first playthrough took 1 minute 35 seconds and the second about 2 minutes, using Chrome. Total session duration, device, mode and the recording version were not recorded. Delivery to the partner has not been confirmed. This is prepared outgoing feedback, not a claim that the full scheduled exchange or later recording replies are complete.
+A [Catacomb II review](docs/playtests/2026-11-01-given-catacomb-ii.md) was prepared on November 1 from the student’s reported playthrough and two replays. It covers objective/control clarity, weapon explanations, the tested facing-lock mechanic, an independent-aiming suggestion and verification limits. The first playthrough took 1 minute 35 seconds and the second about 2 minutes, using Chrome. Total session duration, device, mode and the student’s original recording version were not recorded. A separate Codex-assisted inspection now documents the current hybrid recording’s exit-goal choice around 3:22. Technical properties remain unverified by this review. Delivery to the partner has not been confirmed. This is prepared outgoing feedback, not a claim that the full scheduled exchange or later recording replies are complete.
 
 ## Notes received from a partner
 
