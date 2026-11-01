@@ -8,8 +8,8 @@ I directed the development through Codex, using the following roles and boundari
 
 | Role and access | Contribution and decision | Evidence |
 | --- | --- | --- |
-| Implementation: submission files and dedicated workflow | Adapted the existing MIT code. I retained the original claw physics and added the bounded agent interface. | [Instructions](AGENTS.md), [configuration](agent-config.json), [sessions](docs/sessions/README.md) |
-| Reusable skill: scoped rule changes and isolated checks | Connected source evidence, tests and review. Two sessions used it, including an isolated one-second timing rehearsal. | [Skill](skills/gold-miner-rule-change/SKILL.md), [session evidence](docs/sessions/README.md) |
+| Implementation: submission files and dedicated workflow | Adapted the existing MIT code. I retained the original claw physics and added the bounded agent interface. | [Instructions](AGENTS.md), [configuration](agent-config.json), [skill-use evidence](docs/skill-use.md) |
+| Reusable skill: scoped rule changes and isolated checks | Connected source evidence, tests and review. Two sessions used it, including an isolated one-second timing rehearsal. | [Skill](skills/gold-miner-rule-change/SKILL.md), [two uses](docs/skill-use.md) |
 | Independent review: read-only access | Separate reviewers identified problems and checked fixes, including misleading human-replay request labels. | [Findings and resolutions](review.md) |
 
 Gemini had a separate role as the gameplay agent. It received public numerical observations and legal actions, without repository or development tools.

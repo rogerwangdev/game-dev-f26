@@ -8,9 +8,7 @@ A bounded adaptation of [Lor3walker/gold-miner](https://github.com/Lor3walker/go
 - Heuristic reaches the quota in all three development and all three held-out situations.
 - All 38 deterministic engine, human-frame parity, runner, replay, mocked adapter, timing-skill and evaluation-audit tests pass locally. Independent review evidence is in [review.md](review.md).
 - **Final held-out evaluation is complete.** Twelve fresh Vertex episodes compare observation-only input and four-entry history. Gemini reached 2/6 quotas with H0 and 0/6 with H4. The heuristic reached all quotas. All 24 final traces, the original failed checkpoint and the $0.1994127 final token-cost estimate are retained in [EVALUATION.md](EVALUATION.md).
-- The latest published [fork CI at 7b3bfa2 passed](https://github.com/rogerwangdev/game-dev-f26/actions/runs/40924048142). The later human-animation fix is verified locally. No course PR is claimed. See the [local verification record](docs/verification.md) and [course integration status](docs/course-integration.md).
-
-The [October 31 submission audit](docs/submission-audit.md) maps all 15 rubric checks to evidence and actual open items. Fresh-clone checks passed for the current runtime. Reflection review, outgoing peer feedback and final course publication/CI/submission are still open. No unfilled active peer-note templates remain, and historical source records are preserved.
+- The latest published [fork CI at 7b3bfa2 passed](https://github.com/rogerwangdev/game-dev-f26/actions/runs/40924048142). The later human-animation fix is verified locally. No course PR is claimed. See [verification and CI status](EVALUATION.md#verification).
 
 ## Shareable playtest
 
@@ -101,10 +99,10 @@ npm run evaluate -- --player vertex --live --suite heldout --trials 2 --history 
 
 Do not use held-out results to tune the prompt. [SUITE.json](SUITE.json) records the declared cases, budgets, and scenario hash before any live trials. [EVALUATION.md](EVALUATION.md) reports actual evidence and outstanding work.
 
-## Development workflow and remaining submission work
+## Agent-team evidence
 
-Project instructions are in [AGENTS.md](AGENTS.md). The committed [gold-miner-rule-change skill](skills/gold-miner-rule-change/SKILL.md) connects design rationale, source evidence, failing tests, implementation, boundary checks, and independent review. Its [simulation-timing procedure](skills/gold-miner-rule-change/references/simulation-timing.md) explains changes such as 0.5-second to 1-second decisions and includes an offline `npm run check:timing` helper. The active game still uses 0.5-second decisions. Actual usage is recorded in [the work log](docs/work-log.md). The [agent-team evidence index](docs/agent-team-evidence.md) lists the remaining rubric work. [Two actual authoring-session transcripts](docs/sessions/README.md) document named skill use in the original VS Code implementation and a fresh standalone CLI timing rehearsal. The session files are ready for course PR links after publication is authorized.
+[AGENTS.md](AGENTS.md) and [agent-config.json](agent-config.json) define development and gameplay roles. The reusable [gold-miner-rule-change skill](skills/gold-miner-rule-change/SKILL.md) connects source evidence, behavioral tests and independent review. [Two actual uses](docs/skill-use.md) document implementation and an isolated timing-change rehearsal. The [review record](review.md) summarizes findings and fixes.
 
-Codex assisted with implementation and suggested wrapping the existing claw simulation rather than replacing timing with target selection. This suggestion was retained in the implementation. The [AGENT-TEAM.md reflection draft](AGENT-TEAM.md) is now based on the student's supplied reasons, with Codex editing disclosed. Student review and final decisions remain pending. [Received peer feedback and remaining response fields](PEER-NOTES.md) are linked. Final evaluation and the recording are complete. Human experience and personal reflection are not inferred from automated checks. A [PR description draft](docs/PR-DESCRIPTION.md) is ready for the eventual authorized publication.
+The [reflection draft](AGENT-TEAM.md) is based on student-supplied ideas with Codex editing disclosed. Student review and outgoing peer feedback are not recorded. [Peer notes](PEER-NOTES.md) link the received report and its limitations.
 
-Original source: Lor3walker, revision recorded in SOURCE.json. Preserve [the imported MIT license](vendor/gold-miner/LICENSE). The upstream artwork is drawn procedurally by its code. This project is an independent adaptation and does not claim affiliation with the original Gold Miner publisher.
+Original source: Lor3walker, pinned in SOURCE.json under the retained [MIT license](vendor/gold-miner/LICENSE). Procedural artwork is inherited from that code. This adaptation does not claim affiliation with the original Gold Miner publisher.

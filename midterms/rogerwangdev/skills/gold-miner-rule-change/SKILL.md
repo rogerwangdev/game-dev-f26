@@ -13,6 +13,6 @@ Use this skill for a rule or player-interface change. For a simulation-interval 
 4. Run `npm test`. If the change affects play, verify the browser or a complete headless episode too. Mocked model responses prove runner behavior, not live model performance.
 5. Update the map and write a review handoff identifying the rule, evidence, before/after test result, information-boundary effect, and remaining assumptions. A separate read-only reviewer supplies findings. Do not approve your own work.
 
-Record actual invocation evidence in `docs/work-log.md`. Multiple turns in one chat are one session. Do not claim the required second session has happened until it has.
+Record actual invocation evidence in `docs/skill-use.md`. Multiple turns in one chat are one session. Do not claim the required second session has happened until it has.
 
 The offline helper `node skills/gold-miner-rule-change/scripts/check-timing.mjs` verifies the declared engine timing, launch boundaries, mocked provider schema, and development baseline. It makes no provider requests and writes no reports. It supplements the procedure and does not replace prompt, browser, evaluation-version, or independent review.

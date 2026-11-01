@@ -1,115 +1,29 @@
-# Independent checkpoint review
+# Independent review evidence
 
-Date: October 26, 2026. Reviewer: separate read-only Codex agent context `gold_miner_review`. The reviewer did not write or edit the implementation, make provider calls, or approve a merge. The course's read-only reviewer instructions were supplied. This is evidence of independent review, not a claimed second standalone skill-use session.
+Separate read-only Codex reviewers inspected the implementation and subsequent changes. They did not author the code under review or approve a merge. This file retains findings, resolutions and verification needed to inspect that review.
 
-## Original findings
+## Findings and resolutions
 
-1. **Should fix, browser replay:** action-only replay discarded runner terminal reasons. A reproduced `call_limit` episode remained ongoing during replay.
-2. **Should fix, version identity:** the original `gameHash` omitted imported physics/item/utilities and the source manifest, allowing changed rules to retain a reported hash.
-3. **Should fix, rule evidence:** the map omitted item values/weights/radii, geometry, numerical physics constants, and the distinction between inherited and selected initial conditions.
+| Review date | Finding | Resolution / retained evidence |
+| --- | --- | --- |
+| October 26 | Browser replay lost runner terminal reasons, leaving call-limited episodes ongoing | [Replay restoration](src/replay.js) and [regression tests](test/replay.test.js) preserve failure/end reasons |
+| October 26 | The original game hash omitted imported runtime dependencies | [Version hashing](scripts/game-version.js) includes the source manifest and imported physics/items/utilities |
+| October 26 | The rule map omitted numerical constants and inherited/design distinctions | Expanded [rule/source map](docs/rule-source-map.md) with source locators |
+| October 28 | The evaluation auditor accepted altered limits/model settings | [Audit checks](scripts/audit-evaluation.mjs) compare protocol identities, settings, limits and cost basis. [Mutation tests](test/evaluation-audit.test.js) reject forged metadata/results |
+| October 29 | ArrowRight triggered hidden debug stepping, and human replay implied a model request | [Browser controls](src/browser.js) gate stepping on debug mode and distinguish human input from model requests |
 
-The reviewer ran all 23 then-current tests and verified all 13 imported file hashes. They independently compared delayed versus immediate heuristic decisions, tested invalid-action termination, and reproduced the replay discrepancy. No blocking engine or player-boundary issue was reported.
+Independent follow-ups reported no remaining findings on these fixes. Reviews also checked action validation, detached observations, provider-delay independence, source-file preservation and runner budgets.
 
-## Author's resolutions
+## Skill reuse review
 
-- Added `src/replay.js`, terminal-summary restoration, observation checks, and two replay tests. The browser reports recorded failures instead of leaving a failed trace ongoing.
-- Added `scripts/game-version.js` hashing the source manifest, imported runtime dependencies, and core evaluation modules.
-- Expanded `docs/rule-source-map.md` with the missing numerical rules, evidence locators, and design adaptations.
+Separate reviewers checked the two actual skill-use sessions documented in [docs/skill-use.md](docs/skill-use.md), their distinct session identities, test-first work and isolated rehearsal. The completed second-session copy passed 40 tests and development baselines without changing the production engine, declaration, original traces or vendor source. The retained patch is unapplied. These reviews are not counted as additional authoring sessions.
 
-## Independent follow-up
+## Final verification review — October 31
 
-The same read-only reviewer rechecked the changes in a follow-up task and reported: **No findings**. Both replay tests passed. Independent checks confirmed that changing the source manifest or each imported runtime dependency changes the hash. Replay checks restored `call_limit`, `invalid_limit`, and `provider_timeout` outcomes exactly.
+A separate reviewer checked the clean-clone verification of runtime commit `36d43b0`, independently reran all 38 production tests and the 24-trace exact audit, and checked the original peer report and video against their preserved hashes. The parent browser check covered human controls, all 13 saved menu outcomes, phone layout and video playback. The reviewer checked those reported outcomes against the actual source traces. Final result: **No findings** on that tested revision.
 
-Files reviewed included parent/project instructions, the project skill, source manifest, rule map, engine, scenarios, baseline, runner, provider adapter, evaluation/version scripts, browser/replay code, HTML, work log, all test files, and relevant imported hook/item/game/main code. This records findings and their resolution. The student retains responsibility for design and submission decisions.
+Review scope included the engine, runner, provider adapter, baseline, browser/replay code, tests, source manifest, rule map, skill-use evidence, final protocol, evaluation artifacts and required reports. The written review does not confirm student authorship, outgoing peer feedback or course submission. Current verification commands and results are summarized in [EVALUATION.md](EVALUATION.md#verification).
 
-## Recorded-agent inspector review
+## Submission evidence review — October 31
 
-The same independent read-only reviewer inspected the later one-click model replay and inspector UI. They found that loading a recording could leave the Situation selector displaying a different scenario. The implementation now synchronizes that selector, adds a labeled option for recorded cases absent from the selector, and shows a locked recorded-player label. Reset restores human controls.
-
-The reviewer's follow-up reported no findings. Their independent offline check reproduced all 60 saved steps, comprising 32 model decisions and 28 forced waits, and verified that the saved trace was unchanged. They confirmed by code inspection that replay loads local JSON, does not import the provider adapter, labels forced waits, and preserves original metadata on download. No provider calls or edits were made by the reviewer.
-
-The author separately exercised the browser controls, exact first two recorded actions, terminal result, download metadata, phone layout, direct replay link, reset, and scenario/player label correction. No browser errors or external/model requests were observed. These automated checks are not a human peer playtest.
-
-## Timing-skill review and isolated forward test, October 28
-
-Reviewer: fresh independent Codex context `timing_skill_review`. Shared workspace access was read-only. The reviewer could edit only an isolated temporary copy for skill forward-testing. They did not write the shared implementation, make provider calls, approve, merge or push.
-
-The reviewer reported no blocking or should-fix findings. They noted that the helper test's schema-drift fixture hardcoded 29 and 28, creating unnecessary work for a future migration. The author changed both values to derive from `DECISION_FRAMES`. Independent follow-up reported **No findings** on that fix and confirmed that it works at both 30-frame and 60-frame decision intervals.
-
-Shared-project verification: all 29 tests passed, all 13 imported source hashes matched, all 60 original live-trace intervals replayed exactly, and all three development baselines reached their quotas. The reviewer confirmed that no active engine, prompt, original declaration, vendor or historical trace was changed.
-
-### Skill forward test
-
-The reviewer explicitly used `gold-miner-rule-change` for a 0.5-second to 1-second migration at 60 Hz in a temporary project copy. This is independent validation, not a second standalone authoring session.
-
-- Before editing, two new tests failed with `30 !== 60` and launch maximum `29 !== 59`.
-- After updating the copy's engine interval, provider prompt/schema, browser interval/labels, rule map and separate rehearsal declaration, those two tests passed.
-- The helper passed with `--seconds 1 --declaration SUITE-timing-rehearsal.json`. Baseline scores remained 1011, 1570 and 1150, in 15, 14 and 12 steps.
-- The copied full test suite initially revealed five interval-dependent failures. After updating the timing expectations and adding explicit rejection of the historical recording, all 32 copied tests passed. The [test output](reports/2026-10-28-timing-skill-rehearsal-tests.txt) and [rehearsal patch](reports/2026-10-28-timing-skill-rehearsal.patch) are retained for inspection. The patch is an evidence artifact and is not applied to the active game.
-- The original `SUITE.json` was preserved. The one-second runtime correctly failed against that old declaration and rejected the original trace's game version.
-- Browser checks showed a manual wait advancing 30.0 to 29.0 seconds, exact timer expiry, and a clear mismatch on the old replay. There were no browser errors or nonlocal requests. All 13 source hashes still matched.
-
-Limitation: the temporary copy did not implement evaluator declaration selection or final production evaluation. This is a partial migration rehearsal demonstrating the skill, rather than a complete production migration or new model-performance evidence. No held-out tuning or live provider calls occurred.
-
-Files reviewed included parent/project and reviewer instructions, the skill and timing reference/helper, new/existing tests, package/workflow changes, engine, runner, provider, baseline, browser/replay/version/evaluation code, declarations, evidence index, README, configuration, rule map, work log and saved offline validation report.
-
-## Actual standalone session and transcript review, October 28
-
-Reviewer: separate read-only context `session_evidence_review`. It did not author the standalone session's implementation or the transcript exporter. It reported **No findings**.
-
-The reviewer verified that Session 01 is the actual VS Code session `01a13d3a-ca69-73c1-9754-390b76c321f3`, and its 25 selected exported records match the original public messages and tool inputs in source order. Session 02 is the distinct persisted `exec` session `01a1839b-f210-7e42-acdb-e47be9825ea6`, with no fork source. Its original prompt is present in the persisted recording, and the Markdown export matches all five public agent messages and 31 executed command records, including aggregated output. The second session is not this reviewer or either earlier validation subagent. No credential or private reasoning content was identified in the exports.
-
-In Session 02's isolated checkout, the reviewer independently ran all 40 tests, verified all 13 imported-source hashes and the one-second timing contract, and checked baseline scores 1011/750, 1570/700 and 1150/650. Six saved rehearsal traces match their game/declaration hashes and history settings 0 and 4. All 23 original vendor, declaration and report files remain byte-for-byte unchanged in both the main workspace and copied checkout. The main production engine, prompt, scenarios and timing remain unchanged.
-
-The reviewer read the instructions, skill/reference, rule map, engine, declaration/evaluator, provider, baseline, browser/replay changes, relevant tests, rehearsal declaration/report, six traces, exported transcripts, source metadata/event stream and retained patch. It made no edits, game-provider calls, approvals, commits, pushes or further delegations.
-
-Limitations: browser interaction was not tested. The migration is isolated, not deployed. These deterministic offline runs do not complete held-out live evaluation or establish a model history benefit. The [author's report](docs/sessions/session-02-rehearsal-report.md) is retained as originally written, including its then-pending review statement. This section records the subsequent independent review. [The session index](docs/sessions/README.md) links the actual exports and unapplied patch.
-
-## Final evaluation and recording review, October 28
-
-Reviewer: independent read-only context `final_gap_review`, which did not author the evaluation audit, new tests or recording implementation. It made no edits, game-provider calls, approvals, commits or pushes.
-
-The reviewer verified all 24 traces by replay, all 13 imported hashes, the unchanged core engine/runner/prompt/scenarios/original declaration, the timing of protocol commit `e7e4ec2` before the first held-out run, and the reported totals: model H0 2/6, H4 0/6, baseline 6/6 per arm, 314 API calls and $0.1994127 estimated cost. At its initial pass, all 33 then-current tests passed. The complete recording presentation reached all three cases and the summary without browser errors, external requests or overflow. Selection and half-speed replay labels matched the protocol. Peer and personal-response fields remained explicitly blank.
-
-**Finding and resolution:** the auditor originally accepted altered recorded resource limits or requested model settings even though the real traces used the correct settings. The author reproduced this weakness with a failing test (`Missing expected exception`), then compared all recorded limits, trace kind, requested provider/model/location/temperature, pinned output/retry settings and pricing basis against the declared contract. Six metadata/limit/price mutations are now rejected. The frozen declaration and data were not changed, and no live episodes were rerun. Independent follow-up reported **No findings** on the fix, with all three audit tests and the complete 24-trace audit passing.
-
-The initial raw video was subsequently compressed from about 30 MB to 2,009,066 bytes at 1280×900/10 fps, preserving the full presentation at 211.6 seconds. The author verified playback, seeking, duration and the final artifact hash. Browser interaction with the actual recorded presentation was checked separately from the earlier headless skill rehearsal. This remains evaluation replay, not a claim of a new live browser agent or a human playtest.
-
-Final fresh-clone and compressed-artifact follow-up checks are recorded in [verification.md](docs/verification.md). Publication/course CI, the student's own reflection and peer feedback remain outside these automated findings.
-
-The independent final follow-up reported **No findings**. All 82 tested-file hashes matched the candidate commit, main workspace and clean clone. All five saved command-log hashes matched successful outputs. The reviewer independently reran the clone's 34 tests and complete 24-trace audit, with an empty tracked diff. The final compressed video matched its SHA-256 and 2,009,066-byte size, decoded at 1280×900 for 211.6 seconds, sought to 110 seconds, and retained readable actions, observation excerpts and replay labels. No browser errors, external requests or broken final-documentation links were found. Personal reflection and peer fields remained accurately incomplete. No edits, live calls, approvals, commits or pushes were performed by this reviewer.
-
-## Human realtime controls review, October 29
-
-Independent read-only reviewer: `human_realtime_review`. Read parent/project and reviewer instructions, the rule map, `src/human-episode.js`, `src/browser.js`, `src/episode.js`, `src/replay.js`, pinned hook source, `index.html`, the human tests and README.
-
-Initial findings, reproduced in a browser:
-
-- ArrowRight advanced 0.5 seconds while Debug stepping was unchecked, because the key handler programmatically clicked a hidden button. Fixed by gating the handler on debug mode or a loaded recording. Follow-up confirmed no advancement with debug off and exactly 0.5 seconds with debug on.
-- Human trace inspection claimed request latency of zero milliseconds although there was no request. Fixed with Recorded human input and an explicit no-model-request explanation. Follow-up confirmed the corrected labels.
-
-Final follow-up: **No findings**. All 38 tests and 24 historical trace audits passed, and the timing checker retained the original game hash and 0.5-second agent interval. Frozen engine, runner, provider, cases, declarations, version hashing and imported files were unchanged. Browser start, pause, launch, debug stepping, download and partial human replay worked without page errors. Human replay preserved its recorded timing. No edits, provider calls, approvals, commits or pushes were performed by the reviewer.
-
-The human adapter intentionally duplicates the small episode setup/observation/end/render wrapper to preserve the frozen evaluation source identity. It reuses the original Hook physics. Parity tests across all development episodes guard against the two wrappers drifting. Historic model scores remain results of the unchanged agent interface, not measurements of human control.
-
-## Recorded-episode selector review, October 29
-
-Independent read-only reviewer: `replay_selector_review`. Read parent/project instructions, `index.html`, `style.css`, `src/browser.js`, `recordings/episodes.json`, actual trace metadata/outcomes and presentation behavior. Final result: **No findings**. All 13 catalog labels matched recorded outcomes, all 12 final episodes had the correct history grouping, and all 38 tests passed. Browser checks covered deep links, pause/manual stepping, stale fetch responses during rapid selection, reset during a pending fetch, smooth human play after reset and absence of page errors. No edits, provider calls, approvals, commits or pushes were performed. The author's separate browser check replayed all 13 entries to their actual terminal scores/reasons and checked phone width.
-
-## Frontend layout review, October 29
-
-Independent read-only reviewer: `frontend_layout_review`. Read `index.html`, `style.css`, `src/browser.js`, actual runner history construction, checkpoint metadata and recording-presentation CSS. Final result: **No findings**. Verified desktop 46px selector/button alignment, equal wrapped button heights at320px, and no horizontal overflow across1440,1024,901,900,768,600,390 and320px. Desktop/phone screenshots showed clear grouping and spacing. History explanations matched payload behavior and checkpoint historySize0. Changing to H4 updated the selected-setting description, manual stepping worked, and the presentation retained its controls-hiding behavior. All38 tests passed with no browser or whitespace errors. No edits, provider calls, approvals, commits or pushes were performed.
-
-## Received peer feedback filing review, October 31
-
-Independent read-only reviewer: `peer_feedback_filing_review`. Final result: **No findings**. Verified the renamed source report's unchanged SHA-256, its move out of workspace root and the blank root form remaining untracked. All 83 local file links in the five updated evidence documents resolved. Summaries faithfully attributed peer observations and did not turn agent precision into proof of cheating or a finding about Gemini specifically. Unchecked confirmation, unknown duration/build/agent view, absent trace attachments and unverified technical checks remained explicit. Notes given and the student-authored decisions/reflection remained blank. The documents distinguished 5A experiment evidence from 5B feedback/reflection and did not claim formal completion. Only Markdown changed and whitespace checks passed. No edits, tests, provider calls, approvals, commits or pushes were performed by the reviewer.
-
-## Reflection draft factual review, October 31
-
-Independent read-only reviewer: `reflection_draft_review`. Final result: **No findings**. Read the reflection and related README/peer-index/PR-description changes, user-supplied notes, project instructions, baseline/runner code, actual evaluation, session/review evidence and received peer report. Confirmed the metrics and timing, current-state heuristic recalculation, separate agent roles and two skill sessions, faithful peer attribution, resolved local links, unchanged received-feedback source and clean whitespace. No personal experiences or completed feature changes were invented. Codex drafting assistance and pending student review remained explicit. This is factual review, not student approval or completed personal authorship. No edits, tests, provider calls, commits or pushes were performed.
-
-## Complete submission sanity review, October 31
-
-Independent read-only reviewer: `submission_sanity_review`. Final follow-up: **No findings**. Reviewed the 15-check rubric mapping, current documentation/metadata cleanup, source evidence and final verification record. It independently verified all 122 candidate hashes against `36d43b0` and the new clone, checked all five command-log hashes/successful outputs, and reran the clone's 38 tests and 24-trace exact audit. All 127 active-document relative file/anchor links resolved. Runtime inputs, peer-report SHA and media remained unchanged. All 13 browser-reported replay outcomes matched source traces. Browser automation itself was performed by the author and reviewed against its artifacts.
-
-The reviewer confirmed 13 checks with evidence and two partial checks, 3C and 5B. No student approval, outgoing peer notes, technical peer certification or formal completion was invented. Active blank authoring templates were removed from the peer index while original feedback, historical logs and skill examples remained intact. Only generated baseline outputs were untracked in the clean clone; its tracked diff stayed empty. No edits, provider calls, commits, pushes, merges or approvals were performed by this reviewer.
+A separate read-only reviewer compared the focused skill-use excerpts, identifiers and test totals with the original records and verified the selected patch blocks. Required agent-team evidence remains inspectable. The reviewer confirmed unchanged peer feedback, production code, evaluation traces and recordings, then reran source verification and the 24-trace audit. One stale session-document reference was found and corrected. The parent also reproduced the retained patch in an isolated base checkout with 40 passing tests, source/timing checks and both development baseline settings.

@@ -109,20 +109,24 @@ For `gemini-3.5-flash-lite` standard global on-demand requests, published prices
 
 ## Limitations and outstanding evidence
 
-The October 26 checkpoint has a playable five-operation game, completed baseline runs, a completed live model episode and trace, an initial comparison, and passing deterministic CI. The live model failed its quota and that failure is retained. The completed held-out/history comparison remains a small sample with the limitations above. Received human feedback and a reflection draft are now filed. Student review, outgoing feedback and course submission have not been recorded. Unknown peer metadata and technical coverage are documented limits, not failed game tests. Recording and verification status are linked from the README. Two actual standalone skill-use sessions are indexed in `docs/sessions/README.md`.
+The October 26 checkpoint has a playable five-operation game, completed baseline runs, a completed live model episode and trace, an initial comparison, and passing deterministic CI. The live model failed its quota and that failure is retained. The completed held-out/history comparison remains a small sample with the limitations above. Received human feedback and a reflection draft are now filed. Student review, outgoing feedback and course submission have not been recorded. Unknown peer metadata and technical coverage are documented limits, not failed game tests. Recording and verification status are linked from the README. Two actual skill-use sessions are documented in `docs/skill-use.md`.
 
 Human browser play now uses a separate smooth 60 Hz adapter. Model/heuristic evaluation and recorded model playback retain the declared fixed-step interface. Historic observations about stepped rendering should not be attributed to an unidentified agent view in the peer report.
 
-## October 28 timing-skill verification
+## Verification
 
-Extended the reusable rule-change skill with a concrete simulation-interval procedure, an offline timing checker, and four new helper behavior tests. All 29 tests pass locally. The checker is also included in the dedicated CI workflow. It verifies executable timing, launch boundaries, mocked provider schema, and complete development baseline episodes. Prompt wording, browser behavior and evaluation-version selection remain explicit manual review tasks.
+A clean independent clone of runtime commit `36d43b0` passed all 38 tests, verification of 13 imported file hashes, timing checks, all 24 final-trace replays and all three development baseline episodes. Browser checks covered smooth human play, pause/reset/debug controls, all 13 menu recordings to their saved outcomes, phone layout, presentation loading and the 211.6-second video. No new provider calls were used for these checks. Independent follow-up is summarized in [review.md](review.md).
 
-The [saved offline check](reports/2026-10-28-timing-skill-check.json) records the unchanged game hash and exact replay of all 60 intervals in the original live trace. The three baseline quotas are still reached with scores 1011, 1570 and 1150. There are no new live trials or provider requests. The active decision interval remains 0.5 seconds. A requested one-second contract is correctly rejected by the checker until implemented.
+From `midterms/rogerwangdev/`, reproduce the deterministic checks with:
 
-The [agent-team evidence index](docs/agent-team-evidence.md) separates the earlier subagent validation from the later actual standalone session. [Two exported authoring sessions](docs/sessions/README.md) document named skill use and were published through `7b3bfa2`. The current reflection draft is based on student-supplied notes, with student review still unrecorded. Course PR publication/links remain external work. Independent review evidence is in [review.md](review.md).
+```bash
+npm test
+npm run verify-source
+npm run check:timing
+npm run audit:evaluation
+npm run baseline
+```
 
-## Final local verification
+The [dedicated workflow](../../.github/workflows/midterm-rogerwangdev.yml) runs these checks without provider credentials. [Fork CI passed at `7b3bfa2`](https://github.com/rogerwangdev/game-dev-f26/actions/runs/40924048142). Later revisions have local verification but no newer remote CI result. Before submission, the course's trusted path policy must permit the assignment-required workflow under `.github/workflows/`. No successful course-PR boundary result is claimed.
 
-The completed candidate was independently cloned and checked with 34 passing tests, all 13 source hashes, the timing contract, exact replay of all 24 final traces, and complete development baseline episodes. Browser controls, reset, a real held-out replay, phone layout and the 211.6-second compressed recording were verified. See [the version-specific verification record](docs/verification.md), [machine-readable results](reports/verification-clean-clone.json) and [independent follow-up](review.md). No additional paid trial was needed for these checks.
-
-The evaluation/recording evidence was pushed through `7b3bfa2`, with passing fork CI. Later browser and documentation commits remain local unless separately authorized for GitHub publication. No course PR is claimed. Reflection review and notes given remain incomplete. The received report's confirmation is not recorded, and its missing metadata/trace attachments limit what can be independently checked. The trusted-base workflow policy conflict is documented rather than bypassed.
+[Skill-use evidence](docs/skill-use.md) separately documents the isolated one-second rehearsal. The production gameplay hash, prompt, declared cases and retained experiment are unchanged.

@@ -52,6 +52,6 @@ Re-run affected baseline/model comparisons on matching new versions before makin
 
 ## Evidence and review handoff
 
-Record the named invocation, session reference, user request, scope, rule-map row, actual failing test, files changed, passing checks, budget/version decision, and remaining limitations in `docs/work-log.md`. Hand the diff and evidence to a reviewer who did not implement it. Commit their findings and resolutions in `review.md`.
+Record the named invocation, session reference, user request, scope, rule-map row, actual failing test, files changed, passing checks, budget/version decision, and remaining limitations in `docs/skill-use.md`. Hand the diff and evidence to a reviewer who did not implement it. Commit their findings and resolutions in `review.md`.
 
 An isolated rehearsal is skill validation, not a new production experiment. A review subagent or another turn in this chat is not the second standalone authoring session. Keep missing session links, the second invocation, human feedback and student-authored `AGENT-TEAM.md` explicitly pending until real evidence exists.
