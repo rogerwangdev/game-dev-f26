@@ -42,8 +42,6 @@ function presentRound(observation, end) {
   if ($('round-phase').textContent !== phase) $('round-phase').textContent = phase
   $('round-phase').dataset.state = end.terminal ? 'finished' : running ? 'playing' : 'ready'
   $('round-context').textContent = `${subject} · ${recording ? 'no API calls' : $('debug').checked ? 'debug stepping enabled' : !started ? 'clock starts when you do' : 'smooth play'}`
-  $('guide-quota').textContent = `$${observation.quota}`
-  $('guide-time').textContent = `${scene.seconds} seconds`
   $('show-result').hidden = !end.terminal || !resultDismissed
   const state = end.terminal && !resultDismissed ? 'finished' : !started && !$('debug').checked ? 'ready' : !running && !recording && !$('debug').checked && !end.terminal ? 'paused' : null
   $('round-overlay').hidden = !state

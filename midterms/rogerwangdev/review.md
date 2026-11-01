@@ -31,3 +31,5 @@ A separate read-only reviewer compared the focused skill-use excerpts, identifie
 ## Interface review — November 1
 
 A separate read-only reviewer checked the start/help/result interface, keyboard controls, debug stepping and responsive layout. Findings about repeated screen-reader announcements and uploaded human replay labels were fixed. Follow-up reported no remaining findings and independently completed a heuristic win at $1,011/$750. Parent browser checks covered all 13 saved Gemini outcomes, a synthetic browser-adapter replay, and phone/desktop layouts. All 38 existing tests, source verification, timing checks and the 24-trace audit passed. Frozen rules and evaluation evidence are unchanged.
+
+A subsequent independent review checked the combined instructions/control panel, key badges, general goal wording and expandable debug/file tools at eight widths from 320 to 1440 pixels. Inconsistent tip typography was corrected, with no remaining findings. Parent checks passed all 38 tests and saved Gemini replays.

@@ -16,7 +16,7 @@ h1 { font-size: 44px; letter-spacing: -2px; line-height: 1.1; margin: 8px 0 28px
 h1 span { display: block; color: #a69e8a; font-size: 15px; font-weight: 400; letter-spacing: 0; margin-top: 12px; }
 a { color: #d6b86b; font-size: 13px; }
 .eyebrow, .section-eyebrow { font-size: 11px; letter-spacing: 2px; color: #d5ae5b; margin: 0; }
-.toolbar { display: grid; grid-template-columns: minmax(130px, 1fr) minmax(150px, 1fr) auto auto auto; align-items: end; gap: 12px; padding: 16px 0 22px; }
+.toolbar { display: grid; grid-template-columns: repeat(2, minmax(130px, 230px)); align-items: end; gap: 12px; padding: 16px 0 22px; }
 label { display: block; min-width: 0; font-size: 12px; color: #c8bfab; }
 select { display: block; width: 100%; min-width: 0; margin-top: 8px; }
 button, select, .upload { min-height: 46px; background: #29271f; color: #efe8d8; border: 1px solid var(--border); padding: 12px 16px; border-radius: 7px; font: inherit; font-size: 13px; line-height: 20px; }
@@ -38,7 +38,6 @@ canvas { width: 100%; height: auto; touch-action: manipulation; }
 .panel-heading h2 { font-size: 17px; font-weight: 600; margin: 0; }
 .section-eyebrow { margin-bottom: 6px; font-size: 10px; }
 .panel-note, .recording-context, .replay-progress { font-size: 12px; line-height: 1.65; color: var(--muted); margin: 0; }
-.play-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 .button-group { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .upload { position: relative; display: inline-flex; align-items: center; justify-content: center; }
 .upload input { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
@@ -80,7 +79,6 @@ footer { border-top: 1px solid #383326; padding-top: 18px; margin-top: 24px; fon
   .toolbar { gap: 10px; }
   .control-panel, .inspector { padding: 16px; }
   .panel-heading { align-items: flex-start; flex-direction: column; gap: 10px; margin-bottom: 16px; }
-  .play-row { align-items: stretch; flex-direction: column; gap: 12px; }
   .button-group { display: grid; grid-template-columns: minmax(0, 1fr); }
   .file-controls { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .button-group button, .upload { width: 100%; }
@@ -117,16 +115,9 @@ footer { border-top: 1px solid #383326; padding-top: 18px; margin-top: 24px; fon
 .how-to-play h2 { margin: 8px 0 14px; font-size: 24px; letter-spacing: -.5px; }
 .goal-copy { font-size: 15px; line-height: 1.7; color: #c8bfab; margin: 0; }
 .goal-copy strong { color: #f3dfaa; }
-.play-steps { margin: 24px 0; padding-left: 21px; }
-.play-steps li { padding-left: 4px; margin: 0 0 20px; font-size: 13px; }
-.play-steps li::marker { color: var(--gold); font-weight: 700; }
-.play-steps strong { display: block; margin-bottom: 6px; color: #eee9db; }
-.play-steps span, .treasure-tip p, .round-tip p, .guide-note { color: var(--muted); font-size: 12px; line-height: 1.7; }
-.play-steps kbd { font-size: 11px; margin-left: 0; color: #f3dfaa; opacity: 1; }
 .treasure-tip, .round-tip { border-top: 1px solid #383326; padding-top: 16px; margin-top: 18px; }
 .treasure-tip strong, .round-tip strong { font-size: 13px; color: #e5c587; }
-.treasure-tip p, .round-tip p { margin: 8px 0 0; }
-.guide-note { margin: 20px 0 0; }
+.treasure-tip p, .round-tip p { margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
 @media (max-width: 1100px) {
   .game-layout { grid-template-columns: minmax(0, 1fr) 250px; gap: 18px; }
   .how-to-play { padding: 20px; }
@@ -136,7 +127,6 @@ footer { border-top: 1px solid #383326; padding-top: 18px; margin-top: 24px; fon
 @media (max-width: 900px) {
   .game-layout { grid-template-columns: minmax(0, 1fr); }
   .how-to-play { margin-top: 0; }
-  .play-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-bottom: 0; }
 }
 @media (max-width: 600px) {
   .stage { display: grid; align-items: start; }
@@ -152,6 +142,20 @@ footer { border-top: 1px solid #383326; padding-top: 18px; margin-top: 24px; fon
   .stats strong { font-size: 18px; }
   #round-context { max-width: 135px; font-size: 10px; }
   .how-to-play { padding: 20px; }
-  .play-steps { display: block; }
-  .play-steps kbd { display: inline; }
 }
+
+.controls-heading { margin: 24px 0 0; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.control-guide { margin: 0; }
+.control-guide > div { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 10px 8px; padding: 18px 0; border-bottom: 1px solid #383326; }
+.control-guide dt { font-size: 13px; font-weight: 600; }
+.control-guide dd { margin: 0; min-width: 0; }
+.control-keys { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+.control-guide kbd { display: inline-flex; align-items: center; justify-content: center; min-width: 23px; min-height: 25px; padding: 2px 5px; margin: 0; border: 1px solid #5b5140; border-radius: 4px; color: #f3dfaa; background: #28251c; font: 10px ui-monospace, monospace; opacity: 1; }
+.control-guide .control-description { grid-column: 1 / -1; color: var(--muted); font-size: 12px; line-height: 1.7; }
+.control-guide .control-action { grid-column: 1 / -1; }
+.control-guide button { min-height: 42px; padding: 9px 12px; font-size: 12px; }
+.control-guide .primary { width: 100%; min-height: 46px; font-size: 14px; }
+.how-to-play .treasure-tip { border-top: 0; margin-top: 0; }
+.trace-tools summary { font-weight: 600; font-size: 14px; cursor: pointer; }
+.trace-tools .panel-note { margin: 14px 0; }
+.debug-controls { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 14px; }
