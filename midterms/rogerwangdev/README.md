@@ -64,7 +64,11 @@ The agent loop runs locally in `src/runner.js`. It sends visible numeric state a
 
 ## Scope and controls
 
-One complete level format includes static gold, diamonds, rocks, quotas, and a simulated timer. Value is awarded after retrieval. A run ends when the field is cleared or time expires. Success means reaching the quota. Shops, upgrades, combos, dynamite, hidden-value bags, moving animals, and the original campaign are excluded to isolate timing and value/time decisions.
+**Scope statement — updated November 1, 2026.** Gold Miner replaces my Week 3 Metal Slug proposal. Its timing and geometry provide a manageable scope for a complete game and reproducible agent evaluation.
+
+The scope includes one level format with three selectable situations, static gold, diamonds, rocks, quotas and a timer. Value is awarded after retrieval. Episodes end when the field is cleared or time expires, with success determined by the quota. Shops, upgrades, combos, dynamite, hidden-value bags, moving animals and campaign progression are excluded.
+
+The model receives structured public observations rather than the audiovisual input proposed for Metal Slug. Gemini and the heuristic use the same fixed-step interface and evaluation cases. I would cut additional layouts and visual polish first, preserving the complete gameplay loop and model/baseline comparison.
 
 The evaluation engine uses 60 Hz physics and 30 frames per decision. An action is `{"type":"wait"}` or `{"type":"launch","frame":N}` for integer `N` from 0 to 29. A launch waits exactly N physics frames in the current interval before firing. Model thinking time does not advance the game. The runner advances forced waits without model calls while the claw cannot accept another launch. Both players use identical controls.
 
