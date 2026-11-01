@@ -2,7 +2,7 @@
 
 Draft dated October 21, 2026. This is a planning document, not an implementation or a report of completed experiments.
 
-Implementation began October 26. See [README.md](README.md) and [EVALUATION.md](EVALUATION.md) for current checkpoint evidence and remaining work. The original plan below is retained as the scope record.
+Implementation began October 26. See [README.md](README.md) and [EVALUATION.md](EVALUATION.md) for current checkpoint evidence and remaining work. The original plan below is retained as the scope record. Future-tense and open-decision wording below belongs to the October21 plan. The active scope, Vertex provider, spending protocol and 0.5-second interval were selected and implemented later, as recorded in the linked reports.
 
 ## Objective and starting point
 

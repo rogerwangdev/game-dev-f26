@@ -4,17 +4,7 @@
 
 ## Notes given to a partner — due November 6
 
-Date:
-
-Build/version played:
-
-Observed player actions:
-
-What was unclear:
-
-One question that removes a guess:
-
-Feedback delivered:
+No outgoing report has been supplied. This part of the partner exchange is not complete in the recorded evidence. The student must retain the feedback they actually give a classmate by November 6. The received report below does not substitute for outgoing feedback.
 
 ## Notes received from a partner
 
@@ -47,16 +37,8 @@ The received report is useful qualitative evidence, with two rounds on one situa
 
 **Student response, in your own words:**
 
-See the [draft reflection](AGENT-TEAM.md), prepared from the student's stated reasons and interpretation with disclosed Codex editing. Its priorities and wording still need student review. The fields below remain available for final decisions and completed work.
-
-What I changed or retained because of this feedback, and why:
-
-Remaining limitations or follow-up questions:
+The [reflection draft](AGENT-TEAM.md) records the student's reasons and interpretation with disclosed Codex editing. It proposes prioritizing deadline clarity and playback investigation, with beginner assistance and stage progression as future directions. Student review of those priorities and wording has not been recorded. No gameplay changes are claimed as completed responses to the received report. The remaining factual unknowns are listed in the response table above.
 
 ## Separate silent-playtester recording replies — before class November 16
 
-Recording 1 / one guess / one question:
-
-Recording 2 / one guess / one question:
-
-Recording 3 / one guess / one question:
+This is a separate later activity. Three classmates' recordings are assigned at the November 9 session. No Week 3 replies are recorded here yet. Before class November 16, the student must post one thing requiring a guess and one clarifying question for each assigned recording. This is not a missing November 7 report field.

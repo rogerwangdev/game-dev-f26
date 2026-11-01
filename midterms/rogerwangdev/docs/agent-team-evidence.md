@@ -1,13 +1,13 @@
 # Agent-team evidence and second-session handoff
 
-Status as of October 28, 2026. This is an artifact index and task handoff, not the student's personal `AGENT-TEAM.md` or a claim that final submission requirements are complete.
+Status updated October 31, 2026. This is an artifact index with the historical handoff retained below. The student supplied personal notes for a [reflection draft](../AGENT-TEAM.md), and [received feedback](../PEER-NOTES.md) is filed. Student review, outgoing feedback and course submission remain open.
 
 | Requirement from midterm page 4 | Existing evidence | Remaining work |
 | --- | --- | --- |
-| Implementation instructions and linked authoring session | `AGENTS.md`, `agent-config.json`, implementation commits, `docs/work-log.md`, actual `docs/sessions/session-01-implementation.md` excerpts | Link the exported session evidence from the course PR after an authorized push |
-| Committed reusable skill invoked by name in at least two sessions | `skills/gold-miner-rule-change/SKILL.md`, timing reference/helper, and two actual authoring-session exports indexed in `docs/sessions/README.md` | Both invocations are documented locally. Link both session files from the course PR after an authorized push |
+| Implementation instructions and linked authoring session | `AGENTS.md`, `agent-config.json`, implementation commits, `docs/work-log.md`, actual `docs/sessions/session-01-implementation.md` excerpts | Evidence published through `7b3bfa2`. Link it from the course PR when opened |
+| Committed reusable skill invoked by name in at least two sessions | `skills/gold-miner-rule-change/SKILL.md`, timing reference/helper, and two actual authoring-session exports indexed in `docs/sessions/README.md` | Both invocations published through `7b3bfa2`. Link both files from the course PR when opened |
 | Independent read-only review with findings | `review.md` records the separate reviewer, actual findings, resolutions and follow-up | Link review evidence from the PR and review later material changes |
-| One-page agent-team log in the student's own voice | Factual inputs are in `docs/work-log.md`, `review.md` and this index | Student writes `AGENT-TEAM.md`, including recommendations, their own decisions and evidence links |
+| One-page agent-team log in the student's own voice | [Draft based on student-provided notes](../AGENT-TEAM.md), with disclosed Codex editing | Student review and final wording/response decisions are not recorded |
 
 ## What the timing skill supplies
 
@@ -38,4 +38,4 @@ Keep the resulting report or patch inspectable. Do not count a date change, a ne
 
 ## Inputs for the student's own log
 
-In your own words, explain which agents you directed, what each could access, their recommendations, your decisions and reasons, and the linked evidence. Distinguish Codex building/reviewing the game from Gemini choosing gameplay actions. Discuss the failed live run honestly and incorporate the required peer feedback when available. Do not submit this index as personal reflection.
+The [reflection draft](../AGENT-TEAM.md) covers the student's game choice, recorded agent roles, timing decisions, evaluation interpretation, peer observations and future scope. It uses the student's supplied ideas with Codex editing disclosed. Student review is still needed. This index remains supporting evidence rather than personal reflection.

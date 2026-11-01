@@ -31,7 +31,7 @@ A separate local server served the fresh clone on loopback port 8766. Browser to
 
 The gameplay version remains `67ca7cefe52c686116bbe8759b99dd9a96f4349ce6af2fe7708b1b6501462ee0`, identical to the final live trials. The fresh-clone candidate contains all final code, tests, recorded data and video. Later commits that only record verification/review do not change those tested inputs. The live adapter was exercised by mocked tests and is the unchanged adapter used for the retained real trials. A new authenticated paid episode was not redundantly run in the clean clone.
 
-The latest published fork CI is the earlier passing run on `67c25ee`. These fresh-clone checks cover the current dedicated workflow commands locally. New remote/course CI awaits an authorized push and the trusted-base policy issue in [course-integration.md](course-integration.md). Human playtesting, personal authorship and public accessibility are not inferred from these automated results.
+At the October28 verification, the latest fork CI was `67c25ee`. This historical record covers that candidate. A later authorized push published `7b3bfa2`; subsequent local revisions need their own remote CI. Course integration is tracked in [course-integration.md](course-integration.md). Human playtesting, personal authorship and public accessibility are not inferred from these automated results.
 
 ## Independent follow-up
 
@@ -41,4 +41,4 @@ The separate read-only `final_gap_review` context reported **No findings**. It i
 
 The October 28 clean-clone evidence above is historical. The later human browser fix adds a separate frame adapter, 60 Hz animation and explicit debug controls. All 38 current tests, source verification, timing checks and the complete 24-trace audit passed locally. The frozen evaluation code/hash and retained experiment remain unchanged. New browser evidence is in [the human check report](../reports/2026-10-29-human-browser-check.json). Independent review and resolved findings are recorded in [review.md](../review.md#human-realtime-controls-review-october-29).
 
-Commit `7b3bfa2` was subsequently pushed with permission and [fork CI passed](https://github.com/rogerwangdev/game-dev-f26/actions/runs/40924048142). The human-control edit is a later local commit with no claimed new GitHub CI result. The public Sites copy is published separately from the course repository. Peer feedback and personal reflection are still pending.
+Commit `7b3bfa2` was subsequently pushed with permission and [fork CI passed](https://github.com/rogerwangdev/game-dev-f26/actions/runs/40924048142). The human-control edit is a later local commit with no claimed new GitHub CI result. The public Sites copy is published separately from the course repository. Received peer feedback and a student-notes-based reflection draft were subsequently filed. Student review and outgoing feedback remain unrecorded.

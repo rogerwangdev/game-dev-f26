@@ -1,6 +1,6 @@
 # Actual Codex session evidence
 
-Two distinct authoring sessions used `gold-miner-rule-change` by name. These are local evidence files ready to link from the course PR after publication is authorized. No Codex-hosted public URL is claimed.
+Two distinct authoring sessions used `gold-miner-rule-change` by name. These evidence files were published in the fork through `7b3bfa2` and are ready to link from the course PR when it is opened. No Codex-hosted public URL is claimed. The transcript bodies and original rehearsal report retain their historical wording.
 
 | Session | Actual ID and origin | Inspectable evidence |
 | --- | --- | --- |
@@ -13,4 +13,4 @@ The production game remains at 0.5 seconds per decision. The one-second patch is
 
 Exports identify their actual source recordings, hashes and selection rules. Session 01 is explicitly an excerpt. Session 02 preserves the actual prompt and all completed public CLI messages/commands/results. Internal reasoning, system/developer instructions, unrelated sessions and binary attachments are excluded. Credential-pattern redaction is disclosed. The source JSONL recordings remain local rather than being copied wholesale into this public course submission.
 
-Independent findings and their resolution belong in [review.md](../../review.md). Final evaluation and the local recording are now complete and linked from the project README. The student's own `AGENT-TEAM.md`, peer notes and course PR remain separate submission work. This index and the session reports are factual evidence, not the student's personal reflection.
+Independent findings and their resolution belong in [review.md](../../review.md). Final evaluation and recording are complete and linked from the project README. A student-notes-based reflection draft and received peer report now exist. Student review, outgoing peer feedback and the course PR remain separate work. This index and the historical session reports are factual evidence rather than personal reflection.

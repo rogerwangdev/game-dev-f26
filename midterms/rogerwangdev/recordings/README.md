@@ -10,7 +10,7 @@ The original [final protocol](../FINAL-EVALUATION.json) selected the first obser
 
 The claw actions were selected autonomously by Vertex `gemini-3.5-flash-lite` during evaluation. The browser recording replays those actions. No human chooses gameplay moves, no new model calls occur during capture, and this is not presented as a live browser-connected agent. Internal model reasoning and intended target IDs were not recorded or invented.
 
-Capture completed without browser errors or external requests. The sidecar records the raw capture hash and the final compressed artifact hash. Independent review exercised the complete presentation and checked its first-trial selection, labels and data against the final traces. Peer playtest observations remain pending.
+Capture completed without browser errors or external requests. The sidecar records the raw capture hash and the final compressed artifact hash. Independent review exercised the complete presentation and checked its first-trial selection, labels and data against the final traces. [October 30 peer feedback](../docs/playtests/2026-10-30-received.md) is now filed. Its agent view was not identified, so it cannot be attributed specifically to this video.
 
 ## Recreate the presentation or capture
 
@@ -31,4 +31,4 @@ PLAYWRIGHT_MODULE=/tmp/gold-miner-capture-tools/node_modules/playwright/index.mj
 
 `CHROMIUM_EXECUTABLE` can select an already-installed compatible Chromium executable. The script captures the full demonstration, saves the preview and writes capture checks. It creates a larger raw video. The committed video was compressed with FFmpeg using `libvpx-vp9`, bitrate `55k`, CRF `42`, output rate `10`, `cpu-used 8` and no audio. Preserve the raw file before re-encoding to the output filename, and update the final artifact's hash/duration in the sidecar. This presentation changes playback speed only, never simulation frequency or recorded choices.
 
-The local video and links are ready for the course PR. Public access still requires an authorized push or upload. No public video URL or completed publication is claimed.
+The recording was published in the fork through `7b3bfa2` and is also available on the public [video page](https://gold-miner-peer-playtest.rogerwang0506.chatgpt.site/watch.html). The course PR still needs to link the recording. Later source/documentation commits remain local until another authorized GitHub push.
