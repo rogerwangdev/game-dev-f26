@@ -1,8 +1,11 @@
 # Catacomb II — peer playtest review
 
-**Date:** November 1, 2026  
-**Play observed:** My first playthrough lasted 1 minute 35 seconds and reached 3/3 flags. I then replayed twice to try the movement and shooting controls. The second playthrough took about 2 minutes while I explored shooting directions. The third duration and total session time were not recorded.  
-**Browser:** Chrome. Device and play mode were not recorded.  
+**Date:** November 1, 2026
+
+**Play observed:** My first playthrough lasted 1 minute 35 seconds and reached 3/3 flags. I then replayed twice to try the movement and shooting controls. The second playthrough took about 2 minutes while I explored shooting directions. The third duration and total session time were not recorded.
+
+**Browser:** Chrome. Device and play mode were not recorded.
+
 **Agent viewing:** I watched an agent recording, but did not record which version.
 
 ## What worked well
