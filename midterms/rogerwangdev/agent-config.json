@@ -71,7 +71,7 @@
     "recording": "recordings/gold-miner-demo.webm",
     "recording_provenance": "recordings/capture-check.json",
     "student_reflection": "AGENT-TEAM.md — draft based on student-provided notes, with Codex editing disclosed. Student review is not recorded.",
-    "peer_notes": "PEER-NOTES.md — received October 30 report and prepared November 1 partner review filed. Outgoing delivery is unconfirmed. Source-report limitations retained.",
+    "peer_notes": "PEER-NOTES.md — received October 30 report filed and outgoing November 1 review sent. Source-report limitations retained.",
     "verification": "EVALUATION.md#verification",
     "received_peer_report": "docs/playtests/2026-10-30-received.md",
     "outgoing_peer_report": "docs/playtests/2026-11-01-given-catacomb-ii.md"

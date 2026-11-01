@@ -14,14 +14,14 @@ A bounded adaptation of [Lor3walker/gold-miner](https://github.com/Lor3walker/go
 
 [Play Gold Miner](https://gold-miner-peer-playtest.rogerwang0506.chatgpt.site/) or share the [15-minute playtest guide](https://gold-miner-peer-playtest.rogerwang0506.chatgpt.site/playtest.html). Anyone with the link can play without installing software or providing credentials. The guide links the captioned agent recording and feedback prompts. Send actual feedback through the agreed course/private channel. The site does not collect feedback or start paid provider calls.
 
-Peer evidence: [October 30 feedback received](docs/playtests/2026-10-30-received.md) and [November 1 Catacomb II review prepared to send](docs/playtests/2026-11-01-given-catacomb-ii.md). Delivery of the outgoing review has not been confirmed. The [peer-notes index and response record](PEER-NOTES.md) summarize the observations and remaining gaps. The source report is preserved unchanged, including its unchecked confirmation box and Not verified technical items.
+Peer evidence: [October 30 feedback received](docs/playtests/2026-10-30-received.md) and [November 1 Catacomb II review given](docs/playtests/2026-11-01-given-catacomb-ii.md). The [peer-notes index and response record](PEER-NOTES.md) summarize the observations and remaining gaps. The source report is preserved unchanged, including its unchecked confirmation box and Not verified technical items.
 
 ## Rubric 5A and 5B
 
 | Check | Evidence and status |
 | --- | --- |
 | **5A — fair evaluation** | Completed model/baseline comparison in [EVALUATION.md](EVALUATION.md), with the [pre-run protocol](FINAL-EVALUATION.json), held-out cases, complete traces, metrics and failures. Human feedback does not replace these experiments. |
-| **5B — reflection and peer feedback** | Partial. [Received feedback](docs/playtests/2026-10-30-received.md) is tracked and indexed in [PEER-NOTES.md](PEER-NOTES.md). A [reflection draft based on the student's notes](AGENT-TEAM.md) exists, with Codex editing disclosed. A [partner review](docs/playtests/2026-11-01-given-catacomb-ii.md) is prepared. Student review, final response decisions and delivery of the partner review remain pending. Tester confirmation, total session duration and the exact agent view were not recorded. |
+| **5B — reflection and peer feedback** | Partial. [Received feedback](docs/playtests/2026-10-30-received.md) is tracked and indexed in [PEER-NOTES.md](PEER-NOTES.md). A [reflection draft based on the student's notes](AGENT-TEAM.md) exists, with Codex editing disclosed. A [partner review](docs/playtests/2026-11-01-given-catacomb-ii.md) was sent on November 1. Student review and final response decisions remain pending. Tester confirmation, total session duration and the exact agent view were not recorded. |
 
 ## Submission layout
 
@@ -127,6 +127,6 @@ Do not use held-out results to tune the prompt. [SUITE.json](SUITE.json) records
 
 [AGENTS.md](AGENTS.md) and [agent-config.json](agent-config.json) define development and gameplay roles. The reusable [gold-miner-rule-change skill](skills/gold-miner-rule-change/SKILL.md) connects source evidence, behavioral tests and independent review. [Two actual uses](docs/skill-use.md) document implementation and an isolated timing-change rehearsal. The [review record](review.md) summarizes findings and fixes.
 
-The [reflection draft](AGENT-TEAM.md) is based on student-supplied ideas with Codex editing disclosed. An [outgoing peer review](docs/playtests/2026-11-01-given-catacomb-ii.md) is prepared, with delivery unconfirmed. Student review remains pending. [Peer notes](PEER-NOTES.md) link the received report and its limitations.
+The [reflection draft](AGENT-TEAM.md) is based on student-supplied ideas with Codex editing disclosed. An [outgoing peer review](docs/playtests/2026-11-01-given-catacomb-ii.md) was sent on November 1. Student review remains pending. [Peer notes](PEER-NOTES.md) link the received report and its limitations.
 
 Original source: Lor3walker, pinned in SOURCE.json under the retained [MIT license](vendor/gold-miner/LICENSE). Procedural artwork is inherited from that code. This adaptation does not claim affiliation with the original Gold Miner publisher.
