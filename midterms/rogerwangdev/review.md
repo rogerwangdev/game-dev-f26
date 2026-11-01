@@ -27,3 +27,7 @@ Review scope included the engine, runner, provider adapter, baseline, browser/re
 ## Submission evidence review — October 31
 
 A separate read-only reviewer compared the focused skill-use excerpts, identifiers and test totals with the original records and verified the selected patch blocks. Required agent-team evidence remains inspectable. The reviewer confirmed unchanged peer feedback, production code, evaluation traces and recordings, then reran source verification and the 24-trace audit. One stale session-document reference was found and corrected. The parent also reproduced the retained patch in an isolated base checkout with 40 passing tests, source/timing checks and both development baseline settings.
+
+## Interface review — November 1
+
+A separate read-only reviewer checked the start/help/result interface, keyboard controls, debug stepping and responsive layout. Findings about repeated screen-reader announcements and uploaded human replay labels were fixed. Follow-up reported no remaining findings and independently completed a heuristic win at $1,011/$750. Parent browser checks covered all 13 saved Gemini outcomes, a synthetic browser-adapter replay, and phone/desktop layouts. All 38 existing tests, source verification, timing checks and the 24-trace audit passed. Frozen rules and evaluation evidence are unchanged.

@@ -10,7 +10,7 @@
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
 body { margin: 0; background: radial-gradient(ellipse at top, #302817 0, transparent 65%); }
-main { max-width: 1100px; margin: auto; padding: 32px 28px; }
+main { max-width: 1440px; margin: auto; padding: 32px 28px; }
 header { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
 h1 { font-size: 44px; letter-spacing: -2px; line-height: 1.1; margin: 8px 0 28px; }
 h1 span { display: block; color: #a69e8a; font-size: 15px; font-weight: 400; letter-spacing: 0; margin-top: 12px; }
@@ -31,7 +31,7 @@ kbd { font-size: 10px; margin-left: 8px; opacity: .7; }
 .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: #49402a; border: 1px solid #49402a; border-radius: 9px 9px 0 0; overflow: hidden; }
 .stats div { background: #211f18; padding: 16px 20px; font-size: 10px; letter-spacing: 1.5px; color: #a99d82; }
 .stats strong { display: block; margin-top: 6px; font-size: 23px; letter-spacing: 0; color: #f3dfaa; }
-.stage { border: 1px solid #49402a; border-top: 0; overflow: hidden; border-radius: 0 0 9px 9px; line-height: 0; background: #2b2418; }
+.stage { position: relative; border: 1px solid #49402a; border-top: 0; overflow: hidden; border-radius: 0 0 9px 9px; line-height: 0; background: #2b2418; }
 canvas { width: 100%; height: auto; touch-action: manipulation; }
 .control-panel { display: block; margin-top: 20px; padding: 20px; border: 1px solid var(--border); border-radius: 10px; background: #1c1b16; min-width: 0; }
 .panel-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
@@ -91,4 +91,67 @@ footer { border-top: 1px solid #383326; padding-top: 18px; margin-top: 24px; fon
   .inspector summary span { display: block; margin: 8px 0 0; }
   .inspector pre { max-height: 240px; }
   kbd { display: none; }
+}
+
+
+.game-layout { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 24px; align-items: start; }
+.game-area { min-width: 0; }
+.round-heading { display: flex; align-items: center; gap: 12px; min-height: 38px; margin-bottom: 10px; font-size: 12px; }
+.round-phase { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; color: #e3cf9c; }
+.round-phase::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #aaa18d; }
+.round-phase[data-state="playing"]::before { background: #b6d786; }
+.round-phase[data-state="finished"]::before { background: var(--gold); }
+#round-context { margin-left: auto; color: var(--muted); font-size: 11px; text-align: right; }
+.round-overlay { position: absolute; inset: 0; display: grid; place-items: center; padding: 20px; line-height: 1.5; background: #100e09ad; }
+.round-card { width: min(100%, 440px); padding: 30px; border: 1px solid #776139; border-radius: 14px; background: #201d15f5; text-align: center; box-shadow: 0 16px 50px #0005; }
+.round-card h2 { margin: 10px 0 12px; color: #f3dfaa; font-size: clamp(22px, 2.6vw, 34px); line-height: 1.15; letter-spacing: -.8px; }
+.round-card > p { font-size: 13px; color: #c8bfab; margin: 12px 0; }
+.round-card .section-eyebrow { color: var(--gold); font-size: 10px; }
+.round-card .round-summary { color: #f3dfaa; font-size: 14px; margin: 20px 0; font-weight: 600; }
+.round-card .primary { width: 100%; font-size: 15px; min-height: 48px; }
+.round-card .overlay-hint { margin: 14px 0 0; font-size: 11px; }
+.text-button { min-height: 38px; padding: 8px 0; border: 0; background: transparent; color: #dfbd7b; text-decoration: underline; text-underline-offset: 3px; }
+.round-card .text-button { display: block; margin: 10px auto 0; }
+.how-to-play { background: #1c1b16; border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-top: 48px; }
+.how-to-play .section-eyebrow { font-size: 9px; line-height: 1.7; }
+.how-to-play h2 { margin: 8px 0 14px; font-size: 24px; letter-spacing: -.5px; }
+.goal-copy { font-size: 15px; line-height: 1.7; color: #c8bfab; margin: 0; }
+.goal-copy strong { color: #f3dfaa; }
+.play-steps { margin: 24px 0; padding-left: 21px; }
+.play-steps li { padding-left: 4px; margin: 0 0 20px; font-size: 13px; }
+.play-steps li::marker { color: var(--gold); font-weight: 700; }
+.play-steps strong { display: block; margin-bottom: 6px; color: #eee9db; }
+.play-steps span, .treasure-tip p, .round-tip p, .guide-note { color: var(--muted); font-size: 12px; line-height: 1.7; }
+.play-steps kbd { font-size: 11px; margin-left: 0; color: #f3dfaa; opacity: 1; }
+.treasure-tip, .round-tip { border-top: 1px solid #383326; padding-top: 16px; margin-top: 18px; }
+.treasure-tip strong, .round-tip strong { font-size: 13px; color: #e5c587; }
+.treasure-tip p, .round-tip p { margin: 8px 0 0; }
+.guide-note { margin: 20px 0 0; }
+@media (max-width: 1100px) {
+  .game-layout { grid-template-columns: minmax(0, 1fr) 250px; gap: 18px; }
+  .how-to-play { padding: 20px; }
+  .stats div { padding: 14px 12px; }
+  .round-card { padding: 24px; }
+}
+@media (max-width: 900px) {
+  .game-layout { grid-template-columns: minmax(0, 1fr); }
+  .how-to-play { margin-top: 0; }
+  .play-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-bottom: 0; }
+}
+@media (max-width: 600px) {
+  .stage { display: grid; align-items: start; }
+  .stage canvas { grid-area: 1 / 1; }
+  .round-overlay { position: relative; inset: auto; grid-area: 1 / 1; min-height: 355px; padding: 12px; }
+  .round-card { padding: 20px 18px; }
+  .round-card .round-summary { margin: 14px 0; font-size: 13px; }
+  .round-card > p { font-size: 12px; }
+  .round-card h2 { font-size: 25px; }
+  .round-heading { gap: 8px; }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stats div { padding: 12px; font-size: 9px; }
+  .stats strong { font-size: 18px; }
+  #round-context { max-width: 135px; font-size: 10px; }
+  .how-to-play { padding: 20px; }
+  .play-steps { display: block; }
+  .play-steps kbd { display: inline; }
 }

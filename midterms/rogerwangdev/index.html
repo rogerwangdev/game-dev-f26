@@ -12,11 +12,43 @@
     <section class="toolbar" aria-label="Game setup">
       <label>Situation <select id="scenario"></select></label>
       <label>Player <select id="mode"><option value="human">You</option><option value="baseline">Heuristic agent</option></select></label>
-      <button id="restart">New episode</button><button id="run">Start clock</button>
+      <button id="restart">New game</button><button id="run">Start game</button>
       <label class="debug-toggle"><input id="debug" type="checkbox"> Debug stepping</label>
     </section>
-    <section class="stats" aria-live="polite"><div>COLLECTED<strong id="score">$0</strong></div><div>QUOTA<strong id="quota">—</strong></div><div>SIMULATED TIME<strong id="time">—</strong></div><div>CLAW<strong id="claw">Ready</strong></div></section>
-    <div class="stage"><canvas id="game" width="960" height="640" aria-label="Gold Miner field with a swinging claw and underground gold, diamonds, and rocks"></canvas></div>
+    <div class="game-layout">
+      <section class="game-area" aria-label="Gold Miner game">
+        <div class="round-heading"><span id="round-phase" class="round-phase" role="status">Ready to play</span><button id="show-result" class="text-button" hidden>View result</button><span id="round-context">Your game · clock starts when you do</span></div>
+        <section class="stats" aria-label="Round statistics"><div>COLLECTED<strong id="score">$0</strong></div><div>GOAL<strong id="quota">—</strong></div><div>TIME LEFT<strong id="time">—</strong></div><div>CLAW<strong id="claw">Ready</strong></div></section>
+        <div class="stage">
+          <canvas id="game" width="960" height="640" aria-label="Gold Miner field with a swinging claw and underground gold, diamonds, and rocks"></canvas>
+          <section id="round-overlay" class="round-overlay" aria-labelledby="overlay-title">
+            <div class="round-card">
+              <p id="overlay-kicker" class="section-eyebrow">YOUR NEXT HAUL</p>
+              <h2 id="overlay-title">Ready to strike gold?</h2>
+              <p id="overlay-description">Time your launch, reel in treasure and reach the goal before the clock runs out.</p>
+              <p id="overlay-summary" class="round-summary"></p>
+              <button id="overlay-action" class="primary">Start game</button>
+              <button id="overlay-dismiss" class="text-button" hidden>View final field</button>
+              <p id="overlay-hint" class="overlay-hint">The clock is stopped. Take a look, then start when you’re ready.</p>
+            </div>
+          </section>
+        </div>
+        <p id="status" role="status">Choose a target. Large gold is valuable but heavy. Rocks cost precious time.</p>
+      </section>
+      <aside class="how-to-play" aria-labelledby="how-to-title">
+        <p class="section-eyebrow">A LITTLE TIMING. A BIG PAYOFF.</p>
+        <h2 id="how-to-title">How to play</h2>
+        <p class="goal-copy">Collect <strong id="guide-quota">enough treasure</strong> in <strong id="guide-time">the time available</strong>.</p>
+        <ol class="play-steps">
+          <li><strong>Watch the swing</strong><span>The claw sweeps from side to side. Wait until it points at your target.</span></li>
+          <li><strong>Launch the claw</strong><span>Click the field, tap Launch claw, or press <kbd>Space</kbd> / <kbd>↓</kbd>.</span></li>
+          <li><strong>Make the haul count</strong><span>The claw reels back automatically. Launch again when it is ready.</span></li>
+        </ol>
+        <div class="treasure-tip"><strong>Choose your targets</strong><p>Gold and diamonds earn money. Larger gold takes longer to haul. Rocks offer little value and use up time.</p></div>
+        <div class="round-tip"><strong>When does it end?</strong><p>The round ends when time runs out or the field is cleared. Meet the goal to win. Reaching the goal early lets you keep collecting.</p></div>
+        <p class="guide-note">Use Pause game for a break. New game resets the field and clock. Switching tabs pauses play.</p>
+      </aside>
+    </div>
     <section class="controls control-panel" aria-labelledby="play-controls-title">
       <div class="panel-heading"><h2 id="play-controls-title">Play controls</h2><span class="panel-note">Click the field or press Space to launch</span></div>
       <div class="play-row">
@@ -43,8 +75,7 @@
       </details>
       <p id="recording-help" class="panel-note">All 12 final runs and the original checkpoint are available, including failures. Scores are recorded outcomes. Changing the selection starts its replay. Pause above the field to inspect the next recorded step.</p>
     </section>
-    <p id="status" role="status">Choose a target. Large gold is valuable but heavy. Rocks cost precious time.</p>
-    <details class="inspector" open>
+    <details class="inspector">
       <summary>Agent inspector <span id="decision-label">Load a recording to inspect its decisions</span></summary>
       <p id="decision-meta">The saved episode includes the game observation, returned action, latency, and result. It contains no model reasoning text.</p>
       <div class="inspector-grid"><section><h2>Observation before this step</h2><pre id="agent-observation">No recorded step selected.</pre></section><section><h2>Returned action and result</h2><pre id="agent-action">No recorded step selected.</pre></section></div>
