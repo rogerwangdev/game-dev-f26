@@ -1,10 +1,10 @@
 # Course PR integration — current submission status
 
-An authorized push published `7b3bfa2` on October29, with green fork CI. Later commits remain local under the student’s no-push instruction. On October31, no open course PR by `rogerwangdev` was found. No staff message or CourseWorks submission is claimed. The PR body is prepared in [PR-DESCRIPTION.md](PR-DESCRIPTION.md).
+An authorized push published `7b3bfa2` on October 29, with green fork CI. Later commits remain local under the student’s no-push instruction. On October 31, no open course PR by `rogerwangdev` was found. No staff message or CourseWorks submission is claimed. The PR body is prepared in [PR-DESCRIPTION.md](PR-DESCRIPTION.md).
 
 The brief's page 7 requires the student's own `.github/workflows/midterm-<login>.yml`. Our dedicated workflow runs source verification, project tests, timing checks, the full saved-evaluation audit and development baseline episodes without credentials or live calls.
 
-Rechecked October31: the course's trusted `scripts/minigames.py:check_paths` still lists `.github/` in `PROTECTED` (content SHA `ad29b3090d28b09621263e46b6bad4943e276e9b`). Reproducing its path check with these two paths:
+Rechecked October 31: the course's trusted `scripts/minigames.py:check_paths` still lists `.github/` in `PROTECTED` (content SHA `ad29b3090d28b09621263e46b6bad4943e276e9b`). Reproducing its path check with these two paths:
 
 ```text
 midterms/rogerwangdev/README.md

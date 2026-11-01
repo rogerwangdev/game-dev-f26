@@ -1,5 +1,17 @@
 # Final local reproducibility verification
 
+## Latest check — October 31
+
+Verified a clean independent clone of `36d43b0fea08e64117b3bd7e43ddfae2ffa5f578` with Node `v22.22.1` and Python `3.12.3`. All 38 tests, 13 imported-source hashes, timing checks, 24 exact final-trace audits and three development baseline episodes passed. The clone started with an empty Git status and its tracked source stayed unchanged. No credentials were copied and no new live model calls were made.
+
+The browser check covered human start/launch/pause/reset, debug inspection, a complete $1,011/$750 heuristic win, all 13 catalog replays to their recorded outcomes, phone layout, presentation loading and video decoding at 211.6 seconds/1280×900. No page errors or external requests occurred. [Machine-readable command results, logs and tested-file hashes](../reports/verification-2026-10-31.json) retain the actual run. Later audit/status documentation does not change the tested runtime inputs or the frozen gameplay hash.
+
+The latest known remote fork CI is still `7b3bfa2`. Later local commits have not been pushed, and the course PR/policy integration remains open. This distinction is reflected in the [full submission audit](submission-audit.md). Local passing commands are not presented as a new remote CI run.
+
+Independent follow-up by `submission_sanity_review` reported No findings. It checked all 122 candidate hashes, five command-log hashes, unchanged runtime/peer/media inputs and 127 active-document links, and independently reran the clean clone's 38 tests and 24-trace audit. It reviewed browser results against the actual saved traces. Student review, outgoing feedback and external submission steps remain open; this verification does not approve them.
+
+## Historical October 28 verification
+
 Verified October 28, 2026, on clean candidate commit `5d25da8a09199c4f394b3242f7867f3208c85caa`.
 
 A new `git clone --no-hardlinks --single-branch --branch rogerwangdev/midterm` from the local repository started with an empty `git status --porcelain`. It used no uncommitted source, copied credentials, npm dependency installation or new live model calls.

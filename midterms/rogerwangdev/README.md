@@ -10,6 +10,8 @@ A bounded adaptation of [Lor3walker/gold-miner](https://github.com/Lor3walker/go
 - **Final held-out evaluation is complete.** Twelve fresh Vertex episodes compare observation-only input and four-entry history. Gemini reached 2/6 quotas with H0 and 0/6 with H4. The heuristic reached all quotas. All 24 final traces, the original failed checkpoint and the $0.1994127 final token-cost estimate are retained in [EVALUATION.md](EVALUATION.md).
 - The latest published [fork CI at 7b3bfa2 passed](https://github.com/rogerwangdev/game-dev-f26/actions/runs/40924048142). The later human-animation fix is verified locally. No course PR is claimed. See the [local verification record](docs/verification.md) and [course integration status](docs/course-integration.md).
 
+The [October 31 submission audit](docs/submission-audit.md) maps all 15 rubric checks to evidence and actual open items. Fresh-clone checks passed for the current runtime. Reflection review, outgoing peer feedback and final course publication/CI/submission are still open. No unfilled active peer-note templates remain, and historical source records are preserved.
+
 ## Shareable playtest
 
 [Play Gold Miner](https://gold-miner-peer-playtest.rogerwang0506.chatgpt.site/) or share the [15-minute playtest guide](https://gold-miner-peer-playtest.rogerwang0506.chatgpt.site/playtest.html). Anyone with the link can play without installing software or providing credentials. The guide links the captioned agent recording and feedback prompts. Send actual feedback through the agreed course/private channel. The site does not collect feedback or start paid provider calls.

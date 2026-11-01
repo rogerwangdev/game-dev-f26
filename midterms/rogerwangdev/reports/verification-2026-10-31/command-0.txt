@@ -1,0 +1,242 @@
+
+> test
+> node --test test/*.test.js
+
+TAP version 13
+# Subtest: one decision advances exactly 30 physics frames without wall-time dependence
+ok 1 - one decision advances exactly 30 physics frames without wall-time dependence
+  ---
+  duration_ms: 22.534866
+  type: 'test'
+  ...
+# Subtest: the same seed and actions reproduce an entire gameplay trace
+ok 2 - the same seed and actions reproduce an entire gameplay trace
+  ---
+  duration_ms: 1.290704
+  type: 'test'
+  ...
+# Subtest: invalid actions and player IDs cannot mutate gameplay
+ok 3 - invalid actions and player IDs cannot mutate gameplay
+  ---
+  duration_ms: 2.591008
+  type: 'test'
+  ...
+# Subtest: observations are detached copies with no seed, engine, or evaluator data
+ok 4 - observations are detached copies with no seed, engine, or evaluator data
+  ---
+  duration_ms: 0.442401
+  type: 'test'
+  ...
+# Subtest: launch is unavailable while the claw is busy
+ok 5 - launch is unavailable while the claw is busy
+  ---
+  duration_ms: 0.309801
+  type: 'test'
+  ...
+# Subtest: a straight launch completes a verified successful path and delivers exact value
+ok 6 - a straight launch completes a verified successful path and delivers exact value
+  ---
+  duration_ms: 0.269801
+  type: 'test'
+  ...
+# Subtest: nearest intercepted object wins over a more valuable object behind it
+ok 7 - nearest intercepted object wins over a more valuable object behind it
+  ---
+  duration_ms: 0.469401
+  type: 'test'
+  ...
+# Subtest: heavier loads take more simulated time to deliver
+ok 8 - heavier loads take more simulated time to deliver
+  ---
+  duration_ms: 0.725902
+  type: 'test'
+  ...
+# Subtest: timer expiry is exact and distinguishable from step exhaustion
+ok 9 - timer expiry is exact and distinguishable from step exhaustion
+  ---
+  duration_ms: 0.586002
+  type: 'test'
+  ...
+# Subtest: launch-frame offset is executed by physics rather than an aiming oracle
+ok 10 - launch-frame offset is executed by physics rather than an aiming oracle
+  ---
+  duration_ms: 0.904303
+  type: 'test'
+  ...
+# Subtest: observed integration regression: an empty launch retracts without a rendering callback
+ok 11 - observed integration regression: an empty launch retracts without a rendering callback
+  ---
+  duration_ms: 0.651502
+  type: 'test'
+  ...
+# Subtest: evaluation audit accepts a complete trace and rejects forged replay results
+ok 12 - evaluation audit accepts a complete trace and rejects forged replay results
+  ---
+  duration_ms: 49.723745
+  type: 'test'
+  ...
+# Subtest: evaluation audit rejects incompatible game identity and forged token totals
+ok 13 - evaluation audit rejects incompatible game identity and forged token totals
+  ---
+  duration_ms: 23.072968
+  type: 'test'
+  ...
+# Subtest: evaluation audit rejects altered limits, requested model settings and cost basis
+ok 14 - evaluation audit rejects altered limits, requested model settings and cost basis
+  ---
+  duration_ms: 13.303339
+  type: 'test'
+  ...
+# Subtest: human clock advances one physics tick, and launches at the currently visible angle
+ok 15 - human clock advances one physics tick, and launches at the currently visible angle
+  ---
+  duration_ms: 2.632908
+  type: 'test'
+  ...
+# Subtest: human tick playback matches every development baseline decision and final outcome
+ok 16 - human tick playback matches every development baseline decision and final outcome
+  ---
+  duration_ms: 86.163451
+  type: 'test'
+  ...
+# Subtest: human adapter rejects invalid input without changing state, including a busy launch
+ok 17 - human adapter rejects invalid input without changing state, including a busy launch
+  ---
+  duration_ms: 0.595301
+  type: 'test'
+  ...
+# Subtest: human pause inspection advances 30 ticks and expiry stops within a partial interval
+ok 18 - human pause inspection advances 30 ticks and expiry stops within a partial interval
+  ---
+  duration_ms: 0.346301
+  type: 'test'
+  ...
+# Subtest: observed review regression: call-limited replays preserve failure and terminal reason
+ok 19 - observed review regression: call-limited replays preserve failure and terminal reason
+  ---
+  duration_ms: 13.311939
+  type: 'test'
+  ...
+# Subtest: replay rejects a recorded score that disagrees with current physics
+ok 20 - replay rejects a recorded score that disagrees with current physics
+  ---
+  duration_ms: 9.107527
+  type: 'test'
+  ...
+# Subtest: baseline completes all development scenarios using only observations
+ok 21 - baseline completes all development scenarios using only observations
+  ---
+  duration_ms: 63.869687
+  type: 'test'
+  ...
+# Subtest: model call exhaustion is enforced and explicit
+ok 22 - model call exhaustion is enforced and explicit
+  ---
+  duration_ms: 3.051508
+  type: 'test'
+  ...
+# Subtest: invalid model actions consume budget and never mutate gameplay
+ok 23 - invalid model actions consume budget and never mutate gameplay
+  ---
+  duration_ms: 3.027809
+  type: 'test'
+  ...
+# Subtest: a stuck provider is aborted and recorded as a failed call
+ok 24 - a stuck provider is aborted and recorded as a failed call
+  ---
+  duration_ms: 12.027035
+  type: 'test'
+  ...
+# Subtest: wall limit is distinct from request timeout
+ok 25 - wall limit is distinct from request timeout
+  ---
+  duration_ms: 10.827232
+  type: 'test'
+  ...
+# Subtest: provider errors are not replaced with baseline actions
+ok 26 - provider errors are not replaced with baseline actions
+  ---
+  duration_ms: 2.101206
+  type: 'test'
+  ...
+# Subtest: forced waits are counted separately from player decisions
+ok 27 - forced waits are counted separately from player decisions
+  ---
+  duration_ms: 2.845009
+  type: 'test'
+  ...
+# Subtest: current observation mode does not leak previous moves into history
+ok 28 - current observation mode does not leak previous moves into history
+  ---
+  duration_ms: 2.946309
+  type: 'test'
+  ...
+# Subtest: bounded history contains only previous decisions and cannot mutate retained results
+ok 29 - bounded history contains only previous decisions and cannot mutate retained results
+  ---
+  duration_ms: 12.430536
+  type: 'test'
+  ...
+# Subtest: provider response delay does not change actions or simulated results
+ok 30 - provider response delay does not change actions or simulated results
+  ---
+  duration_ms: 19.928259
+  type: 'test'
+  ...
+# Subtest: timing skill checks the declared engine, provider schema and full development episodes offline
+ok 31 - timing skill checks the declared engine, provider schema and full development episodes offline
+  ---
+  duration_ms: 132.284586
+  type: 'test'
+  ...
+# Subtest: timing skill rejects a requested interval that the runtime has not implemented
+ok 32 - timing skill rejects a requested interval that the runtime has not implemented
+  ---
+  duration_ms: 41.280621
+  type: 'test'
+  ...
+# Subtest: timing skill rejects a duration between physics ticks rather than rounding it
+ok 33 - timing skill rejects a duration between physics ticks rather than rounding it
+  ---
+  duration_ms: 36.072605
+  type: 'test'
+  ...
+# Subtest: timing skill catches drift between the engine and the outgoing provider action schema
+ok 34 - timing skill catches drift between the engine and the outgoing provider action schema
+  ---
+  duration_ms: 55.501362
+  type: 'test'
+  ...
+# Subtest: Vertex adapter sends only observation, actions and bounded history with no model tools
+ok 35 - Vertex adapter sends only observation, actions and bounded history with no model tools
+  ---
+  duration_ms: 3.204709
+  type: 'test'
+  ...
+# Subtest: Vertex refuses to run without a configured project
+ok 36 - Vertex refuses to run without a configured project
+  ---
+  duration_ms: 0.833103
+  type: 'test'
+  ...
+# Subtest: non-JSON model output remains an invalid action with token usage recorded
+ok 37 - non-JSON model output remains an invalid action with token usage recorded
+  ---
+  duration_ms: 2.468607
+  type: 'test'
+  ...
+# Subtest: HTTP errors do not include credentials or raw provider messages
+ok 38 - HTTP errors do not include credentials or raw provider messages
+  ---
+  duration_ms: 0.289301
+  type: 'test'
+  ...
+1..38
+# tests 38
+# suites 0
+# pass 38
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 339.26369
