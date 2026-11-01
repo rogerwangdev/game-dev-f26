@@ -14,6 +14,15 @@ A bounded adaptation of [Lor3walker/gold-miner](https://github.com/Lor3walker/go
 
 [Play Gold Miner](https://gold-miner-peer-playtest.rogerwang0506.chatgpt.site/) or share the [15-minute playtest guide](https://gold-miner-peer-playtest.rogerwang0506.chatgpt.site/playtest.html). Anyone with the link can play without installing software or providing credentials. The guide links the captioned agent recording and feedback prompts. Send actual feedback through the agreed course/private channel. The site does not collect feedback or start paid provider calls.
 
+Received evidence: [October 30 playtest feedback](docs/playtests/2026-10-30-received.md). The [peer-notes index and response record](PEER-NOTES.md) summarize the observations and remaining gaps. The source report is preserved unchanged, including its unchecked confirmation box and Not verified technical items.
+
+## Rubric 5A and 5B
+
+| Check | Evidence and status |
+| --- | --- |
+| **5A — fair evaluation** | Completed model/baseline comparison in [EVALUATION.md](EVALUATION.md), with the [pre-run protocol](FINAL-EVALUATION.json), held-out cases, complete traces, metrics and failures. Human feedback does not replace these experiments. |
+| **5B — reflection and peer feedback** | Partial. [Received feedback](docs/playtests/2026-10-30-received.md) is tracked and indexed in [PEER-NOTES.md](PEER-NOTES.md). Notes given to a partner and the student's own decisions/reflection in [AGENT-TEAM.md](AGENT-TEAM.md) remain pending. Tester confirmation, total session duration and the exact agent view were not recorded. |
+
 ## Run locally
 
 Use Node.js 22 or later and Python 3 for the static server. No npm dependencies are required for the game, tests, baseline or saved-trace audit. Live Vertex play also requires Google Cloud CLI (`gcloud`), funded project access, and application-default authentication. Video capture is an optional development tool with separate Playwright requirements.
@@ -94,6 +103,6 @@ Do not use held-out results to tune the prompt. [SUITE.json](SUITE.json) records
 
 Project instructions are in [AGENTS.md](AGENTS.md). The committed [gold-miner-rule-change skill](skills/gold-miner-rule-change/SKILL.md) connects design rationale, source evidence, failing tests, implementation, boundary checks, and independent review. Its [simulation-timing procedure](skills/gold-miner-rule-change/references/simulation-timing.md) explains changes such as 0.5-second to 1-second decisions and includes an offline `npm run check:timing` helper. The active game still uses 0.5-second decisions. Actual usage is recorded in [the work log](docs/work-log.md). The [agent-team evidence index](docs/agent-team-evidence.md) lists the remaining rubric work. [Two actual authoring-session transcripts](docs/sessions/README.md) document named skill use in the original VS Code implementation and a fresh standalone CLI timing rehearsal. The session files are ready for course PR links after publication is authorized.
 
-Codex assisted with implementation and suggested wrapping the existing claw simulation rather than replacing timing with target selection. This suggestion was retained in the implementation. The student still needs to complete the one-page [AGENT-TEAM.md worksheet](AGENT-TEAM.md) in their own voice. [Peer fields](PEER-NOTES.md) remain intentionally blank. Final evaluation and the local recording are complete. Human experience and personal reflection are not inferred from automated checks. A [PR description draft](docs/PR-DESCRIPTION.md) is ready for the eventual authorized publication.
+Codex assisted with implementation and suggested wrapping the existing claw simulation rather than replacing timing with target selection. This suggestion was retained in the implementation. The student still needs to complete the one-page [AGENT-TEAM.md worksheet](AGENT-TEAM.md) in their own voice. [Received peer feedback and remaining response fields](PEER-NOTES.md) are now linked. Final evaluation and the recording are complete. Human experience and personal reflection are not inferred from automated checks. A [PR description draft](docs/PR-DESCRIPTION.md) is ready for the eventual authorized publication.
 
 Original source: Lor3walker, revision recorded in SOURCE.json. Preserve [the imported MIT license](vendor/gold-miner/LICENSE). The upstream artwork is drawn procedurally by its code. This project is an independent adaptation and does not claim affiliation with the original Gold Miner publisher.

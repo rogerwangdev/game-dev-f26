@@ -15,7 +15,7 @@ Required evidence, relative to `midterms/rogerwangdev/`:
 - [README and exact commands](../README.md)
 - [Evaluation, metrics and limitations](../EVALUATION.md)
 - [Student agent-team log — incomplete worksheet](../AGENT-TEAM.md)
-- [Peer notes — blank pending human exchange](../PEER-NOTES.md)
+- [Peer notes and response status — partial](../PEER-NOTES.md), [received October 30 feedback](playtests/2026-10-30-received.md)
 - [3½-minute recording](../recordings/gold-miner-demo.webm), [recording provenance](../recordings/README.md)
 - [Two actual named skill-use sessions](sessions/README.md)
 - [Independent findings and resolutions](../review.md)
@@ -23,4 +23,4 @@ Required evidence, relative to `midterms/rogerwangdev/`:
 
 Validation: source-file hashes, deterministic game/runner/adapter tests, timing checks, complete saved-trace replay, browser checks and fresh-clone verification. Detailed version-specific evidence is linked from the README. Live calls are excluded from CI.
 
-Open items: student-authored reflection, peer feedback, publication and the trusted-base course workflow policy described in [course-integration.md](course-integration.md). The one-second skill rehearsal remains an unapplied evidence artifact. The submitted game still uses 0.5-second decisions.
+Open items: student-authored reflection, notes given to a partner, confirmation/coverage gaps in the received peer report, publication and the trusted-base course workflow policy described in [course-integration.md](course-integration.md). The one-second skill rehearsal remains an unapplied evidence artifact. The evaluated game still uses 0.5-second decisions.

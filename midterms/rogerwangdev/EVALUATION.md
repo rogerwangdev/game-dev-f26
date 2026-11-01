@@ -46,7 +46,11 @@ Prices were rechecked on October 28: global standard input $0.30 and response/re
 
 The game is fully observed and deterministic given an action. Past shots could help a model recognize repeated errors, but add no hidden state needed to compute current trajectories. Here, H4 used about **5.7 times the input tokens and 5.2 times the estimated cost**, with the same 157 model calls and fewer sampled quota successes. It collected somewhat more in the two tight-budget runs, while doing worse in the open and blocked cases. This supports keeping observation-only input as the default for this bounded experiment. It does not establish that memory generally harms play.
 
-The two trials per cell, fixed initial seeds, sequential arm order and possible provider variation limit causal interpretation. Repeating the same unchanged model is not training or self-improvement. No model thought text or intended target IDs were recorded, so explanations do not invent what the model was thinking. Neither automated wins nor these observations establish player enjoyment. Peer feedback remains blank pending the required human exchange.
+The two trials per cell, fixed initial seeds, sequential arm order and possible provider variation limit causal interpretation. Repeating the same unchanged model is not training or self-improvement. No model thought text or intended target IDs were recorded, so explanations do not invent what the model was thinking. Neither automated wins nor these observations establish player enjoyment. The separate [October 30 human feedback](docs/playtests/2026-10-30-received.md) provides qualitative experience reports, with limitations recorded in [PEER-NOTES.md](PEER-NOTES.md).
+
+### Human feedback and rubric 5B
+
+The model/baseline experiments above address **5A**. The received peer report and the student's response address **5B**. The peer described satisfying manual grabs, frustrating misses, an unclear deadline rule, less engaging precise agent play and intermittent stutter, and suggested beginner assistance. Its agent view, exact build and total elapsed duration were not recorded. The report references two JSON traces not supplied here, leaves its final confirmation unchecked, and marks technical checks Not verified. These limits are retained, not filled by inference. Human scores are not additional model trials or a controlled learning comparison. Notes given to a partner and the student-authored interpretation/decisions remain pending.
 
 ## October 26 preliminary comparison
 
@@ -99,9 +103,9 @@ For `gemini-3.5-flash-lite` standard global on-demand requests, published prices
 
 ## Limitations and outstanding evidence
 
-The October 26 checkpoint now has a playable five-operation game, completed baseline runs, a completed live model episode and trace, an initial comparison, and passing deterministic CI. The live model failed its quota and that failure is retained. The completed held-out/history comparison remains a small sample with the limitations above. A human peer playtest, the student's own reflection and final publication remain pending. The local recording and verification status are linked from the README. A second standalone skill-use session was subsequently completed and exported on October 28, as indexed in `docs/sessions/README.md`.
+The October 26 checkpoint has a playable five-operation game, completed baseline runs, a completed live model episode and trace, an initial comparison, and passing deterministic CI. The live model failed its quota and that failure is retained. The completed held-out/history comparison remains a small sample with the limitations above. Received human feedback is now filed, while its confirmation/coverage gaps, notes given to a partner, the student's own reflection and course submission remain pending. Recording and verification status are linked from the README. A second standalone skill-use session was completed and exported on October 28, as indexed in `docs/sessions/README.md`.
 
-The browser is a stepped checkpoint interface. It deliberately pauses between manual steps and renders decision intervals rather than every physics frame. A later visual polish pass can improve animation without changing the authoritative physics or agent controls.
+Human browser play now uses a separate smooth 60 Hz adapter. Model/heuristic evaluation and recorded model playback retain the declared fixed-step interface. Historic observations about stepped rendering should not be attributed to an unidentified agent view in the peer report.
 
 ## October 28 timing-skill verification
 
@@ -115,4 +119,4 @@ The [agent-team evidence index](docs/agent-team-evidence.md) separates the earli
 
 The completed candidate was independently cloned and checked with 34 passing tests, all 13 source hashes, the timing contract, exact replay of all 24 final traces, and complete development baseline episodes. Browser controls, reset, a real held-out replay, phone layout and the 211.6-second compressed recording were verified. See [the version-specific verification record](docs/verification.md), [machine-readable results](reports/verification-clean-clone.json) and [independent follow-up](review.md). No additional paid trial was needed for these checks.
 
-The local recording and evidence are ready for publication, but no push or course PR has been made. The student-authored reflection and peer fields are intentionally incomplete. The trusted-base workflow policy conflict is documented rather than bypassed.
+The evaluation/recording evidence was pushed through `7b3bfa2`, with passing fork CI. Later browser and documentation commits remain local unless separately authorized for GitHub publication. No course PR is claimed. The student-authored reflection, notes given and confirmation of the received peer report remain incomplete. The trusted-base workflow policy conflict is documented rather than bypassed.

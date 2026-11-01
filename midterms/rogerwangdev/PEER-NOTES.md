@@ -1,6 +1,6 @@
 # Peer playtest notes
 
-Pending the required human exchange. The fields below are intentionally blank. Automated checks and agent reviews are not student playtests. Keep names and other identifying details out of these notes.
+**Partially complete.** Received human feedback is filed below. Notes given to a partner, final tester confirmation and the student's own response remain pending. Automated checks and agent reviews are separate evidence. Keep identifying details and private ratings out of the public submission.
 
 ## Notes given to a partner — due November 6
 
@@ -18,17 +18,40 @@ Feedback delivered:
 
 ## Notes received from a partner
 
-Date:
+Date: October 30, 2026.
 
-Build/version tested:
+Source: [Received playtest report](docs/playtests/2026-10-30-received.md), moved into the submission without changing its contents. The report discloses Codex assistance in organizing the tester's notes and extracting trace details. Its final tester-confirmation checkbox remains unchecked.
 
-What the player actually did:
+Build/version tested: exact source commit was not recorded. The report identifies Windows 10/Chrome, two human rounds in `open-dev`, seed 101, and some agent viewing without identifying the agent or recording.
 
-What the player said they felt or misunderstood:
+What the player reported:
 
-Changes made in response:
+- Manual timing made successful grabs feel satisfying and skillful. Repeated diamond misses became frustrating.
+- The goal/basic controls were clear. Whether a launch could finish after the timer reached zero was unclear.
+- Agent precision made viewing feel less challenging and interesting. The tester did not verify an information advantage, so this is not evidence of cheating or a finding about a specific agent.
+- Intermittent agent-view stutter was reported, without a known cause or reproducible sequence.
+- The tester suggested an optional beginner aiming guide and difficulty options.
+- The report attributes scores of $400/$750 and $1,011/$750 to two exported traces. Those JSON files were not supplied in this workspace, so the trace-derived figures and timing were not independently checked here.
 
-## Silent-playtester recording replies — before class November 16
+### Response and remaining evidence for 5B
+
+| Finding | Current response / remaining work |
+| --- | --- |
+| Deadline rule unclear | Code confirms score is awarded on delivery and there is no extra retrieval time after expiry. See [human frame adapter](src/human-episode.js) and [evaluation engine](src/episode.js). A player-facing clarification remains to be decided/implemented. |
+| Beginner aiming guide/difficulty | Suggestion recorded. Student decision and rationale are pending. No feature is claimed implemented in response. |
+| Agent precision and stutter | Exact agent/view is unknown. Identify the view and any reproduction steps before attributing the experience or changing a policy. |
+| Formal exchange record | Total elapsed session duration is unknown. Sixty seconds of reported simulation is not a measured appointment duration. Tester confirmation remains unrecorded. |
+| Technical checks | Held-out validation, invalid-action handling, information boundaries and provider limits remain Not verified by this peer. Existing [5A evaluation evidence](EVALUATION.md) and tests are separate from the human report. |
+
+The received report is useful qualitative evidence, with two rounds on one situation and no controlled usability comparison. No original model/baseline result is replaced or supplemented by these human scores. Optional usability ratings were not provided and are not required.
+
+**Student response, in your own words:**
+
+What I changed or retained because of this feedback, and why:
+
+Remaining limitations or follow-up questions:
+
+## Separate silent-playtester recording replies — before class November 16
 
 Recording 1 / one guess / one question:
 

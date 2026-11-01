@@ -1,6 +1,6 @@
 # Agent-team log — student draft
 
-**Incomplete.** The course requires this one-page log in the student's own voice. The factual index below was prepared by Codex. The personal-response fields are blank and must be completed by the student before submission. Peer observations are also pending.
+**Incomplete — rubric 5B.** The course requires this one-page log in the student's own voice. The factual index below was prepared by Codex. The personal-response fields are blank and must be completed by the student before submission. [October 30 feedback](docs/playtests/2026-10-30-received.md) has been received, with limitations and pending confirmation recorded in [PEER-NOTES.md](PEER-NOTES.md).
 
 | Role | Actual access and work | Evidence |
 | --- | --- | --- |
@@ -11,14 +11,16 @@
 
 **Complete these in your own words:**
 
+Evidence to draw on: [5A model/baseline evaluation](EVALUATION.md), [5B received peer feedback](docs/playtests/2026-10-30-received.md), and [peer observations / response status](PEER-NOTES.md). The 5A experiment is complete. The 5B personal interpretation and decisions are not supplied by these links.
+
 Why I chose this game, bounded scope and research question:
 
 An agent recommendation I accepted, changed or rejected, and my reason:
 
 What I decided about timing, observations, baseline and history:
 
-What the failed and successful trials taught me, including limitations:
+What the 5A failed and successful trials taught me, including limitations:
 
-How the peer notes affected my decisions:
+How the linked peer notes affected my decisions, including what I changed or retained and why:
 
 Do not treat this worksheet or the assistant's work log as completed personal authorship.
